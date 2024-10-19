@@ -102,6 +102,92 @@
               <h6>Bamboo Chair</h6>
               <p>.obj .png .jpg</p>
             </div>
+            <div class="off">
+              <img src="../assets/local_offer.png" alt="" /> 30% off
+            </div>
+            <div class="off-rate">
+              <h6 id="rate">$7.00</h6>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
           </div>
           <div class="card">
             <img
@@ -399,16 +485,18 @@ export default {
         height: 83vh;
         display: flex;
         flex-wrap: wrap;
-       gap:1rem;
+        gap: 0.5rem;
+        row-gap: 0.5rem;
         .card {
-          background-color: white;
+          background-color: rgb(255, 255, 255);
           height: 13.245rem;
-          width: 18.34rem;
+          width: 16.34rem;
           border-radius: 0.635rem;
           box-shadow: 0px 4px 20px 0px #0000001f;
           display: flex;
           flex-direction: column;
           gap: 0;
+          position: relative;
 
           img {
             width: 100%;
@@ -422,19 +510,58 @@ export default {
             justify-content: space-between;
             padding: 0.5rem;
             height: 20%;
+            overflow: hidden;
 
             h6 {
               margin: 0;
               font-size: 1rem;
               font-weight: bold;
               color: #333;
+              overflow: hidden;
             }
 
             p {
               margin: 0;
               font-size: 0.875rem;
               color: #666;
+              overflow: hidden;
             }
+          }
+          .off {
+            position: absolute;
+            margin-top:3%;
+            margin-left:3%;
+            height: 2.5rem;
+            width:6.5rem;
+            border-radius: 2rem;
+            color: #06c270;
+            background-color: white;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 16px;
+            
+            img{
+              height: 1rem;
+              width: 1rem;
+            }
+          }
+          .off-rate{
+            position: absolute;
+            margin-top:3%;
+            margin-left:70%;
+            height: 2.5rem;
+            width:4rem;
+            border-radius: 2rem;
+            color:  #FFAB40;
+            background-color: white;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 16px;
+#rate{
+  font-size: 13px;
+}
           }
         }
       }
