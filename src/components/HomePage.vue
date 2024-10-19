@@ -46,6 +46,28 @@
         </div>
       </div>
     </div>
+    <div class="tabular-quick-filter">
+      <div class="tabular">
+        <img src="../assets/king_bed.png" alt="" />
+        <p>Furniture</p>
+      </div>
+      <div class="tabular">
+        <img src="../assets/light.png" alt="" />
+        <p>Lighting</p>
+      </div>
+      <div class="tabular">
+        <img src="../assets/texture.png" alt="" />
+        <p>Textures</p>
+      </div>
+      <div class="tabular">
+        <img src="../assets/devices.png" alt="" />
+        <p>Materials</p>
+      </div>
+      <div class="tabular">
+        <img src="../assets/tonality.png" alt="" />
+        <p>Technology</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -232,6 +254,27 @@ export default {
           height: 18px;
         }
       }
+    }
+  }
+  .tabular-quick-filter {
+    height: 5.625rem;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    box-shadow: 0px 4px 20px 0px #0000001f;
+    .tabular {
+      height: 100%;
+      width: 7.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(255, 255, 255);
+      color: rgb(80, 69, 69);
+      flex-direction: column;
+      // gap: 0.2rem;
     }
   }
 }
