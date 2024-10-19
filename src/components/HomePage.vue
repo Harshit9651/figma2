@@ -33,6 +33,17 @@
             <input type="text" placeholder="Search 5764 3D Models.." />
           </div>
         </div>
+        <div class="searchs">
+          <div class="search">
+            <img src="../assets/search.png" alt="" /> chair
+          </div>
+          <div class="search">
+            <img src="../assets/search.png" alt="" /> Bedroom
+          </div>
+          <div class="search">
+            <img src="../assets/search.png" alt="" /> Soffa
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -133,51 +144,94 @@ export default {
     align-items: center;
     color: white;
     .inner-div {
-      height: 80%;
+      height: 90%;
       width: 30%;
       display: flex;
       align-items: center;
       flex-direction: column;
-    }
-  }
 
-  .search-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+      .search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        width: 100%;
 
-    .input-with-dropdown {
-      position: relative;
-      width: 536px; 
-      height: 44px; 
-      display: flex;
-      align-items: center;
-    }
+        .input-with-dropdown {
+          position: relative;
+          width: 100%;
+          height: 44px;
+          display: flex;
+          align-items: center;
+        }
 
-    select {
-      width: 5rem;
-      height: 100%;
-      border: 1px solid #ccc;
-      background-color: white;
-      border-radius: 32px 0 0 32px; /* Left side rounded */
-      font-size: 16px;
-      padding: 10px;
-      cursor: pointer;
-      outline: none;
-      box-sizing: border-box;
-    
-    }
+        select {
+          width: 5rem;
+          height: 100%;
+          border: 1px solid #ccc;
+          background-color: white;
+          border-radius: 32px 0 0 32px;
+          font-size: 16px;
+          padding: 10px;
+          cursor: pointer;
+          outline: none;
+          box-sizing: border-box;
+        }
 
-    input {
-      width: calc(100% - 120px);
-      height: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 0 32px 32px 0;
-      outline: none;
-      box-sizing: border-box;
+        input {
+          width: calc(100% - 120px);
+          height: 100%;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 0 32px 32px 0;
+          outline: none;
+          box-sizing: border-box;
+        }
+      }
+
+      .searchs {
+        margin-top: 0.7rem;
+        width: 70%;
+        height: 2.8rem;
+        display: flex;
+        // justify-content: space-evenly;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        margin-right: 1rem;
+      }
+
+      .search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        color: black;
+        background-color: white;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 1.3rem;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          background-color: #f0f0f0;
+          border-color: #1b2128;
+          color: #007bff;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+          width: 18px;
+          height: 18px;
+        }
+      }
     }
   }
 }
