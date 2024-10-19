@@ -1,8 +1,12 @@
 <template>
   <div class="main">
-    <div class="avil-offer">
+    <div v-if="isoffer" class="avil-offer">
       <p>Avil 70% off offer</p>
-      <div class="cros"><img src="../assets/close.png" alt="" /></div>
+      <div class="cros">
+        <button @click="closeoffer">
+          <img src="../assets/close.png" alt="" />
+        </button>
+      </div>
     </div>
     <div class="navbar">
       <div class="image left-bar">
@@ -82,131 +86,22 @@
             <img src="../assets/filter_list.png" alt="" /> Most Popular
           </div>
         </div>
+        
         <div class="cards">
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
+          <div v-for="product in products" :key="product.id" class="card">
+            <img :src="product.image" :alt="product.title" />
             <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
+              <h6>{{ product.title }}</h6>
+              <p>{{ product.formats }}</p>
             </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
+
+            <!-- Conditionally render the discount (off) and rate if they exist -->
+            <div v-if="product.off" class="off">
+              <img src="../assets/local_offer.png" alt="Discount" />
+              {{ product.off }}
             </div>
-            <div class="off">
-              <img src="../assets/local_offer.png" alt="" /> 30% off
-            </div>
-            <div class="off-rate">
-              <h6 id="rate">$7.00</h6>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Bamboo chair"
-            />
-            <div class="card-content">
-              <h6>Bamboo Chair</h6>
-              <p>.obj .png .jpg</p>
+            <div v-if="product.rate" class="off-rate">
+              <h6 id="rate">{{ product.rate }}</h6>
             </div>
           </div>
         </div>
@@ -215,7 +110,18 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useProductsStore } from "../store/image";
+import { computed ,ref} from "vue";
+const isoffer = ref(true);
+
+
+const productsStore = useProductsStore(); // Initialize the store first
+const products = computed(() => productsStore.getAllProducts); // Now you can access products
+function closeoffer() {
+ isoffer.value = !isoffer.value;
+}
+</script>
 
 <script>
 // import SlidBar from './SlidBar.vue';
@@ -237,11 +143,18 @@ export default {
     display: flex;
     justify-content: center;
     position: relative;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
 
     .cros {
       position: absolute;
       margin-left: 97%;
       margin-top: 1%;
+      button {
+        all: unset;
+        display: inline-block;
+      }
     }
   }
 
@@ -485,7 +398,7 @@ export default {
         height: 83vh;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 1.1rem;
         row-gap: 0.5rem;
         .card {
           background-color: rgb(255, 255, 255);
@@ -529,10 +442,10 @@ export default {
           }
           .off {
             position: absolute;
-            margin-top:3%;
-            margin-left:3%;
+            margin-top: 3%;
+            margin-left: 3%;
             height: 2.5rem;
-            width:6.5rem;
+            width: 6.5rem;
             border-radius: 2rem;
             color: #06c270;
             background-color: white;
@@ -540,28 +453,28 @@ export default {
             justify-content: space-evenly;
             align-items: center;
             font-size: 16px;
-            
-            img{
+
+            img {
               height: 1rem;
               width: 1rem;
             }
           }
-          .off-rate{
+          .off-rate {
             position: absolute;
-            margin-top:3%;
-            margin-left:70%;
+            margin-top: 3%;
+            margin-left: 70%;
             height: 2.5rem;
-            width:4rem;
+            width: 4rem;
             border-radius: 2rem;
-            color:  #FFAB40;
+            color: #ffab40;
             background-color: white;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
             font-size: 16px;
-#rate{
-  font-size: 13px;
-}
+            #rate {
+              font-size: 13px;
+            }
           }
         }
       }
