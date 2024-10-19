@@ -68,14 +68,17 @@
         <p>Technology</p>
       </div>
     </div>
+    <SlidBar></SlidBar>
   </div>
 </template>
 
 <script setup></script>
 
 <script>
+import SlidBar from './SlidBar.vue';
 export default {
   name: "HomePage",
+  components:SlidBar
 };
 </script>
 
