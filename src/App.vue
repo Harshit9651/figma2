@@ -1,17 +1,17 @@
 <template>
-<SlidBar></SlidBar>
+<HomePage></HomePage>
 </template>
   
 
 <script>
-// import HomePage from './components/HomePage.vue' 
- import SlidBar from './components/SlidBar.vue'
+ import HomePage from './components/HomePage.vue' 
+//  import SlidBar from './components/SlidBar.vue'
 
 export default {
   name: 'App',
   components: {
-    // HomePage
-    SlidBar
+    HomePage
+    // SlidBar
   }
 }
 </script>

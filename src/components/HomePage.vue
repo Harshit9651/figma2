@@ -68,17 +68,74 @@
         <p>Technology</p>
       </div>
     </div>
-    <SlidBar></SlidBar>
+    <div class="result-slidbar-section">
+      <div class="slidbar">
+        <div class="Filter">
+          <p id="filters">Filters</p>
+          <button><img src="../assets/Vector (1).png" alt="" /></button>
+        </div>
+      </div>
+      <div class="result">
+        <div class="allModel">
+          <p>All Models (1245)</p>
+          <div class="filter">
+            <img src="../assets/filter_list.png" alt="" /> Most Popular
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/28967957/pexels-photo-28967957/free-photo-of-european-robin-perched-on-a-tree-branch.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bamboo chair"
+            />
+            <div class="card-content">
+              <h6>Bamboo Chair</h6>
+              <p>.obj .png .jpg</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup></script>
 
 <script>
-import SlidBar from './SlidBar.vue';
+// import SlidBar from './SlidBar.vue';
 export default {
   name: "HomePage",
-  components:SlidBar
+  // components:SlidBar
 };
 </script>
 
@@ -268,6 +325,7 @@ export default {
     width: 100%;
     gap: 1rem;
     box-shadow: 0px 4px 20px 0px #0000001f;
+    border-bottom: 1px solid #e0e0e0;
     .tabular {
       height: 100%;
       width: 7.5rem;
@@ -278,6 +336,108 @@ export default {
       color: rgb(80, 69, 69);
       flex-direction: column;
       // gap: 0.2rem;
+    }
+  }
+
+  .result-slidbar-section {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+
+    .slidbar {
+      // position: fixed;
+      top: 0;
+      left: 0;
+      width: 20%;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 4px 6px 24px 4px #0000001f;
+      display: flex;
+      flex-direction: column;
+      padding-left: 5rem;
+      border-right: 1px solid #e0e0e0;
+
+      .Filter {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        #filters {
+          font-size: 20px;
+          font-weight: 500;
+        }
+        button {
+          all: unset;
+          display: inline-block;
+          img {
+            height: 0.9rem;
+            width: 0.9rem;
+            margin-left: 12rem;
+          }
+        }
+      }
+    }
+    .result {
+      width: 80%;
+      background-color: rgb(255, 255, 255);
+
+      .allModel {
+        background-color: #fcfcfc;
+        display: flex;
+        justify-content: space-between;
+        height: 2.35rem;
+        align-items: center;
+        margin-left: 1rem;
+        margin-right: 2rem;
+      }
+      .cards {
+        background-color: #ffffff;
+        margin-left: 1rem;
+        margin-right: 2rem;
+        margin-top: 1rem;
+        height: 83vh;
+        display: flex;
+        flex-wrap: wrap;
+       gap:1rem;
+        .card {
+          background-color: white;
+          height: 13.245rem;
+          width: 18.34rem;
+          border-radius: 0.635rem;
+          box-shadow: 0px 4px 20px 0px #0000001f;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+
+          img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+          }
+
+          .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.5rem;
+            height: 20%;
+
+            h6 {
+              margin: 0;
+              font-size: 1rem;
+              font-weight: bold;
+              color: #333;
+            }
+
+            p {
+              margin: 0;
+              font-size: 0.875rem;
+              color: #666;
+            }
+          }
+        }
+      }
     }
   }
 }
