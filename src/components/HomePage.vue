@@ -24,13 +24,13 @@
         </p>
         <div class="search-box">
           <div class="input-with-dropdown">
-            <input type="text" placeholder="Search..." />
             <select class="dropdown">
               <option value="all">ALL</option>
               <option value="option1">Option 1</option>
               <option value="option2">Option 2</option>
               <option value="option3">Option 3</option>
             </select>
+            <input type="text" placeholder="Search 5764 3D Models.." />
           </div>
         </div>
       </div>
@@ -149,37 +149,35 @@ export default {
 
     .input-with-dropdown {
       position: relative;
-      width: 536px; /* Set input box width */
-      height: 44px; /* Set input box height */
+      width: 536px; 
+      height: 44px; 
       display: flex;
       align-items: center;
     }
 
-    input {
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      // border-radius: 1.5rem 0 0 1.5rem;
-      border-radius: 2rem;
-      outline: none;
-      box-sizing: border-box;
-    }
-
     select {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 120px;
+      width: 5rem;
       height: 100%;
       border: 1px solid #ccc;
       background-color: white;
-      border-radius: 0 1.5rem 1.5rem 0;
+      border-radius: 32px 0 0 32px; /* Left side rounded */
       font-size: 16px;
       padding: 10px;
       cursor: pointer;
       outline: none;
+      box-sizing: border-box;
+    
+    }
+
+    input {
+      width: calc(100% - 120px);
+      height: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 0 32px 32px 0;
+      outline: none;
+      box-sizing: border-box;
     }
   }
 }
