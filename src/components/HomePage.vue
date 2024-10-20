@@ -381,6 +381,8 @@ export default {
     .result {
       width: 80%;
       background-color: rgb(255, 255, 255);
+      height: 100vh; 
+      overflow-y: auto;
 
       .allModel {
         background-color: #fcfcfc;
@@ -401,6 +403,7 @@ export default {
         flex-wrap: wrap;
         gap: 1.1rem;
         row-gap: 0.5rem;
+        overflow-y: auto;
         .card {
           background-color: rgb(255, 255, 255);
           height: 13.245rem;
