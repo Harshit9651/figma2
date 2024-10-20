@@ -389,7 +389,11 @@ export default {
       height: 1.5rem;
       background-color: #666;
       display: flex;
-      
+      justify-content: space-between;
+      align-items: center;
+      .left{
+        display: flex;
+      }
     
     }
 
