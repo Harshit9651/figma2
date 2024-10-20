@@ -18,6 +18,8 @@ export const useProductsStore = defineStore('products', {
         formats: '.obj .png .jpg',
         image: 'https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=600',
         off: '20% off',
+        material:"wood",
+        color:"gary"
       },
       {
         id: 3,
