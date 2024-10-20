@@ -103,6 +103,7 @@
             <div v-if="product.rate" class="off-rate">
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
+            <div class="cart"><img src="../assets/Frame 54.png" alt=""></div>
           </div>
         </div>
       </div>
@@ -415,6 +416,13 @@ export default {
             width: 100%;
             height: 70%;
             object-fit: cover;
+          }
+          .cart{
+            height: 1.5rem;
+            width: 1.5rem;
+            position: absolute;
+            margin-left:80%;
+            margin-top: 60%;
           }
 
           .card-content {
