@@ -387,7 +387,7 @@ export default {
      .price{
       width: 17rem;
       height: 1.5rem;
-      background-color: #666;
+      background-color: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
