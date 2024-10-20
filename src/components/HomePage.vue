@@ -78,6 +78,11 @@
           <p id="filters">Filters</p>
           <button><img src="../assets/Vector (1).png" alt="" /></button>
         </div>
+        <div class="hr"><hr></div>
+        <div class="price">
+          <div class="left"><img src="../assets/attach_money.png" alt=""> <h4>price</h4></div>
+          <div class="right">hello</div>
+        </div>
       </div>
       <div class="result">
         <div class="allModel">
@@ -86,7 +91,7 @@
             <img src="../assets/filter_list.png" alt="" /> Most Popular
           </div>
         </div>
-        
+
         <div class="cards">
           <div v-for="product in products" :key="product.id" class="card">
             <img :src="product.image" :alt="product.title" />
@@ -95,7 +100,6 @@
               <p>{{ product.formats }}</p>
             </div>
 
-            <!-- Conditionally render the discount (off) and rate if they exist -->
             <div v-if="product.off" class="off">
               <img src="../assets/local_offer.png" alt="Discount" />
               {{ product.off }}
@@ -103,7 +107,7 @@
             <div v-if="product.rate" class="off-rate">
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
-            <div class="cart"><img src="../assets/Frame 54.png" alt=""></div>
+            <div class="cart"><img src="../assets/Frame 54.png" alt="" /></div>
           </div>
         </div>
       </div>
@@ -113,14 +117,13 @@
 
 <script setup>
 import { useProductsStore } from "../store/image";
-import { computed ,ref} from "vue";
+import { computed, ref } from "vue";
 const isoffer = ref(true);
-
 
 const productsStore = useProductsStore(); // Initialize the store first
 const products = computed(() => productsStore.getAllProducts); // Now you can access products
 function closeoffer() {
- isoffer.value = !isoffer.value;
+  isoffer.value = !isoffer.value;
 }
 </script>
 
@@ -373,15 +376,28 @@ export default {
           img {
             height: 0.9rem;
             width: 0.9rem;
-            margin-left: 12rem;
+            margin-left: 10rem;
           }
         }
       }
+     .hr{
+      border: 1px sold rgb(255, 255, 255);
+      margin-right: 2rem;
+     }
+     .price{
+      width: 17rem;
+      height: 1.5rem;
+      background-color: #666;
+      display: flex;
+      
+    
+    }
+
     }
     .result {
       width: 80%;
       background-color: rgb(255, 255, 255);
-      height: 100vh; 
+      height: 100vh;
       overflow-y: auto;
 
       .allModel {
@@ -403,7 +419,7 @@ export default {
         flex-wrap: wrap;
         gap: 1.1rem;
         row-gap: 0.5rem;
-        overflow-y: auto;
+
         .card {
           background-color: rgb(255, 255, 255);
           height: 13.245rem;
@@ -420,12 +436,12 @@ export default {
             height: 70%;
             object-fit: cover;
           }
-          .cart{
-            height: 1.5rem;
-            width: 1.5rem;
+          .cart {
+            height: 2.5rem;
+            width: 2.5rem;
             position: absolute;
-            margin-left:80%;
-            margin-top: 60%;
+            margin-left: 80%;
+            margin-top: 64%;
           }
 
           .card-content {
