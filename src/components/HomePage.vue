@@ -393,6 +393,15 @@ export default {
       align-items: center;
       .left{
         display: flex;
+      
+        width: 3rem;
+        justify-content: space-between;
+        align-items: center;
+
+        img{
+         height: 1rem;
+         width:1rem;
+        }
       }
     
     }
