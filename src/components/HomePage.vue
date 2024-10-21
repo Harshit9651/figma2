@@ -81,7 +81,7 @@
         <div class="hr"><hr></div>
         <div class="price">
           <div class="left"><img src="../assets/attach_money.png" alt=""> <h4>price</h4></div>
-          <div class="right">hello</div>
+          <div class="right"><img src="../assets/expand_less.png" alt=""></div>
         </div>
       </div>
       <div class="result">
@@ -385,7 +385,7 @@ export default {
       margin-right: 2rem;
      }
      .price{
-      width: 17rem;
+      width: 16rem;
       height: 1.5rem;
       background-color: #ffffff;
       display: flex;
@@ -399,8 +399,8 @@ export default {
         align-items: center;
 
         img{
-         height: 1rem;
-         width:1rem;
+         height: 1.2rem;
+         width:1.2rem;
         }
       }
     
