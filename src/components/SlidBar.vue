@@ -1,66 +1,36 @@
 <template>
-  <div class="main">
-    <div class="slidbar">
-      <div class="Filter">
-        <p id="filters">Filters</p>
-        <button><img src="../assets/Vector (1).png" alt="" /></button>
-      </div>
-    </div>
+  <div class="slidbar">
+    <ul>
+      <li>
+        <div class="header">
+          <div class="left">
+            <img src="../assets/attach_money.png" alt="" />
+            <h4>Price</h4>
+          </div>
+          <div class="right">
+            <img src="../assets/expand_less.png" alt="" />
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
-
-<script>
-export default {
-  name: "SlidBar",
-};
-</script>
-
-<script setup>
-// import {ref} from 'vue'
-// const slidbar = ref(true)
-// function isslidbar(){
-//   slidbar.value = !slidbar.value
-// }
-</script>
-
+<script setup></script>
 <style lang="scss" scoped>
-.main {
+body {
+  margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
-}
 
-.slidbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20rem;
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 4px 20px 0px #0000001f;
-  display: flex;
-  flex-direction: column;
-  padding-left: 5rem;
-  z-index: 999;
-
-  .Filter {
+  .slidbar {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    #filters {
-      font-size: 20px;
-      font-weight: 500;
-    }
-    button {
-      all: unset;
-      display: inline-block;
-      img {
-        height: 0.9rem;
-        width: 0.9rem;
-        margin-left: 12rem;
-      }
-    }
-  }
+    flex-direction: column;
+    width: 30%;
+    height: 100vh;
+    background-color: aquamarine;
   
+    
+  }
 }
 </style>
