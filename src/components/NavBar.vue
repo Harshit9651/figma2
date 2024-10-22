@@ -3,7 +3,7 @@
     <div v-if="isOffer" class="avil-offer">
       <p>Avail 70% off offer</p>
       <div class="cros">
-        <button @click="closeoffer">
+        <button @click="closeOffer">
           <img src="../assets/close.png" alt="Close Offer" />
         </button>
       </div>
@@ -16,12 +16,12 @@
       <div class="right-bar">
         <img src="../assets/favorite.png" alt="Favorite" />
         <img src="../assets/shopping_cart.png" alt="Cart" />
-        <div class="login-sigup">
-          <button class="button1">Log in</button>
+        <div  v-if="!islogin"  class="login-sigup">
+          <button @click="login" class="button1">Log in</button>
           <button class="button2">Sign Up</button>
         </div>
-        <div>
-          <img src="" alt="" />
+        <div v-if="islogin" class="profile">
+          <img src="../assets/account_circle.png" alt="" />
         </div>
       </div>
     </div>
@@ -56,9 +56,17 @@ export default {
 </script>
 <script setup>
 import { ref } from "vue";
-const isoffer = ref(true);
-function closeoffer() {
-  isoffer.value = !isoffer.value;
+
+const islogin = ref(false);
+const isOffer = ref(true);
+function login() {
+    const rightBar = document.getElementsByClassName("right-bar")[0];
+  islogin.value = !islogin.value;
+  rightBar.style.marginLeft = "75%"; 
+
+}
+function closeOffer() {
+  isOffer.value = false; // Set isOffer to false to hide the offer
 }
 </script>
 <style scoped lang="scss">
@@ -99,14 +107,14 @@ function closeoffer() {
   }
 
   .right-bar {
-    // width: 19.75rem;
-    width: 21rem;
+    //width: 19.75rem;
+    // width: 21rem;
     height: 3rem;
     margin-left: 66%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
 
     .button1,
     .button2 {
@@ -141,6 +149,15 @@ function closeoffer() {
     .button2:hover {
       background-color: #007bff;
       color: white;
+    }
+    .profile{
+      height: 2rem;
+      width: 2rem;
+      background-color: rgb(255, 255, 255);
+      img{
+        height: 2rem;
+      width: 2rem;
+      }
     }
   }
 }
