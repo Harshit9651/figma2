@@ -82,7 +82,15 @@
         <div class="all-filters">
           <div class="header">
             <h5>Applied filter</h5>
-            <div class="right">clear All  <img src="" alt=""></div>
+            <div class="right">
+              <p>clear all</p>
+              <button><img src="../assets/close.png" alt="" /></button>
+            </div>
+          </div>
+          <div class="filters">
+            <div class="filter">
+              gray <img src="../assets/close.png" alt="" />
+            </div>
           </div>
         </div>
         <div class="price">
@@ -398,21 +406,44 @@ export default {
       .all-filters {
         display: flex;
         width: 16rem;
-        background-color: aquamarine;
+        background-color: rgb(186, 112, 112);
         .header {
           display: flex;
           justify-content: flex-end;
           align-items: center;
           h5 {
-            
             font-family: Inter;
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 500;
             line-height: 18.2px;
             text-align: left;
           }
           .right {
-            margin-left: 2rem;
+            margin-left: 4.5rem;
+            display: flex;
+            button {
+              all: unset;
+              display: inline-block;
+              img {
+                margin-left: 0.3rem;
+                margin-top: 0.3rem;
+                height: 1rem;
+                width: 1rem;
+              }
+            }
+          }
+        }
+        .filters {
+          display: flex;
+          .filter {
+            display: flex;
+            height: 2.63rem;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #007bff;
+
+            border-radius: 40%;
+            
           }
         }
       }
