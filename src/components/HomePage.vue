@@ -79,6 +79,13 @@
           <button><img src="../assets/Vector (1).png" alt="" /></button>
         </div>
         <div class="hr"><hr></div>
+        <div class="all-filters">
+          <div class="header">
+            <h5>Applied filter</h5>
+            <div class="right">clear All *</div>
+          </div>
+
+        </div>
         <div class="price">
           <div class="left"><img src="../assets/attach_money.png" alt=""> <h4>price</h4></div>
           <div class="right"><img src="../assets/expand_less.png" alt=""></div>
@@ -383,6 +390,28 @@ export default {
      .hr{
       border: 1px sold rgb(255, 255, 255);
       margin-right: 2rem;
+     }
+     .all-filters{
+      display: flex;
+      width: 16rem;
+      background-color: aquamarine;
+      .header{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        h5{
+          //styleName: Body Medium/M;
+font-family: Inter;
+font-size: 14px;
+font-weight: 500;
+line-height: 18.2px;
+text-align: left;
+
+        }
+        .right{
+          margin-left:2rem;
+        }
+      }
      }
      .price{
       width: 16rem;
