@@ -106,21 +106,47 @@
           </div>
         
         </div>
-       
+<!--        
         <div class="price">
-
+<div class="header">
           <div class="left">
             <img src="../assets/attach_money.png" alt="" />
             <h4>price</h4>
           </div>
           <div class="right">
             <img src="../assets/expand_less.png" alt="" />
-          </div>
+          </div></div>
           <div class="main-content">
-    <button class="free">Free</button>
-    <button class="paid">Paid</button>
+    <button class="free pricebutton">Free</button>
+    <button class="paid pricebutton">Paid</button>
   </div>
-        </div>
+        </div> -->
+        <div class="price">
+  <div class="header">
+    <div class="left">
+      <img src="../assets/attach_money.png" alt="" />
+      <h4>Price</h4>
+    </div>
+    <div class="right">
+      <img src="../assets/expand_less.png" alt="" />
+    </div>
+  </div>
+  <div class="main-content">
+    <button 
+      class="pricebutton" 
+      :class="{ active: activePrice === 'free' }"
+      @click="setActivePrice('free')">
+      Free
+    </button>
+    <button 
+      class="pricebutton" 
+      :class="{ active: activePrice === 'paid' }"
+      @click="setActivePrice('paid')">
+      Paid
+    </button>
+  </div>
+</div>
+
 
       </div>
       <div class="result">
@@ -164,6 +190,13 @@ const products = computed(() => productsStore.getAllProducts); // Now you can ac
 function closeoffer() {
   isoffer.value = !isoffer.value;
 }
+const activePrice = ref("free");
+function setActivePrice(type) {
+  activePrice.value = type;
+}
+
+
+
 </script>
 
 <script>
@@ -516,14 +549,71 @@ export default {
         }
       }
 
-      .price {
-        width: 16rem;
+     
+
+
+    //   .price {
+    //     width: 16rem;
+    //     height: 1.5rem;
+    //     background-color: #ffffff;
+    //     display: flex;
+    //    flex-direction: column;
+    //     margin-top:1rem;
+    //   .header{
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
+    //     .left {
+    //       display: flex;
+
+    //       width: 3rem;
+    //       justify-content: space-between;
+    //       align-items: center;
+
+    //       img {
+    //         height: 1.2rem;
+    //         width: 1.2rem;
+    //       }
+    //     }
+    //   }
+    //  .main-content{
+    //   margin-top:2rem;
+    //   background-color: #ffffff; 
+    //   display: flex;
+    //   gap:1rem;
+
+    //   button{
+    //     all: unset;
+    //     display: inline-block;
+    //     padding: 10px 20px;
+    //     font-size: 16px;
+    //     border-radius: 1.5rem;
+    //     cursor: pointer;
+    //     transition: background-color 0.3s ease;
+    //     border: 1px solid #4f5153;
+    //     color: #000000;
+    //     text-align: center;
+    //   }
+    //     button.active{
+    //       background: #7343EA;
+    //       color: white;
+
+    //     }
+      
+    //  }
+    //   }
+    .price {
+       width: 16rem;
+
         height: 1.5rem;
         background-color: #ffffff;
         display: flex;
+       flex-direction: column;
+        margin-top:1rem;
+      .header{
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top:1rem;
         .left {
           display: flex;
 
@@ -536,11 +626,93 @@ export default {
             width: 1.2rem;
           }
         }
-        .main-contant{
-          display: flex;
-          background-color:aquamarine;
-        }
       }
+
+  .main-content {
+    display: flex;
+    gap: 1rem;
+
+    .pricebutton {
+      all: unset;
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: 1px solid #4f5153;
+      color: #000000;
+      text-align: center;
+
+      &.active {
+        background: #7343EA;
+        color: white;
+      }
+
+      &:hover {
+        background: #7343EA;
+        color: white;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     .result {
       width: 80%;
