@@ -66,7 +66,7 @@ function login() {
 
 }
 function closeOffer() {
-  isOffer.value = false; // Set isOffer to false to hide the offer
+  isOffer.value = false;
 }
 </script>
 <style scoped lang="scss">
