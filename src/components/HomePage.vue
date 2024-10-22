@@ -81,7 +81,7 @@
         <div class="hr"><hr /></div>
         <div class="all-filters">
           <div class="header">
-            <h5>Applied filter</h5>
+            <h4>Applied filter</h4>
             <div class="right">
               <p>clear all</p>
               <button><img src="../assets/close.png" alt="" /></button>
@@ -134,6 +134,49 @@
           </div>
         </div>
         
+
+    <div class="material">
+      <div class="header">
+        <div class="left">
+          <img src="../assets/devices.png" alt="" />
+          <h4>Material</h4>
+        </div>
+        <div class="right">
+          <img src="../assets/expand_less.png" alt="" />
+        </div>
+      </div>
+      <div class="main-content">
+        <button
+          class="material-button"
+          :class="{ active: activeMaterial === 'wood' }"
+          @click="setActiveMaterial('wood')"
+        >
+          Wood
+        </button>
+        <button
+          class="material-button"
+          :class="{ active: activeMaterial === 'metal' }"
+          @click="setActiveMaterial('metal')"
+        >
+          Metal
+        </button>
+        <button
+          class="material-button"
+          :class="{ active: activeMaterial === 'glass' }"
+          @click="setActiveMaterial('glass')"
+        >
+          Glass
+        </button>
+        <button
+          class="material-button"
+          :class="{ active: activeMaterial === 'plastic' }"
+          @click="setActiveMaterial('plastic')"
+        >
+          Plastic
+        </button>
+     
+      </div>
+    </div>
 
 
 
@@ -543,11 +586,15 @@ export default {
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
+        border:2px solid black;
         .header {
+          
+          border:2px solid black;
           display: flex;
           justify-content: space-between;
           align-items: center;
           .left {
+            border:2px solid black;
             display: flex;
 
             width: 3rem;
@@ -562,6 +609,7 @@ export default {
         }
 
         .main-content {
+          border:2px solid black;
           display: flex;
           gap: 1rem;
       
