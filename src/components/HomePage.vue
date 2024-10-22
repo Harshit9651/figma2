@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div v-if="isoffer" class="avil-offer">
+    <!-- <div v-if="isoffer" class="avil-offer">
       <p>Avil 70% off offer</p>
       <div class="cros">
         <button @click="closeoffer">
@@ -49,7 +49,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <NavBar></NavBar>
     <div class="tabular-quick-filter">
       <div class="tabular">
         <img src="../assets/king_bed.png" alt="" />
@@ -165,7 +166,9 @@
     </div>
   </div>
 </template>
+<script>
 
+</script>
 <script setup>
 import { useProductsStore } from "../store/image";
 import { computed, ref } from "vue";
@@ -183,10 +186,11 @@ function setActivePrice(type) {
 </script>
 
 <script>
-// import SlidBar from './SlidBar.vue';
+import NavBar from './NavBar.vue';
+
 export default {
   name: "HomePage",
-  // components:SlidBar
+  components:NavBar,
 };
 </script>
 

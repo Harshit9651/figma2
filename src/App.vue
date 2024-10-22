@@ -1,10 +1,14 @@
 <template>
 <HomePage></HomePage>
+ <!-- <NavBar></NavBar> -->
 </template>
   
+ <script>
+import HomePage from './components/HomePage.vue';
 
-<script>
- import HomePage from './components/HomePage.vue' 
+// import NavBar from './components/NavBar.vue';
+
+ 
 //  import SlidBar from './components/SlidBar.vue'
 
 export default {
@@ -12,6 +16,7 @@ export default {
   components: {
     HomePage
     // SlidBar
+    // NavBar
   }
 }
 </script>
