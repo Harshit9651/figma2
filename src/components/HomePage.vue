@@ -89,11 +89,26 @@
           </div>
           <div class="filters">
             <div class="filter">
+              gray <button><img src="../assets/close.png" alt="" /></button>
+            </div>
+            <div class="filter">
               gray <img src="../assets/close.png" alt="" />
             </div>
+            <div class="filter">
+              gray <img src="../assets/close.png" alt="" />
+            </div>
+            <div class="filter">
+              gray <img src="../assets/close.png" alt="" />
+            </div>
+            <div class="filter">
+              loka pojoa <img src="../assets/close.png" alt="" />
+            </div>
           </div>
+        
         </div>
+       
         <div class="price">
+
           <div class="left">
             <img src="../assets/attach_money.png" alt="" />
             <h4>price</h4>
@@ -101,7 +116,12 @@
           <div class="right">
             <img src="../assets/expand_less.png" alt="" />
           </div>
+          <div class="main-content">
+    <button class="free">Free</button>
+    <button class="paid">Paid</button>
+  </div>
         </div>
+
       </div>
       <div class="result">
         <div class="allModel">
@@ -402,51 +422,100 @@ export default {
       .hr {
         border: 1px sold rgb(255, 255, 255);
         margin-right: 2rem;
+        margin-top:1rem;
       }
+
       .all-filters {
         display: flex;
+        flex-direction: column;
         width: 16rem;
-        background-color: rgb(186, 112, 112);
+        background-color: rgb(255, 255, 255);
+        // padding: 1rem;
+        color: black;
         .header {
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
           align-items: center;
+          margin-bottom: 0.3rem;
+
           h5 {
             font-family: Inter;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500;
             line-height: 18.2px;
             text-align: left;
+            color: rgb(23, 23, 23);
           }
+
           .right {
-            margin-left: 4.5rem;
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            p {
+              margin-right: 0.1rem;
+              color: rgb(26, 25, 25); /* Make the text white for visibility */
+              cursor: pointer;
+              transition: color 0.3s ease;
+
+              &:hover {
+                color: #007bff; /* Highlight the text on hover */
+              }
+            }
+
             button {
               all: unset;
               display: inline-block;
+              cursor: pointer;
+
               img {
-                margin-left: 0.3rem;
-                margin-top: 0.3rem;
                 height: 1rem;
                 width: 1rem;
+                margin-left: 0.3rem;
+                margin-top: 0.3rem;
               }
             }
           }
         }
+
         .filters {
           display: flex;
+          flex-wrap: wrap;
+          gap: 0.2rem;
+
           .filter {
             display: flex;
-            height: 2.63rem;
-            justify-content: space-around;
             align-items: center;
+            justify-content: space-between;
+            height: 2.63rem;
+            padding: 0 1rem;
             background-color: #007bff;
+            border-radius: 40px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            margin-bottom: 0.5rem; /* Space between filter items */
 
-            border-radius: 40%;
-            
+            &:hover {
+              background-color: #0056cc; /* Darker shade on hover */
+              cursor: pointer;
+            }
+            button {
+              all: unset;
+              display: inline-block;
+              img {
+                width: 1.2rem;
+                height: 1.2rem;
+                margin-top: 4px;
+                margin-left: 0.5rem;
+                cursor: pointer;
+              }
+            }
           }
         }
       }
+
       .price {
         width: 16rem;
         height: 1.5rem;
@@ -454,6 +523,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top:1rem;
         .left {
           display: flex;
 
@@ -465,6 +535,10 @@ export default {
             height: 1.2rem;
             width: 1.2rem;
           }
+        }
+        .main-contant{
+          display: flex;
+          background-color:aquamarine;
         }
       }
     }
