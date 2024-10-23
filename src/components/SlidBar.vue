@@ -15,9 +15,15 @@
     <div v-if="sidebarVisible">
       <hr />
 
+
+    
+
+
+
+
       <!-- All Filters Section -->
       <div class="filter-section">
-        <div class="filter-header">
+        <div  class="filter-header">
           <span>All Filters</span>
           <button @click="toggleFilterExtended">
             <img
@@ -29,6 +35,20 @@
               alt="Expand Filters"
             />
           </button>
+          </div>
+
+
+         
+          <div
+    v-for="(filter, index) in appliedFilters"
+    :key="index"
+    class="filter-item"
+  >
+    {{ filter }}
+    <button @click="removeFilter(filter)">
+      <img src="../assets/close.png" alt="Remove Filter" />
+    </button>
+  </div>
         </div>
 
         <div v-if="filterExtended">
@@ -45,10 +65,11 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
 
+      <div v-if="appliedFilters.length > 0">
       <hr />
-
+    </div>
       <!-- Price Section -->
       <!-- <div class="price-section">
         <div class="filter-header">
@@ -84,7 +105,7 @@
         <div class="filter-header">
           <div class="left">
             <img src="../assets/attach_money.png" alt="Price" />
-            <span>Price <div class="priceselcted">({{priceCount}})</div></span>
+            <span>Price <div v-if="selectedPrices.length>0" class="priceselcted">({{priceCount}})</div></span>
           </div>
           <button @click="togglePriceExtended">
             <img
@@ -124,7 +145,7 @@
             <img src="../assets/insert_drive_file.png" alt="" />
             <span
               >File Type
-              <div class="file-selected">({{ fileTypeCount }})</div></span
+              <div class="file-selected " v-if="selectedFileTypes.length > 0">({{ fileTypeCount }})</div></span
             >
           </div>
           <button @click="toggleFileTypeExtended">
@@ -177,7 +198,7 @@
         <div class="filter-header">
           <div class="left">
             <img src="../assets/color_lens.png" alt="" />
-            <span>Color <div class="colorcount">({{ colorCount}})</div></span>
+            <span>Color <div v-if="selectedColors.length>0"  class="colorcount">({{ colorCount}})</div></span>
           </div>
           <button @click="toggleColorExtended">
             <img
@@ -210,13 +231,13 @@
       </div>
       <hr />
       <!-- Materials Section -->
-      <!-- Materials Section -->
+   
       <div class="materials">
         <div class="filter-header">
           <div class="left">
             <img src="../assets/tonality.png" alt="" />
-            <span>Materials <div class="materailcount">({{ materialCount}})</div></span>
-          </div>
+            <span>Materials <div  v-if="selectedMaterials.length>0" class="materailcount">({{ materialCount}})</div></span>
+          </div> 
           <button @click="toggleMaterialsExtended">
             <img
               :src="
@@ -340,7 +361,7 @@
         <div class="filter-header">
           <div class="left">
             <img src="../assets/texture.png" alt="" />
-            <span>Textures <div class="textcturecount">({{textureCount }})</div></span>
+            <span>Textures <div v-if="selectedTextures.length>0" class="textcturecount">({{textureCount }})</div></span>
           </div>
           <button @click="toggleTexturesExtended">
             <img
@@ -383,7 +404,7 @@
         <div class="filter-header">
           <div class="left">
             <img src="../assets/interests.png" alt="" />
-            <span>Styles <div class="stylecount">({{ styleCount }})</div></span>
+            <span>Styles <div v-if="selectedStyles.length>0" class="stylecount">({{ styleCount }})</div></span>
           </div>
           <button @click="toggleStylesExtended">
             <img
@@ -422,7 +443,7 @@
         </div>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script setup>
@@ -452,11 +473,8 @@ const textureCount = computed(() => selectedTextures.value.length); // Fixed spe
 const styleCount = computed(() => selectedStyles.value.length); // Fixed spelling
 
 
-const appliedFilters = ref(["Gray", "Price"]);
-// Active filter logic
-const removeFilter = (index) => {
-  appliedFilters.value.splice(index, 1);
-};
+
+
 
 // Toggle Sidebar visibility
 function toggleSidebar() {
@@ -464,9 +482,9 @@ function toggleSidebar() {
 }
 
 // Toggle extended section states
-function toggleFilterExtended() {
-  filterExtended.value = !filterExtended.value;
-}
+// function toggleFilterExtended() {
+//   filterExtended.value = !filterExtended.value;
+// }
 function togglePriceExtended() {
   priceExtended.value = !priceExtended.value;
 }
@@ -562,6 +580,41 @@ function toggleMaterialSelection(material) {
     selectedMaterials.value.push(material);
   }
 }
+const appliedFilters = computed(() => {
+  const filters = [];
+
+  if (selectedPrices.value.length) {
+    filters.push(...selectedPrices.value);
+  }
+  if (selectedColors.value.length) {
+    filters.push(...selectedColors.value);
+  }
+  if (selectedTextures.value.length) {
+    filters.push(...selectedTextures.value);
+  }
+  if (selectedFileTypes.value.length) {
+    filters.push(...selectedFileTypes.value);
+  }
+  if (selectedStyles.value.length) {
+    filters.push(...selectedStyles.value);
+  }
+
+  return filters;
+});
+
+const removeFilter = (filter) => {
+  if (selectedPrices.value.includes(filter)) {
+    selectedPrices.value.splice(selectedPrices.value.indexOf(filter), 1);
+  } else if (selectedColors.value.includes(filter)) {
+    selectedColors.value.splice(selectedColors.value.indexOf(filter), 1);
+  } else if (selectedTextures.value.includes(filter)) {
+    selectedTextures.value.splice(selectedTextures.value.indexOf(filter), 1);
+  } else if (selectedFileTypes.value.includes(filter)) {
+    selectedFileTypes.value.splice(selectedFileTypes.value.indexOf(filter), 1);
+  } else if (selectedStyles.value.includes(filter)) {
+    selectedStyles.value.splice(selectedStyles.value.indexOf(filter), 1);
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -908,6 +961,28 @@ hr {
       background-color: blueviolet; // background for selected option
       color: white; // text color for selected option
     }
+  }
+}
+.filter-section{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  height: auto;
+  .filter-item{
+    height:2.62rem;
+    width:5.5rem;
+    border-radius: 2.5rem;
+    background: #7343EA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    gap:.3rem;
+    img{
+      margin-top:.2rem;
+    }
+   
+
   }
 }
 </style>
