@@ -8,11 +8,7 @@
       <div class="right">
         <button @click="toggleSidebar">
           <img
-            :src="
-              sidebarVisible
-                ? '../assets/expand_less.png'
-                : '../assets/Vector(1).png'
-            "
+            :src="sidebarVisible ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
             alt="Toggle Sidebar"
           />
         </button>
@@ -28,11 +24,7 @@
           <span>All Filters</span>
           <button @click="toggleFilterExtended">
             <img
-              :src="
-                filterExtended
-                  ? '../assets/expand_less.png'
-                  : '../assets/Vector(1).png'
-              "
+              :src="filterExtended ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
               alt="Expand Filters"
             />
           </button>
@@ -65,23 +57,15 @@
           </div>
           <button @click="togglePriceExtended">
             <img
-              :src="
-                priceExtended
-                  ? '../assets/expand_less.png'
-                  : '../assets/Vector(1).png'
-              "
+              :src="priceExtended ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
               alt="Toggle Price"
             />
           </button>
         </div>
 
         <div v-if="priceExtended">
-          <button class="price-option" @click="setActivePrice('free')">
-            Free
-          </button>
-          <button class="price-option" @click="setActivePrice('paid')">
-            Paid
-          </button>
+          <button class="price-option" @click="setActivePrice('free')">Free</button>
+          <button class="price-option" @click="setActivePrice('paid')">Paid</button>
         </div>
       </div>
 
@@ -91,31 +75,20 @@
       <div class="file-type-section">
         <div class="filter-header">
           <div class="left">
-            <!-- <img src="../assets/" alt="File Type" /> -->
             <span>File Type</span>
           </div>
           <button @click="toggleFileTypeExtended">
             <img
-              :src="
-                fileTypeExtended
-                  ? '../assets/expand_less.png'
-                  : '../assets/Vector(1).png'
-              "
+              :src="fileTypeExtended ? require('../assets/expand_less.png') :require('../assets/expand_more.png')"
               alt="Toggle File Type"
             />
           </button>
         </div>
 
         <div v-if="fileTypeExtended">
-          <button class="file-option" @click="selectFileType('pdf')">
-            PDF
-          </button>
-          <button class="file-option" @click="selectFileType('png')">
-            PNG
-          </button>
-          <button class="file-option" @click="selectFileType('obj')">
-            OBJ
-          </button>
+          <button class="file-option" @click="selectFileType('pdf')">PDF</button>
+          <button class="file-option" @click="selectFileType('png')">PNG</button>
+          <button class="file-option" @click="selectFileType('obj')">OBJ</button>
         </div>
       </div>
 
@@ -125,16 +98,11 @@
       <div class="color-section">
         <div class="filter-header">
           <div class="left">
-            <!-- <img src="../assets/color.png" alt="Color" /> -->
             <span>Color</span>
           </div>
           <button @click="toggleColorExtended">
             <img
-              :src="
-                colorExtended
-                  ? '../assets/expand_less.png'
-                  : '../assets/Vector(1).png'
-              "
+              :src="colorExtended ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
               alt="Toggle Color"
             />
           </button>
@@ -142,32 +110,17 @@
 
         <div v-if="colorExtended">
           <div class="color-options">
-            <div
-              class="color-option"
-              style="background-color: black"
-              @click="selectColor('black')"
-            ></div>
-            <div
-              class="color-option"
-              style="background-color: pink"
-              @click="selectColor('pink')"
-            ></div>
-            <div
-              class="color-option"
-              style="background-color: red"
-              @click="selectColor('red')"
-            ></div>
-            <div
-              class="color-option"
-              style="background-color: blue"
-              @click="selectColor('blue')"
-            ></div>
+            <div class="color-option" style="background-color: black" @click="selectColor('black')"></div>
+            <div class="color-option" style="background-color: pink" @click="selectColor('pink')"></div>
+            <div class="color-option" style="background-color: red" @click="selectColor('red')"></div>
+            <div class="color-option" style="background-color: blue" @click="selectColor('blue')"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref } from "vue";
 
@@ -223,6 +176,7 @@ function toggleColorExtended() {
   colorExtended.value = !colorExtended.value;
 }
 </script>
+
 <style lang="scss" scoped>
 .slidbar {
   display: flex;
@@ -273,12 +227,7 @@ function toggleColorExtended() {
 button {
   all: unset;
   display: inline-block;
-  
 }
-
-// button:hover {
-//   background-color: #000306;
-// }
 
 hr {
   margin: 1rem 0;
