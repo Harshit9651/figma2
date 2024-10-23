@@ -99,6 +99,9 @@ function closeOffer() {
   box-shadow: 0px 4px 20px 0px #0000001f;
   display: flex;
   align-items: center;
+  position: sticky; /* or fixed */
+  top: 0; /* Keeps it at the top */
+  z-index: 1000;
 
   .image {
     width: 7.2rem;

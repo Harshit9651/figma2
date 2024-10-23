@@ -489,10 +489,9 @@ const removeFilter = (filter) => {
 
 <style lang="scss" scoped>
 .slidbar {
-
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 20%;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -604,7 +603,7 @@ hr {
 .materailcount,
 .textcturecount,
 .stylecount {
-  margin-top:1rem;
+  margin-left:.3rem;
   color: blueviolet;
 }
 
