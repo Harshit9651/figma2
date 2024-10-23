@@ -8,7 +8,7 @@
       <div class="right">
         <button @click="toggleSidebar">
           <img
-            :src="sidebarVisible ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
+            src="../assets/start.png"
             alt="Toggle Sidebar"
           />
         </button>
@@ -53,7 +53,7 @@
         <div class="filter-header">
           <div class="left">
             <img src="../assets/attach_money.png" alt="Price" />
-            <span>Price</span>
+            <span>Price <div class="price-selected">({{ 1 }})</div> </span>
           </div>
           <button @click="togglePriceExtended">
             <img
@@ -63,7 +63,7 @@
           </button>
         </div>
 
-        <div v-if="priceExtended">
+        <div class="price-button"  v-if="priceExtended">
           <button class="price-option" @click="setActivePrice('free')">Free</button>
           <button class="price-option" @click="setActivePrice('paid')">Paid</button>
         </div>
@@ -235,37 +235,99 @@ hr {
   border-top: 1px solid #e0e0e0;
 }
 
-.price-option,
-.file-option {
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  cursor: pointer;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  width: 100%;
-}
+/* Price Section Styles */
+.price-section {
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.file-option:hover,
-.price-option:hover {
-  background-color: #218838;
-}
+  .left {
+    display: flex;
+    align-items: center;
 
-.color-options {
+    span {
+      display: flex;
+      align-items: center; // Align items in a row
+    }
+
+    .price-selected {
+      color: blueviolet;
+      margin-left: 0.5rem; // Space between price and count
+    }
+  }
+.price-button{
   display: flex;
-  gap: 10px;
+  gap:1rem;
+  align-items: center;
+ .price-option {
+    padding: .6rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    
+    color: white;
+    border: 1px solid black;
+    color: black;
+    border-radius: 1.5rem;
+   
+  }
+}
+  
+
+  .price-option:hover {
+    background-color: #218838;
+  }
 }
 
-.color-option {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid #ddd;
-  cursor: pointer;
+/* File Type Section Styles */
+.file-type-section {
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .file-option {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    width: 100%;
+  }
+
+  .file-option:hover {
+    background-color: #218838;
+  }
 }
 
-.color-option:hover {
-  opacity: 0.8;
+/* Color Section Styles */
+.color-section {
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .color-options {
+    display: flex;
+    gap: 10px;
+  }
+
+  .color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+
+  .color-option:hover {
+    opacity: 0.8;
+  }
 }
+
 </style>
