@@ -89,7 +89,9 @@
         </button>
       </div>
     </div>
-    <hr />
+   
+<div v-if="selectedPrices.length > 0"><hr/></div>
+
 
     <!-- File Type Section -->
     <div class="file-type-section">
@@ -147,7 +149,9 @@
       </div>
     </div>
 
-    <hr />
+  <div  v-if="selectedFileTypes.length > 0"> <hr/></div>
+
+
     <!-- Color Section -->
     <div class="color-section">
       <div class="filter-header">
@@ -189,7 +193,9 @@
         </div>
       </div>
     </div>
-    <hr />
+  <div  v-if="selectedColors.length > 0" > <hr/></div>
+
+
     <!-- Materials Section -->
 
     <div class="materials">
@@ -228,7 +234,9 @@
       </div>
     </div>
 
-    <hr />
+    <div v-if="selectedMaterials.length > 0" > <hr></div>
+
+
     <div class="textures">
       <div class="filter-header">
         <div class="left">
@@ -276,7 +284,9 @@
         </button>
       </div>
     </div>
-    <hr />
+   
+<div  v-if="selectedTextures.length > 0" ><hr></div>
+
     <div class="styles">
       <div class="filter-header">
         <div class="left">
@@ -327,6 +337,11 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "SlidBar",
+};
+</script>
 <script setup>
 import { ref, computed } from "vue";
 
@@ -474,9 +489,10 @@ const removeFilter = (filter) => {
 
 <style lang="scss" scoped>
 .slidbar {
+
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 30%;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -505,6 +521,10 @@ const removeFilter = (filter) => {
   font-size: 1.2rem;
 }
 
+.section {
+  margin: 1rem 0; // Use a common class for margins
+}
+
 .filter-header {
   display: flex;
   justify-content: space-between;
@@ -518,7 +538,7 @@ const removeFilter = (filter) => {
 .color-section,
 .Materials,
 .textures {
-  margin-top: 1rem;
+  @extend .section;// Equal gap between sections
 }
 
 button {
@@ -584,6 +604,7 @@ hr {
 .materailcount,
 .textcturecount,
 .stylecount {
+  margin-top:1rem;
   color: blueviolet;
 }
 
@@ -705,6 +726,8 @@ hr {
 }
 
 .materials {
+  margin-top:1rem;
+  margin-bottom: 1rem;
   .filter-header {
     display: flex;
     justify-content: space-between;
@@ -751,6 +774,7 @@ hr {
 }
 
 .textures {
+  margin-top:1rem;
   .filter-header {
     display: flex;
     justify-content: space-between;
@@ -793,6 +817,7 @@ hr {
 }
 
 .styles {
+  margin-top:1rem;
   .filter-header {
     display: flex;
     justify-content: space-between;

@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="result-slidbar-section">
-      <div class="slidbar">
+      <!-- <div class="slidbar">
         <div class="Filter">
           <p id="filters">Filters</p>
           <button><img src="../assets/Vector (1).png" alt="" /></button>
@@ -85,7 +85,8 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
+     <SlidBar/>
       <div class="result">
         <div class="allModel">
           <p>All Models (1245)</p>
@@ -132,6 +133,8 @@ function setActivePrice(type) {
 
 <script>
 import NavBar from "./NavBar.vue";
+import SlidBar from "./SlidBar.vue"
+
 
 export default {
   name: "HomePage",

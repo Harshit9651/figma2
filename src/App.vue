@@ -1,25 +1,25 @@
 <template>
-<!-- <HomePage></HomePage> -->
+<HomePage></HomePage>
  <!-- <NavBar></NavBar> -->
-  <SlidBar></SlidBar>
+  <!-- <SlidBar></SlidBar> -->
 </template>
   
  <script>
-// import HomePage from './components/HomePage.vue';
+import HomePage from './components/HomePage.vue';
 // import SlidBar from './components/SlidBar.vue';
 
 // import NavBar from './components/NavBar.vue';
 
  
- import SlidBar from './components/SlidBar.vue'
+//  import SlidBar from './components/SlidBar.vue'
 
 export default {
   name: 'App',
   components: {
-    // HomePage
+    HomePage
     // SlidBar
     // NavBar
-    SlidBar
+    // SlidBar
   }
 }
 </script>
