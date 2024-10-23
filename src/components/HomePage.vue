@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    
     <NavBar></NavBar>
     <div class="tabular-quick-filter">
       <div class="tabular">
