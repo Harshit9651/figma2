@@ -107,10 +107,10 @@
 
         <div class="file-options" v-if="fileTypeExtended">
           <button class="file-option" @click="selectFileType('max')">
-           max
+            max
           </button>
           <button class="file-option" @click="selectFileType('obj')">
-         obj
+            obj
           </button>
           <button class="file-option" @click="selectFileType('fbx')">
             fbx
@@ -127,6 +127,7 @@
       <div class="color-section">
         <div class="filter-header">
           <div class="left">
+            <img src="../assets/color_lens.png" alt="" />
             <span>Color</span>
           </div>
           <button @click="toggleColorExtended">
@@ -144,27 +145,109 @@
         <div v-if="colorExtended">
           <div class="color-options">
             <div
-              class="color-option"
-              style="background-color: black"
-              @click="selectColor('black')"
-            ></div>
+              class="outer"
+              :class="{ selected: selectedColor === 'color1' }"
+            >
+              <div
+                class="color-option color1"
+                @click="selectColor('color1')"
+              ></div>
+            </div>
             <div
-              class="color-option"
-              style="background-color: pink"
-              @click="selectColor('pink')"
-            ></div>
+              class="outer"
+              :class="{ selected: selectedColor === 'color2' }"
+            >
+              <div
+                class="color-option color2"
+                @click="selectColor('color2')"
+              ></div>
+            </div>
             <div
-              class="color-option"
-              style="background-color: red"
-              @click="selectColor('red')"
-            ></div>
+              class="outer"
+              :class="{ selected: selectedColor === 'color3' }"
+            >
+              <div
+                class="color-option color3"
+                @click="selectColor('color3')"
+              ></div>
+            </div>
             <div
-              class="color-option"
-              style="background-color: blue"
-              @click="selectColor('blue')"
-            ></div>
+              class="outer"
+              :class="{ selected: selectedColor === 'color4' }"
+            >
+              <div
+                class="color-option color4"
+                @click="selectColor('color4')"
+              ></div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <hr />
+      <!-- Materials Section -->
+      <div class="materials">
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/tonality.png" alt="" />
+            <span>Materials</span>
+          </div>
+          <button @click="toggleMaterialsExtended">
+            <img
+              :src="
+                materialsExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt=""
+            />
+          </button>
+        </div>
+
+        <div class="material-options" v-if="materialsExtended">
+          <button class="material-option" @click="selectMaterial('gold')">
+            Gold
+          </button>
+          <button class="material-option" @click="selectMaterial('iron')">
+            Iron
+          </button>
+          <button class="material-option" @click="selectMaterial('silver')">
+            Silver
+          </button>
+        </div>
+
+      </div>
+      <hr/>
+      <div class="textures">
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/texture.png" alt="" />
+            <span>Textures</span>
+          </div>
+          <button @click="toggleMaterialsExtended">
+            <img
+              :src="
+                materialsExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt=""
+            />
+          </button>
+        </div>
+
+        <div class="material-options" v-if="materialsExtended">
+          <button class="material-option" @click="selectMaterial('gold')">
+            Gold
+          </button>
+          <button class="material-option" @click="selectMaterial('iron')">
+            Iron
+          </button>
+          <button class="material-option" @click="selectMaterial('silver')">
+            Silver
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -179,6 +262,9 @@ const filterExtended = ref(false);
 const priceExtended = ref(false);
 const fileTypeExtended = ref(false);
 const colorExtended = ref(false);
+const materialsExtended = ref(false);
+const selectedColor = ref("");
+const selectedMaterial = ref("");
 
 // Applied filters
 const appliedFilters = ref(["Gray", "Price"]);
@@ -200,12 +286,6 @@ function selectFileType(type) {
   selectedFileType.value = type;
 }
 
-// Color Section
-const selectedColor = ref("");
-function selectColor(color) {
-  selectedColor.value = color;
-}
-
 // Toggle Sidebar visibility
 function toggleSidebar() {
   sidebarVisible.value = !sidebarVisible.value;
@@ -223,6 +303,17 @@ function toggleFileTypeExtended() {
 }
 function toggleColorExtended() {
   colorExtended.value = !colorExtended.value;
+}
+function selectColor(color) {
+  selectedColor.value = color;
+}
+
+function toggleMaterialsExtended() {
+  materialsExtended.value = !materialsExtended.value;
+}
+
+function selectMaterial(material) {
+  selectedMaterial.value = material; // Update the selected material
 }
 </script>
 
@@ -269,7 +360,8 @@ function toggleColorExtended() {
 .filter-section,
 .price-section,
 .file-type-section,
-.color-section {
+.color-section,
+.Materials,.textures {
   margin-top: 1rem;
 }
 
@@ -352,10 +444,10 @@ hr {
       padding: 1rem;
       margin: 0.5rem 0;
       cursor: pointer;
-   
+
       color: rgb(3, 3, 3);
       border-radius: 2.5rem;
-      border: 1px solid #E5E1E1
+      border: 1px solid #e5e1e1;
     }
   }
 }
@@ -368,21 +460,118 @@ hr {
     align-items: center;
   }
 
+  .left {
+    display: flex;
+    align-items: center;
+    img {
+      margin-bottom: 0.2rem;
+    }
+    span {
+      margin-left: 0.3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .file-selected {
+      color: blueviolet;
+      margin-left: 0.5rem;
+    }
+  }
   .color-options {
     display: flex;
     gap: 10px;
   }
-
-  .color-option {
-    width: 30px;
-    height: 30px;
+  .outer {
+    width: 2.375rem;
+    height: 2.375rem;
     border-radius: 50%;
-    border: 1px solid #ddd;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.selected {
+      border: 2px solid #7343ea;
+    }
+
+    .color-option {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 
-  .color-option:hover {
-    opacity: 0.8;
+  .color1 {
+    background: #adaaaa;
+  }
+  .color2 {
+    background: #313030;
+  }
+  .color3 {
+    background: #605e5e;
+  }
+  .color4 {
+    background: #797676;
+  }
+}
+// .Materials{
+//   .left {
+//     display: flex;
+//     align-items: center;
+//     img {
+//       margin-bottom: 0.2rem;
+//     }
+//     span {
+//       margin-left: 0.3rem;
+//       display: flex;
+//       align-items: center;
+//     }
+
+//     .file-selected {
+//       color: blueviolet;
+//       margin-left: 0.5rem;
+//     }
+//   }
+// }
+.materials {
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    img {
+      margin-bottom: 0.2rem;
+    }
+    span {
+      margin-left: 0.3rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .material-options {
+    display: flex;
+    gap: 0.5rem;
+
+    .material-option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      margin: 0.5rem 0;
+      cursor: pointer;
+      height: 2.625rem;
+      width: 4.5rem;
+      color: rgb(3, 3, 3);
+      border-radius: 2.5rem;
+      border: 1px solid #e5e1e1;
+      
+    }
   }
 }
 </style>

@@ -6,12 +6,12 @@
   
  <script>
 // import HomePage from './components/HomePage.vue';
-import SlidBar from './components/SlidBar.vue';
+// import SlidBar from './components/SlidBar.vue';
 
 // import NavBar from './components/NavBar.vue';
 
  
-//  import SlidBar from './components/SlidBar.vue'
+ import SlidBar from './components/SlidBar.vue'
 
 export default {
   name: 'App',
