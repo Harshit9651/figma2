@@ -7,10 +7,7 @@
       </div>
       <div class="right">
         <button @click="toggleSidebar">
-          <img
-            src="../assets/start.png"
-            alt="Toggle Sidebar"
-          />
+          <img src="../assets/start.png" alt="Toggle Sidebar" />
         </button>
       </div>
     </div>
@@ -24,7 +21,11 @@
           <span>All Filters</span>
           <button @click="toggleFilterExtended">
             <img
-              :src="filterExtended ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
+              :src="
+                filterExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
               alt="Expand Filters"
             />
           </button>
@@ -53,19 +54,30 @@
         <div class="filter-header">
           <div class="left">
             <img src="../assets/attach_money.png" alt="Price" />
-            <span>Price <div class="price-selected">({{ 1 }})</div> </span>
+            <span
+              >Price
+              <div class="price-selected">({{ 1 }})</div>
+            </span>
           </div>
           <button @click="togglePriceExtended">
             <img
-              :src="priceExtended ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
+              :src="
+                priceExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
               alt="Toggle Price"
             />
           </button>
         </div>
 
-        <div class="price-button"  v-if="priceExtended">
-          <button class="price-option" @click="setActivePrice('free')">Free</button>
-          <button class="price-option" @click="setActivePrice('paid')">Paid</button>
+        <div class="price-button" v-if="priceExtended">
+          <button class="price-option" @click="setActivePrice('free')">
+            Free
+          </button>
+          <button class="price-option" @click="setActivePrice('paid')">
+            Paid
+          </button>
         </div>
       </div>
 
@@ -75,20 +87,37 @@
       <div class="file-type-section">
         <div class="filter-header">
           <div class="left">
-            <span>File Type</span>
+            <img src="../assets/insert_drive_file.png" alt="" />
+            <span
+              >File Type
+              <div class="file-selected">({{ 1 }})</div></span
+            >
           </div>
           <button @click="toggleFileTypeExtended">
             <img
-              :src="fileTypeExtended ? require('../assets/expand_less.png') :require('../assets/expand_more.png')"
+              :src="
+                fileTypeExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
               alt="Toggle File Type"
             />
           </button>
         </div>
 
-        <div v-if="fileTypeExtended">
-          <button class="file-option" @click="selectFileType('pdf')">PDF</button>
-          <button class="file-option" @click="selectFileType('png')">PNG</button>
-          <button class="file-option" @click="selectFileType('obj')">OBJ</button>
+        <div class="file-options" v-if="fileTypeExtended">
+          <button class="file-option" @click="selectFileType('max')">
+           max
+          </button>
+          <button class="file-option" @click="selectFileType('obj')">
+         obj
+          </button>
+          <button class="file-option" @click="selectFileType('fbx')">
+            fbx
+          </button>
+          <button class="file-option" @click="selectFileType('glb')">
+            glb
+          </button>
         </div>
       </div>
 
@@ -102,7 +131,11 @@
           </div>
           <button @click="toggleColorExtended">
             <img
-              :src="colorExtended ? require('../assets/expand_less.png') : require('../assets/expand_more.png')"
+              :src="
+                colorExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
               alt="Toggle Color"
             />
           </button>
@@ -110,10 +143,26 @@
 
         <div v-if="colorExtended">
           <div class="color-options">
-            <div class="color-option" style="background-color: black" @click="selectColor('black')"></div>
-            <div class="color-option" style="background-color: pink" @click="selectColor('pink')"></div>
-            <div class="color-option" style="background-color: red" @click="selectColor('red')"></div>
-            <div class="color-option" style="background-color: blue" @click="selectColor('blue')"></div>
+            <div
+              class="color-option"
+              style="background-color: black"
+              @click="selectColor('black')"
+            ></div>
+            <div
+              class="color-option"
+              style="background-color: pink"
+              @click="selectColor('pink')"
+            ></div>
+            <div
+              class="color-option"
+              style="background-color: red"
+              @click="selectColor('red')"
+            ></div>
+            <div
+              class="color-option"
+              style="background-color: blue"
+              @click="selectColor('blue')"
+            ></div>
           </div>
         </div>
       </div>
@@ -257,26 +306,19 @@ hr {
       margin-left: 0.5rem; // Space between price and count
     }
   }
-.price-button{
-  display: flex;
-  gap:1rem;
-  align-items: center;
- .price-option {
-    padding: .6rem;
-    margin: 0.5rem 0;
-    cursor: pointer;
-    
-    color: white;
-    border: 1px solid black;
-    color: black;
-    border-radius: 1.5rem;
-   
-  }
-}
-  
-
-  .price-option:hover {
-    background-color: #218838;
+  .price-button {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    .price-option {
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      cursor: pointer;
+      color: white;
+      border: 1px solid black;
+      color: black;
+      border-radius: 1.5rem;
+    }
   }
 }
 
@@ -287,20 +329,34 @@ hr {
     justify-content: space-between;
     align-items: center;
   }
+  .left {
+    display: flex;
+    align-items: center;
 
-  .file-option {
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    width: 100%;
+    span {
+      display: flex;
+      align-items: center;
+    }
+
+    .file-selected {
+      color: blueviolet;
+      margin-left: 0.5rem; // Space between price and count
+    }
   }
+  .file-options {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 
-  .file-option:hover {
-    background-color: #218838;
+    .file-option {
+      padding: 1rem;
+      margin: 0.5rem 0;
+      cursor: pointer;
+   
+      color: rgb(3, 3, 3);
+      border-radius: 2.5rem;
+      border: 1px solid #E5E1E1
+    }
   }
 }
 
@@ -329,5 +385,4 @@ hr {
     opacity: 0.8;
   }
 }
-
 </style>
