@@ -81,40 +81,40 @@
         </div>
       </div> -->
       <div class="price-section">
-  <div class="filter-header">
-    <div class="left">
-      <img src="../assets/attach_money.png" alt="Price" />
-      <span>Price</span>
-    </div>
-    <button @click="togglePriceExtended">
-      <img
-        :src="
-          priceExtended
-            ? require('../assets/expand_less.png')
-            : require('../assets/expand_more.png')
-        "
-        alt="Toggle Price"
-      />
-    </button>
-  </div>
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/attach_money.png" alt="Price" />
+            <span>Price <div class="priceselcted">({{priceCount}})</div></span>
+          </div>
+          <button @click="togglePriceExtended">
+            <img
+              :src="
+                priceExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt="Toggle Price"
+            />
+          </button>
+        </div>
 
-  <div class="price-button" v-if="priceExtended">
-    <button 
-      class="price-option" 
-      @click="togglePriceSelection('free')"
-      :class="{ selected: selectedPrices.includes('free') }"
-    >
-      Free
-    </button>
-    <button 
-      class="price-option" 
-      @click="togglePriceSelection('paid')"
-      :class="{ selected: selectedPrices.includes('paid') }"
-    >
-      Paid
-    </button>
-  </div>
-</div>
+        <div class="price-button" v-if="priceExtended">
+          <button
+            class="price-option"
+            @click="togglePriceSelection('free')"
+            :class="{ selected: selectedPrices.includes('free') }"
+          >
+            Free
+          </button>
+          <button
+            class="price-option"
+            @click="togglePriceSelection('paid')"
+            :class="{ selected: selectedPrices.includes('paid') }"
+          >
+            Paid
+          </button>
+        </div>
+      </div>
       <hr />
 
       <!-- File Type Section -->
@@ -124,7 +124,7 @@
             <img src="../assets/insert_drive_file.png" alt="" />
             <span
               >File Type
-              <div class="file-selected">({{ 1 }})</div></span
+              <div class="file-selected">({{ fileTypeCount }})</div></span
             >
           </div>
           <button @click="toggleFileTypeExtended">
@@ -140,25 +140,110 @@
         </div>
 
         <div class="file-options" v-if="fileTypeExtended">
-          <button class="file-option" @click="selectFileType('max')">
+          <button
+            class="file-option"
+            @click="toggleFileTypeSelection('max')"
+            :class="{ selected: selectedFileTypes.includes('max') }"
+          >
             max
           </button>
-          <button class="file-option" @click="selectFileType('obj')">
+          <button
+            class="file-option"
+            @click="toggleFileTypeSelection('obj')"
+            :class="{ selected: selectedFileTypes.includes('obj') }"
+          >
             obj
           </button>
-          <button class="file-option" @click="selectFileType('fbx')">
+          <button
+            class="file-option"
+            @click="toggleFileTypeSelection('fbx')"
+            :class="{ selected: selectedFileTypes.includes('fbx') }"
+          >
             fbx
           </button>
-          <button class="file-option" @click="selectFileType('glb')">
+          <button
+            class="file-option"
+            @click="toggleFileTypeSelection('glb')"
+            :class="{ selected: selectedFileTypes.includes('glb') }"
+          >
             glb
           </button>
         </div>
       </div>
 
       <hr />
-
       <!-- Color Section -->
       <div class="color-section">
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/color_lens.png" alt="" />
+            <span>Color <div class="colorcount">({{ colorCount}})</div></span>
+          </div>
+          <button @click="toggleColorExtended">
+            <img
+              :src="
+                colorExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt="Toggle Color"
+            />
+          </button>
+        </div>
+
+        <div v-if="colorExtended">
+          <div class="color-options">
+            <div
+              class="outer"
+              v-for="(color, index) in colorOptions"
+              :key="index"
+              :class="{ selected: selectedColors.includes(color) }"
+            >
+              <div
+                class="color-option"
+                :class="color"
+                @click="toggleColorSelection(color)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <!-- Materials Section -->
+      <!-- Materials Section -->
+      <div class="materials">
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/tonality.png" alt="" />
+            <span>Materials <div class="materailcount">({{ materialCount}})</div></span>
+          </div>
+          <button @click="toggleMaterialsExtended">
+            <img
+              :src="
+                materialsExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt=""
+            />
+          </button>
+        </div>
+
+        <div class="material-options" v-if="materialsExtended">
+          <button
+            class="material-option"
+            v-for="(material, index) in materialOptions"
+            :key="index"
+            @click="toggleMaterialSelection(material)"
+            :class="{ selected: selectedMaterials.includes(material) }"
+          >
+            {{ material }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Color Section -->
+      <!-- <div class="color-section">
         <div class="filter-header">
           <div class="left">
             <img src="../assets/color_lens.png" alt="" />
@@ -216,11 +301,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <hr />
       <!-- Materials Section -->
-      <div class="materials">
+      <!-- <div class="materials">
         <div class="filter-header">
           <div class="left">
             <img src="../assets/tonality.png" alt="" />
@@ -250,99 +334,99 @@
           </button>
         </div>
 
-      </div>
-      <hr/>
+      </div> -->
+      <hr />
       <div class="textures">
-      <div class="filter-header">
-        <div class="left">
-          <img src="../assets/texture.png" alt="" />
-          <span>Textures</span>
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/texture.png" alt="" />
+            <span>Textures <div class="textcturecount">({{textureCount }})</div></span>
+          </div>
+          <button @click="toggleTexturesExtended">
+            <img
+              :src="
+                texturesExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt=""
+            />
+          </button>
         </div>
-        <button @click="toggleTexturesExtended">
-          <img
-            :src="
-              texturesExtended
-                ? require('../assets/expand_less.png')
-                : require('../assets/expand_more.png')
-            "
-            alt=""
-          />
-        </button>
-      </div>
 
-      <div class="texture-options" v-if="texturesExtended">
-        <button
-          class="texture-option"
-          @click="selectTexture('brick')"
-          :class="{ selected: selectedTextures.includes('brick') }"
-        >
-          Brick
-        </button>
-        <button
-          class="texture-option"
-          @click="selectTexture('fabric')"
-          :class="{ selected: selectedTextures.includes('fabric') }"
-        >
-          Fabric
-        </button>
-        <button
-          class="texture-option"
-          @click="selectTexture('leather')"
-          :class="{ selected: selectedTextures.includes('leather') }"
-        >
-          Leather
-        </button>
-      </div>
-    </div>
-    <hr/>
-    <div class="styles">
-      <div class="filter-header">
-        <div class="left">
-          <img src="../assets/interests.png" alt="" />
-          <span>Styles</span>
+        <div class="texture-options" v-if="texturesExtended">
+          <button
+            class="texture-option"
+            @click="selectTexture('brick')"
+            :class="{ selected: selectedTextures.includes('brick') }"
+          >
+            Brick
+          </button>
+          <button
+            class="texture-option"
+            @click="selectTexture('fabric')"
+            :class="{ selected: selectedTextures.includes('fabric') }"
+          >
+            Fabric
+          </button>
+          <button
+            class="texture-option"
+            @click="selectTexture('leather')"
+            :class="{ selected: selectedTextures.includes('leather') }"
+          >
+            Leather
+          </button>
         </div>
-        <button @click="toggleStylesExtended">
-          <img
-            :src="
-              stylesExtended
-                ? require('../assets/expand_less.png')
-                : require('../assets/expand_more.png')
-            "
-            alt=""
-          />
-        </button>
       </div>
+      <hr />
+      <div class="styles">
+        <div class="filter-header">
+          <div class="left">
+            <img src="../assets/interests.png" alt="" />
+            <span>Styles <div class="stylecount">({{ styleCount }})</div></span>
+          </div>
+          <button @click="toggleStylesExtended">
+            <img
+              :src="
+                stylesExtended
+                  ? require('../assets/expand_less.png')
+                  : require('../assets/expand_more.png')
+              "
+              alt=""
+            />
+          </button>
+        </div>
 
-      <div class="style-options" v-if="stylesExtended">
-        <button
-          class="style-option"
-          @click="selectStyle('classic')"
-          :class="{ selected: selectedStyles.includes('classic') }"
-        >
-          Classic
-        </button>
-        <button
-          class="style-option"
-          @click="selectStyle('modern')"
-          :class="{ selected: selectedStyles.includes('modern') }"
-        >
-          Modern
-        </button>
-        <button
-          class="style-option"
-          @click="selectStyle('aesthetic')"
-          :class="{ selected: selectedStyles.includes('aesthetic') }"
-        >
-          Aesthetic
-        </button>
+        <div class="style-options" v-if="stylesExtended">
+          <button
+            class="style-option"
+            @click="selectStyle('classic')"
+            :class="{ selected: selectedStyles.includes('classic') }"
+          >
+            Classic
+          </button>
+          <button
+            class="style-option"
+            @click="selectStyle('modern')"
+            :class="{ selected: selectedStyles.includes('modern') }"
+          >
+            Modern
+          </button>
+          <button
+            class="style-option"
+            @click="selectStyle('aesthetic')"
+            :class="{ selected: selectedStyles.includes('aesthetic') }"
+          >
+            Aesthetic
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref ,computed} from "vue";
 
 // Sidebar visibility and extended state
 const sidebarVisible = ref(true);
@@ -351,28 +435,28 @@ const priceExtended = ref(false);
 const fileTypeExtended = ref(false);
 const colorExtended = ref(false);
 const materialsExtended = ref(false);
-const selectedColor = ref("");
-const selectedMaterial = ref("");
 const texturesExtended = ref(false);
 const selectedTextures = ref([]);
 const stylesExtended = ref(false);
 const selectedStyles = ref([]);
 const selectedPrices = ref([]);
+const selectedFileTypes = ref([]);
+const selectedColors = ref([]);
+const selectedMaterials = ref([]);
 
-// Applied filters
+const fileTypeCount = computed(() => selectedFileTypes.value.length);
+const materialCount = computed(() => selectedMaterials.value.length);
+const priceCount = computed(() => selectedPrices.value.length);
+const colorCount = computed(() => selectedColors.value.length); // Fixed spelling
+const textureCount = computed(() => selectedTextures.value.length); // Fixed spelling
+const styleCount = computed(() => selectedStyles.value.length); // Fixed spelling
+
+
 const appliedFilters = ref(["Gray", "Price"]);
-
 // Active filter logic
 const removeFilter = (index) => {
   appliedFilters.value.splice(index, 1);
 };
-
-
-// File Type Section
-const selectedFileType = ref("");
-function selectFileType(type) {
-  selectedFileType.value = type;
-}
 
 // Toggle Sidebar visibility
 function toggleSidebar() {
@@ -392,17 +476,17 @@ function toggleFileTypeExtended() {
 function toggleColorExtended() {
   colorExtended.value = !colorExtended.value;
 }
-function selectColor(color) {
-  selectedColor.value = color;
-}
+// function selectColor(color) {
+//   selectedColor.value = color;
+// }
 
 function toggleMaterialsExtended() {
   materialsExtended.value = !materialsExtended.value;
 }
 
-function selectMaterial(material) {
-  selectedMaterial.value = material; // Update the selected material
-}
+// function selectMaterial(material) {
+//   selectedMaterial.value = material; // Update the selected material
+// }
 function toggleTexturesExtended() {
   texturesExtended.value = !texturesExtended.value;
 }
@@ -441,6 +525,41 @@ function togglePriceSelection(type) {
   } else {
     // Otherwise, add it
     selectedPrices.value.push(type);
+  }
+}
+function toggleFileTypeSelection(type) {
+  const index = selectedFileTypes.value.indexOf(type);
+  if (index > -1) {
+    // If already selected, remove it
+    selectedFileTypes.value.splice(index, 1);
+  } else {
+    // Otherwise, add it
+    selectedFileTypes.value.push(type);
+  }
+}
+
+
+const colorOptions = ["color1", "color2", "color3", "color4"]; // Define available colors
+const materialOptions = ["Gold", "Iron", "Silver"]; // Define available materials
+
+// Toggle color selection
+function toggleColorSelection(color) {
+  const index = selectedColors.value.indexOf(color);
+  if (index > -1) {
+    selectedColors.value.splice(index, 1); // Remove from selection
+  } else {
+    selectedColors.value.push(color); // Add to selection
+  }
+}
+
+function toggleMaterialSelection(material) {
+  const index = selectedMaterials.value.indexOf(material);
+  if (index > -1) {
+    // If already selected, remove it
+    selectedMaterials.value.splice(index, 1);
+  } else {
+    // Otherwise, add it
+    selectedMaterials.value.push(material);
   }
 }
 </script>
@@ -489,7 +608,8 @@ function togglePriceSelection(type) {
 .price-section,
 .file-type-section,
 .color-section,
-.Materials,.textures {
+.Materials,
+.textures {
   margin-top: 1rem;
 }
 
@@ -533,23 +653,26 @@ hr {
     .price-option {
       // padding: 0.6rem;
       margin: 0.5rem 0;
-      height:2.65rem;
-      width:4.345rem;
+      height: 2.65rem;
+      width: 4.345rem;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       color: white;
       // border: 1px solid black;
-      border: 1px solid #E5E1E1;
+      border: 1px solid #e5e1e1;
       color: black;
       border-radius: 1.5rem;
       &.selected {
-        background-color: blueviolet; 
-        color: white; 
+        background-color: blueviolet;
+        color: white;
       }
     }
   }
+}
+.priceselcted,.colorcount,.materailcount,.textcturecount,.stylecount{
+  color: blueviolet;
 }
 
 /* File Type Section Styles */
@@ -582,14 +705,18 @@ hr {
       // padding: 1rem;
       margin: 0.5rem 0;
       cursor: pointer;
-      height:2.625rem;
-      width:4.25rem;
+      height: 2.625rem;
+      width: 4.25rem;
       color: rgb(3, 3, 3);
       border-radius: 2.5rem;
       border: 1px solid #e5e1e1;
       display: flex;
       justify-content: center;
       align-items: center;
+      &.selected {
+        background-color: blueviolet;
+        color: white;
+      }
     }
   }
 }
@@ -685,7 +812,7 @@ hr {
       display: flex;
       align-items: center;
       justify-content: center;
-    
+
       margin: 0.5rem 0;
       cursor: pointer;
       height: 2.625rem;
@@ -693,10 +820,17 @@ hr {
       color: rgb(3, 3, 3);
       border-radius: 2.5rem;
       border: 1px solid #e5e1e1;
-      
+      &.selected {
+        background-color: blueviolet;
+        color: white; // Change text color for selected state
+      }
     }
   }
 }
+// .material-option.selected {
+//   background-color: blueviolet;
+//   color: rgb(255, 255, 255);
+// }
 
 .textures {
   .filter-header {
