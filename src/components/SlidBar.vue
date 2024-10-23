@@ -496,6 +496,7 @@ const removeFilter = (filter) => {
   background-color: #ffffff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  padding-left: 3rem;
   overflow-y: auto;
 }
 
@@ -517,7 +518,14 @@ const removeFilter = (filter) => {
 }
 
 .filter-text {
-  font-size: 1.2rem;
+  // font-size: 1.2rem;
+  //styleName: Body Big/M;
+font-family: Inter;
+font-size: 18px;
+font-weight: 500;
+line-height: 23.4px;
+// text-align: left;
+
 }
 
 .section {

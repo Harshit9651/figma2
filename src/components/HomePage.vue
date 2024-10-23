@@ -1,27 +1,26 @@
 <template>
   <div class="main">
-    
     <NavBar></NavBar>
     <div class="tabular-quick-filter">
       <div class="tabular">
         <img src="../assets/king_bed.png" alt="" />
-        <p>Furniture</p>
+        <div class="tabular-data">Furniture</div>
       </div>
       <div class="tabular">
         <img src="../assets/light.png" alt="" />
-        <p>Lighting</p>
+        <div class="tabular-data">Lighting</div>
       </div>
       <div class="tabular">
         <img src="../assets/texture.png" alt="" />
-        <p>Textures</p>
+        <div class="tabular-data">Textures</div>
       </div>
       <div class="tabular">
         <img src="../assets/devices.png" alt="" />
-        <p>Materials</p>
+        <div class="tabular-data">Metarials</div>
       </div>
       <div class="tabular">
         <img src="../assets/tonality.png" alt="" />
-        <p>Technology</p>
+        <div class="tabular-data">Technology</div>
       </div>
     </div>
     <div class="result-slidbar-section">
@@ -86,21 +85,29 @@
           </div>
         </div>
       </div> -->
-     <SlidBar/>
+      <SlidBar v-if="isslidbar" />
       <div class="result">
         <div class="allModel">
-          <p>All Models (1245)</p>
+          <div class="all_model">All Models (1245)</div>
           <div class="filter">
-            <img src="../assets/filter_list.png" alt="" /> Most Popular
+            <img src="../assets/filter_list.png" alt="" />
+            <div class="mst_popular">Most Popular</div>
           </div>
         </div>
+        <button>
+          <div class="filter_data">
+          <img src="../assets/filter_alt.png" alt="" />
+          <div class="filter-text">Filters</div>
+        </div>
+        </button>
+      
 
         <div class="cards">
           <div v-for="product in products" :key="product.id" class="card">
             <img :src="product.image" :alt="product.title" />
             <div class="card-content">
-              <h6>{{ product.title }}</h6>
-              <p>{{ product.formats }}</p>
+              <div class="title">{{ product.title }}</div>
+              <div class="formates">{{ product.formats }}</div>
             </div>
 
             <div v-if="product.off" class="off">
@@ -121,6 +128,7 @@
 <script setup>
 import { useProductsStore } from "../store/image";
 import { computed, ref } from "vue";
+const isslidbar = ref(true);
 
 const productsStore = useProductsStore(); // Initialize the store first
 const products = computed(() => productsStore.getAllProducts); // Now you can access products
@@ -133,8 +141,7 @@ function setActivePrice(type) {
 
 <script>
 import NavBar from "./NavBar.vue";
-import SlidBar from "./SlidBar.vue"
-
+import SlidBar from "./SlidBar.vue";
 
 export default {
   name: "HomePage",
@@ -147,9 +154,9 @@ export default {
   height: 100%;
   width: 100%;
   .navbar {
-  position: sticky; /* or fixed */
-  top: 0; /* Keeps it at the top */
-  z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   .tabular-quick-filter {
     height: 5.625rem;
@@ -165,12 +172,22 @@ export default {
       height: 100%;
       width: 7.5rem;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: rgb(255, 255, 255);
-      color: rgb(80, 69, 69);
-      flex-direction: column;
-      // gap: 0.2rem;
+      padding: 20px 0px 20px 0px;
+      gap: 8px;
+      border: 0px 0px 1px 0px;
+      opacity: 0px;
+
+      .tabular-data {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18.2px;
+        text-align: left;
+        color: #939090;
+      }
     }
   }
 
@@ -180,7 +197,6 @@ export default {
     background-color: rgb(255, 255, 255);
     display: flex;
 
-  
     .result {
       width: 80%;
       background-color: rgb(255, 255, 255);
@@ -195,7 +211,62 @@ export default {
         align-items: center;
         margin-left: 1rem;
         margin-right: 2rem;
+        .all_model {
+          //styleName: Body Big/M;
+          font-family: Inter;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 23.4px;
+          text-align: left;
+          color: #484646;
+        }
+        .filter {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          .mst_popular {
+            //styleName: Body Medium/M;
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18.2px;
+            text-align: left;
+            color: #484646;
+          }
+        }
       }
+      button{
+all:unset;
+
+      
+      .filter_data {
+        margin-left:1rem;
+        width: 6.34rem;
+        height: 2.5rem; // Adjusted height to ensure sufficient space for content
+        padding: 0; // Removed padding for the container to avoid extra space
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 40px;
+        border: 1px solid #7343ea;
+        background: #f1ecfd;
+        color: #7343ea;
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          all: unset; // Resets all properties
+          cursor: pointer;
+          padding: 8px;
+          .filter-text {
+            display: flex;
+          }
+        }
+      }
+    }
+
       .cards {
         background-color: #ffffff;
         margin-left: 1rem;
@@ -211,17 +282,18 @@ export default {
           background-color: rgb(255, 255, 255);
           height: 13.245rem;
           width: 16.34rem;
-          border-radius: 0.635rem;
           box-shadow: 0px 4px 20px 0px #0000001f;
           display: flex;
           flex-direction: column;
           gap: 0;
           position: relative;
+          border-radius: 0.6rem;
 
           img {
             width: 100%;
             height: 70%;
             object-fit: cover;
+            border-radius: 0.6rem 0.6rem 0rem 0rem;
           }
           .cart {
             height: 2.5rem;
@@ -239,19 +311,32 @@ export default {
             height: 20%;
             overflow: hidden;
 
-            h6 {
-              margin: 0;
-              font-size: 1rem;
-              font-weight: bold;
-              color: #333;
+            .title {
+              height: 1rem;
+              width: 14.35rem;
+              font-family: Inter;
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 15.6px;
+              text-align: left;
+
               overflow: hidden;
             }
 
-            p {
-              margin: 0;
-              font-size: 0.875rem;
-              color: #666;
-              overflow: hidden;
+            .formates {
+              justify-content: flex-start;
+              // width: 25px;
+              // height: 16px;
+              display: flex;
+              flex-flow: row nowrap;
+              gap: 0px;
+              opacity: 0px;
+              font-family: Inter;
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 15.6px;
+              // overflow: hidden;
+              color: #adaaaa;
             }
           }
           .off {
@@ -259,14 +344,13 @@ export default {
             margin-top: 3%;
             margin-left: 3%;
             height: 2.5rem;
-            width: 6.5rem;
+            width: 6rem;
             border-radius: 2rem;
             color: #06c270;
             background-color: white;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            font-size: 16px;
 
             img {
               height: 1rem;

@@ -16,7 +16,7 @@
       <div class="right-bar">
         <img src="../assets/favorite.png" alt="Favorite" />
         <img src="../assets/shopping_cart.png" alt="Cart" />
-        <div  v-if="!islogin"  class="login-sigup">
+        <div v-if="!islogin" class="login-sigup">
           <button @click="login" class="button1">Log in</button>
           <button class="button2">Sign Up</button>
         </div>
@@ -37,7 +37,7 @@
         <div class="search-box">
           <div class="input-with-dropdown">
             <select class="dropdown">
-              <option value="all">ALL</option>
+              <option value="all" class="all">ALL</option>
               <option value="option1">Option 1</option>
               <option value="option2">Option 2</option>
               <option value="option3">Option 3</option>
@@ -60,10 +60,9 @@ import { ref } from "vue";
 const islogin = ref(false);
 const isOffer = ref(true);
 function login() {
-    const rightBar = document.getElementsByClassName("right-bar")[0];
+  const rightBar = document.getElementsByClassName("right-bar")[0];
   islogin.value = !islogin.value;
-  rightBar.style.marginLeft = "75%"; 
-
+  rightBar.style.marginLeft = "75%";
 }
 function closeOffer() {
   isOffer.value = false;
@@ -80,6 +79,12 @@ function closeOffer() {
   align-items: center;
   font-size: 15px;
   font-weight: 500;
+  //styleName: Body Medium/M;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18.2px;
+  text-align: left;
 
   .cros {
     position: absolute;
@@ -153,13 +158,13 @@ function closeOffer() {
       background-color: #007bff;
       color: white;
     }
-    .profile{
+    .profile {
       height: 2rem;
       width: 2rem;
       background-color: rgb(255, 255, 255);
-      img{
+      img {
         height: 2rem;
-      width: 2rem;
+        width: 2rem;
       }
     }
   }
@@ -193,6 +198,15 @@ function closeOffer() {
         height: 44px;
         display: flex;
         align-items: center;
+        .all {
+          font-family: Inter;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 19.32px;
+          text-align: center;
+          color: #605E5E;
+
+        }
       }
 
       select {
