@@ -7,7 +7,14 @@
       </div>
       <div class="right">
         <button @click="toggleSidebar">
-          <img :src="sidebarVisible ? '../assets/expand_less.png' : '../assets/expand_more.png'" alt="Toggle Sidebar" />
+          <img
+            :src="
+              sidebarVisible
+                ? '../assets/expand_less.png'
+                : '../assets/Vector(1).png'
+            "
+            alt="Toggle Sidebar"
+          />
         </button>
       </div>
     </div>
@@ -20,15 +27,28 @@
         <div class="filter-header">
           <span>All Filters</span>
           <button @click="toggleFilterExtended">
-            <img :src="filterExtended ? '../assets/expand_less.png' : '../assets/expand_more.png'" alt="Expand Filters" />
+            <img
+              :src="
+                filterExtended
+                  ? '../assets/expand_less.png'
+                  : '../assets/Vector(1).png'
+              "
+              alt="Expand Filters"
+            />
           </button>
         </div>
 
         <div v-if="filterExtended">
           <div class="applied-filters">
-            <div v-for="(filter, index) in appliedFilters" :key="index" class="filter-item">
+            <div
+              v-for="(filter, index) in appliedFilters"
+              :key="index"
+              class="filter-item"
+            >
               {{ filter }}
-              <button @click="removeFilter(index)"><img src="../assets/close.png" alt="Remove Filter" /></button>
+              <button @click="removeFilter(index)">
+                <img src="../assets/close.png" alt="Remove Filter" />
+              </button>
             </div>
           </div>
         </div>
@@ -44,13 +64,24 @@
             <span>Price</span>
           </div>
           <button @click="togglePriceExtended">
-            <img :src="priceExtended ? '../assets/expand_less.png' : '../assets/expand_more.png'" alt="Toggle Price" />
+            <img
+              :src="
+                priceExtended
+                  ? '../assets/expand_less.png'
+                  : '../assets/Vector(1).png'
+              "
+              alt="Toggle Price"
+            />
           </button>
         </div>
-        
+
         <div v-if="priceExtended">
-          <button class="price-option" @click="setActivePrice('free')">Free</button>
-          <button class="price-option" @click="setActivePrice('paid')">Paid</button>
+          <button class="price-option" @click="setActivePrice('free')">
+            Free
+          </button>
+          <button class="price-option" @click="setActivePrice('paid')">
+            Paid
+          </button>
         </div>
       </div>
 
@@ -64,14 +95,27 @@
             <span>File Type</span>
           </div>
           <button @click="toggleFileTypeExtended">
-            <img :src="fileTypeExtended ? '../assets/expand_less.png' : '../assets/expand_more.png'" alt="Toggle File Type" />
+            <img
+              :src="
+                fileTypeExtended
+                  ? '../assets/expand_less.png'
+                  : '../assets/Vector(1).png'
+              "
+              alt="Toggle File Type"
+            />
           </button>
         </div>
 
         <div v-if="fileTypeExtended">
-          <button class="file-option" @click="selectFileType('pdf')">PDF</button>
-          <button class="file-option" @click="selectFileType('png')">PNG</button>
-          <button class="file-option" @click="selectFileType('obj')">OBJ</button>
+          <button class="file-option" @click="selectFileType('pdf')">
+            PDF
+          </button>
+          <button class="file-option" @click="selectFileType('png')">
+            PNG
+          </button>
+          <button class="file-option" @click="selectFileType('obj')">
+            OBJ
+          </button>
         </div>
       </div>
 
@@ -85,16 +129,39 @@
             <span>Color</span>
           </div>
           <button @click="toggleColorExtended">
-            <img :src="colorExtended ? '../assets/expand_less.png' : '../assets/expand_more.png'" alt="Toggle Color" />
+            <img
+              :src="
+                colorExtended
+                  ? '../assets/expand_less.png'
+                  : '../assets/Vector(1).png'
+              "
+              alt="Toggle Color"
+            />
           </button>
         </div>
 
         <div v-if="colorExtended">
           <div class="color-options">
-            <div class="color-option" style="background-color: black;" @click="selectColor('black')"></div>
-            <div class="color-option" style="background-color: pink;" @click="selectColor('pink')"></div>
-            <div class="color-option" style="background-color: red;" @click="selectColor('red')"></div>
-            <div class="color-option" style="background-color: blue;" @click="selectColor('blue')"></div>
+            <div
+              class="color-option"
+              style="background-color: black"
+              @click="selectColor('black')"
+            ></div>
+            <div
+              class="color-option"
+              style="background-color: pink"
+              @click="selectColor('pink')"
+            ></div>
+            <div
+              class="color-option"
+              style="background-color: red"
+              @click="selectColor('red')"
+            ></div>
+            <div
+              class="color-option"
+              style="background-color: blue"
+              @click="selectColor('blue')"
+            ></div>
           </div>
         </div>
       </div>
@@ -120,7 +187,7 @@ const removeFilter = (index) => {
 };
 
 // Price Section
-const activePrice = ref('free');
+const activePrice = ref("free");
 function setActivePrice(type) {
   activePrice.value = type;
 }
@@ -162,7 +229,7 @@ function toggleColorExtended() {
   flex-direction: column;
   width: 300px;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   overflow-y: auto;
@@ -196,24 +263,22 @@ function toggleColorExtended() {
   padding: 0.5rem 0;
 }
 
-.filter-section, .price-section, .file-type-section, .color-section {
+.filter-section,
+.price-section,
+.file-type-section,
+.color-section {
   margin-top: 1rem;
 }
 
 button {
-  padding: 0.5rem;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  margin-left: 1rem;
-  transition: background-color 0.3s;
+  all: unset;
+  display: inline-block;
+  
 }
 
-button:hover {
-  background-color: #0056b3;
-}
+// button:hover {
+//   background-color: #000306;
+// }
 
 hr {
   margin: 1rem 0;
@@ -221,7 +286,8 @@ hr {
   border-top: 1px solid #e0e0e0;
 }
 
-.price-option, .file-option {
+.price-option,
+.file-option {
   padding: 0.5rem;
   margin: 0.5rem 0;
   cursor: pointer;
@@ -232,7 +298,8 @@ hr {
   width: 100%;
 }
 
-.file-option:hover, .price-option:hover {
+.file-option:hover,
+.price-option:hover {
   background-color: #218838;
 }
 
