@@ -50,7 +50,7 @@
       <hr />
 
       <!-- Price Section -->
-      <div class="price-section">
+      <!-- <div class="price-section">
         <div class="filter-header">
           <div class="left">
             <img src="../assets/attach_money.png" alt="Price" />
@@ -79,8 +79,42 @@
             Paid
           </button>
         </div>
-      </div>
+      </div> -->
+      <div class="price-section">
+  <div class="filter-header">
+    <div class="left">
+      <img src="../assets/attach_money.png" alt="Price" />
+      <span>Price</span>
+    </div>
+    <button @click="togglePriceExtended">
+      <img
+        :src="
+          priceExtended
+            ? require('../assets/expand_less.png')
+            : require('../assets/expand_more.png')
+        "
+        alt="Toggle Price"
+      />
+    </button>
+  </div>
 
+  <div class="price-button" v-if="priceExtended">
+    <button 
+      class="price-option" 
+      @click="togglePriceSelection('free')"
+      :class="{ selected: selectedPrices.includes('free') }"
+    >
+      Free
+    </button>
+    <button 
+      class="price-option" 
+      @click="togglePriceSelection('paid')"
+      :class="{ selected: selectedPrices.includes('paid') }"
+    >
+      Paid
+    </button>
+  </div>
+</div>
       <hr />
 
       <!-- File Type Section -->
@@ -219,36 +253,90 @@
       </div>
       <hr/>
       <div class="textures">
-        <div class="filter-header">
-          <div class="left">
-            <img src="../assets/texture.png" alt="" />
-            <span>Textures</span>
-          </div>
-          <button @click="toggleMaterialsExtended">
-            <img
-              :src="
-                materialsExtended
-                  ? require('../assets/expand_less.png')
-                  : require('../assets/expand_more.png')
-              "
-              alt=""
-            />
-          </button>
+      <div class="filter-header">
+        <div class="left">
+          <img src="../assets/texture.png" alt="" />
+          <span>Textures</span>
         </div>
-
-        <div class="material-options" v-if="materialsExtended">
-          <button class="material-option" @click="selectMaterial('gold')">
-            Gold
-          </button>
-          <button class="material-option" @click="selectMaterial('iron')">
-            Iron
-          </button>
-          <button class="material-option" @click="selectMaterial('silver')">
-            Silver
-          </button>
-        </div>
-
+        <button @click="toggleTexturesExtended">
+          <img
+            :src="
+              texturesExtended
+                ? require('../assets/expand_less.png')
+                : require('../assets/expand_more.png')
+            "
+            alt=""
+          />
+        </button>
       </div>
+
+      <div class="texture-options" v-if="texturesExtended">
+        <button
+          class="texture-option"
+          @click="selectTexture('brick')"
+          :class="{ selected: selectedTextures.includes('brick') }"
+        >
+          Brick
+        </button>
+        <button
+          class="texture-option"
+          @click="selectTexture('fabric')"
+          :class="{ selected: selectedTextures.includes('fabric') }"
+        >
+          Fabric
+        </button>
+        <button
+          class="texture-option"
+          @click="selectTexture('leather')"
+          :class="{ selected: selectedTextures.includes('leather') }"
+        >
+          Leather
+        </button>
+      </div>
+    </div>
+    <hr/>
+    <div class="styles">
+      <div class="filter-header">
+        <div class="left">
+          <img src="../assets/interests.png" alt="" />
+          <span>Styles</span>
+        </div>
+        <button @click="toggleStylesExtended">
+          <img
+            :src="
+              stylesExtended
+                ? require('../assets/expand_less.png')
+                : require('../assets/expand_more.png')
+            "
+            alt=""
+          />
+        </button>
+      </div>
+
+      <div class="style-options" v-if="stylesExtended">
+        <button
+          class="style-option"
+          @click="selectStyle('classic')"
+          :class="{ selected: selectedStyles.includes('classic') }"
+        >
+          Classic
+        </button>
+        <button
+          class="style-option"
+          @click="selectStyle('modern')"
+          :class="{ selected: selectedStyles.includes('modern') }"
+        >
+          Modern
+        </button>
+        <button
+          class="style-option"
+          @click="selectStyle('aesthetic')"
+          :class="{ selected: selectedStyles.includes('aesthetic') }"
+        >
+          Aesthetic
+        </button>
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -265,6 +353,11 @@ const colorExtended = ref(false);
 const materialsExtended = ref(false);
 const selectedColor = ref("");
 const selectedMaterial = ref("");
+const texturesExtended = ref(false);
+const selectedTextures = ref([]);
+const stylesExtended = ref(false);
+const selectedStyles = ref([]);
+const selectedPrices = ref([]);
 
 // Applied filters
 const appliedFilters = ref(["Gray", "Price"]);
@@ -274,11 +367,6 @@ const removeFilter = (index) => {
   appliedFilters.value.splice(index, 1);
 };
 
-// Price Section
-const activePrice = ref("free");
-function setActivePrice(type) {
-  activePrice.value = type;
-}
 
 // File Type Section
 const selectedFileType = ref("");
@@ -314,6 +402,46 @@ function toggleMaterialsExtended() {
 
 function selectMaterial(material) {
   selectedMaterial.value = material; // Update the selected material
+}
+function toggleTexturesExtended() {
+  texturesExtended.value = !texturesExtended.value;
+}
+
+// Select/Deselect texture
+function selectTexture(texture) {
+  const index = selectedTextures.value.indexOf(texture);
+  if (index > -1) {
+    // If already selected, remove it
+    selectedTextures.value.splice(index, 1);
+  } else {
+    // Otherwise, add it
+    selectedTextures.value.push(texture);
+  }
+}
+function toggleStylesExtended() {
+  stylesExtended.value = !stylesExtended.value;
+}
+
+// Select/Deselect style
+function selectStyle(style) {
+  const index = selectedStyles.value.indexOf(style);
+  if (index > -1) {
+    // If already selected, remove it
+    selectedStyles.value.splice(index, 1);
+  } else {
+    // Otherwise, add it
+    selectedStyles.value.push(style);
+  }
+}
+function togglePriceSelection(type) {
+  const index = selectedPrices.value.indexOf(type);
+  if (index > -1) {
+    // If already selected, remove it
+    selectedPrices.value.splice(index, 1);
+  } else {
+    // Otherwise, add it
+    selectedPrices.value.push(type);
+  }
 }
 </script>
 
@@ -403,13 +531,23 @@ hr {
     gap: 1rem;
     align-items: center;
     .price-option {
-      padding: 0.6rem;
+      // padding: 0.6rem;
       margin: 0.5rem 0;
+      height:2.65rem;
+      width:4.345rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
       color: white;
-      border: 1px solid black;
+      // border: 1px solid black;
+      border: 1px solid #E5E1E1;
       color: black;
       border-radius: 1.5rem;
+      &.selected {
+        background-color: blueviolet; 
+        color: white; 
+      }
     }
   }
 }
@@ -441,13 +579,17 @@ hr {
     align-items: center;
 
     .file-option {
-      padding: 1rem;
+      // padding: 1rem;
       margin: 0.5rem 0;
       cursor: pointer;
-
+      height:2.625rem;
+      width:4.25rem;
       color: rgb(3, 3, 3);
       border-radius: 2.5rem;
       border: 1px solid #e5e1e1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
@@ -515,25 +657,6 @@ hr {
     background: #797676;
   }
 }
-// .Materials{
-//   .left {
-//     display: flex;
-//     align-items: center;
-//     img {
-//       margin-bottom: 0.2rem;
-//     }
-//     span {
-//       margin-left: 0.3rem;
-//       display: flex;
-//       align-items: center;
-//     }
-
-//     .file-selected {
-//       color: blueviolet;
-//       margin-left: 0.5rem;
-//     }
-//   }
-// }
 .materials {
   .filter-header {
     display: flex;
@@ -571,6 +694,85 @@ hr {
       border-radius: 2.5rem;
       border: 1px solid #e5e1e1;
       
+    }
+  }
+}
+
+.textures {
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    img {
+      margin-bottom: 0.2rem;
+    }
+    span {
+      margin-left: 0.3rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .texture-options {
+    display: flex;
+    gap: 0.5rem;
+
+    .texture-option {
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      cursor: pointer;
+      border: 1px solid #e5e1e1;
+      border-radius: 1.5rem;
+      background-color: #fff; // default background
+    }
+
+    .selected {
+      background-color: blueviolet; // background for selected option
+      color: white; // text color for selected option
+    }
+  }
+}
+.styles {
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    img {
+      margin-bottom: 0.2rem;
+    }
+    span {
+      margin-left: 0.3rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .style-options {
+    display: flex;
+    gap: 0.5rem;
+
+    .style-option {
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      cursor: pointer;
+      border: 1px solid #e5e1e1;
+      border-radius: 1.5rem;
+      background-color: #fff; // default background
+    }
+
+    .selected {
+      background-color: blueviolet; // background for selected option
+      color: white; // text color for selected option
     }
   }
 }
