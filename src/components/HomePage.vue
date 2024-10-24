@@ -451,15 +451,19 @@
             <div class="filter-text">Filters</div>
           </div>
         </button>
-
         <div class="cards">
-          <div v-for="product in products" :key="product.id" class="card">
+          <div
+            v-for="product in products"
+            :key="product.id"
+            class="card"
+            :class="{ active: selectedProduct === product.id }"
+            @click="openOverlay(product)"
+          >
             <img :src="product.image" :alt="product.title" />
             <div class="card-content">
               <div class="title">{{ product.title }}</div>
-              <div class="formates">{{ product.formats }}</div>
+              <div class="formats">{{ product.formats }}</div>
             </div>
-
             <div v-if="product.off" class="off">
               <img src="../assets/local_offer.png" alt="Discount" />
               {{ product.off }}
@@ -469,9 +473,21 @@
             </div>
             <div class="cart"><img src="../assets/Frame 54.png" alt="" /></div>
           </div>
+
+          <div v-if="overlayVisible" class="overlay" @click="closeOverlay">
+            <div class="overlay-content">
+              <img :src="selectedProductData.image" alt="" />
+              <div class="overlay-title">{{ selectedProductData.title }}</div>
+              <div class="overlay-details">
+                {{ selectedProductData.details }}
+              </div>
+              <div class="overlay-rate">{{ selectedProductData.rate }}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <FooterPage></FooterPage>
   </div>
 </template>
 <script></script>
@@ -495,6 +511,9 @@ const selectedPrices = ref([]);
 const selectedFileTypes = ref([]);
 const selectedColors = ref([]);
 const selectedMaterials = ref([]);
+const selectedProduct = ref(null);
+const overlayVisible = ref(false);
+const selectedProductData = ref({});
 
 const fileTypeCount = computed(() => selectedFileTypes.value.length);
 const materialCount = computed(() => selectedMaterials.value.length);
@@ -637,14 +656,29 @@ const removeFilter = (filter) => {
     selectedStyles.value.splice(selectedStyles.value.indexOf(filter), 1);
   }
 };
+
+const openOverlay = (product) => {
+  selectedProduct.value = product.id;
+  selectedProductData.value = product;
+  overlayVisible.value = true;
+};
+
+const closeOverlay = () => {
+  overlayVisible.value = false;
+  selectedProduct.value = null;
+};
 </script>
 
 <script>
 import NavBar from "./NavBar.vue";
+import FooterPage from "./FooterPage.vue";
 
 export default {
   name: "HomePage",
-  components: NavBar,
+  components: {
+    NavBar,
+    FooterPage,
+  },
 };
 </script>
 
@@ -704,7 +738,6 @@ export default {
       overflow-y: auto;
       padding: 0 2rem; /* Add padding for left and right gaps */
 
-
       .allModel {
         background-color: #ffffff;
         display: flex;
@@ -722,19 +755,19 @@ export default {
           text-align: left;
           color: #484646;
           .result.full-width & {
-          margin-left: 10rem;
-          background-color: #313030; /* Updated margin */
-        }
+            margin-left: 10rem;
+            background-color: #313030; /* Updated margin */
+          }
         }
         .filter {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          margin-right:5rem;
+          margin-right: 5rem;
           .result.full-width & {
-          margin-right: 10rem; /* Updated margin */
-        }
-        
+            margin-right: 10rem; /* Updated margin */
+          }
+
           button {
             all: unset;
             img {
@@ -757,8 +790,7 @@ export default {
               text-decoration: underline;
             }
           }
-       
-        }  
+        }
       }
       button {
         all: unset;
@@ -767,7 +799,7 @@ export default {
           margin-left: 1rem;
           width: 6.34rem;
           height: 2.5rem;
-          padding: 0; 
+          padding: 0;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -780,7 +812,7 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            all: unset; 
+            all: unset;
             cursor: pointer;
             padding: 8px;
             .filter-text {
@@ -844,7 +876,9 @@ export default {
           gap: 0;
           position: relative;
           border-radius: 0.6rem;
-
+          &.active {
+            border: 2px solid blue;
+          }
           img {
             width: 100%;
             height: 70%;
@@ -931,7 +965,49 @@ export default {
             }
           }
         }
+
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+
+          .overlay-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.6rem;
+            text-align: center;
+
+            img {
+              width: 100%; // Adjust as needed
+              height: auto; // Maintain aspect ratio
+            }
+
+            .overlay-title {
+              font-size: 24px;
+              font-weight: bold;
+              margin: 1rem 0;
+            }
+
+            .overlay-details {
+              font-size: 16px;
+              margin-bottom: 1rem;
+            }
+
+            .overlay-rate {
+              font-size: 18px;
+              color: #ffab40; // Or any color you prefer
+            }
+          }
+        }
       }
+
       &.full-width {
         width: 100%; // Full width when sidebar is hidden
       }
