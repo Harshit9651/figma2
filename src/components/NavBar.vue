@@ -28,12 +28,11 @@
 
     <div class="frame24">
       <div class="inner-div">
-        <h3>5467 perfect 3D models for interior Design</h3>
-        <p>
+        <div class="first-div">5467 perfect 3D models for interior Design</div>
+        <div class="second-div">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, ut
           ad! Corporis sed in debitis beatae autem id quis praesentium?
-        </p>
-
+        </div>
         <div class="search-box">
           <div class="input-with-dropdown">
             <select class="dropdown">
@@ -184,6 +183,29 @@ function closeOffer() {
     display: flex;
     align-items: center;
     flex-direction: column;
+    .first-div {
+      //styleName: H4/SB;
+      margin-top:.5rem;
+      font-family: Inter;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 31.2px;
+      text-align: left;
+      color: #ffffff;
+    }
+    .second-div {
+      //styleName: Body Big/R;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 23.4px;
+      text-align: center;
+      color: #ffffff;
+      margin-top:.5rem;
+      margin-bottom: .5rem;
+      margin-right: 1rem;
+      
+    }
 
     .search-box {
       display: flex;
@@ -204,8 +226,7 @@ function closeOffer() {
           font-weight: 400;
           line-height: 19.32px;
           text-align: center;
-          color: #605E5E;
-
+          color: #605e5e;
         }
       }
 
