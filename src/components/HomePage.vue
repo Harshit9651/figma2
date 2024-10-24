@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <NavBar></NavBar>
-    <div class="tabular-quick-filter">
+    <!-- <div class="tabular-quick-filter">
       <div class="tabular">
         <img src="../assets/king_bed.png" alt="" />
         <div class="tabular-data">Furniture</div>
@@ -22,7 +22,50 @@
         <img src="../assets/tonality.png" alt="" />
         <div class="tabular-data">Technology</div>
       </div>
+    </div> -->
+    <div class="tabular-quick-filter">
+      <div
+        class="tabular"
+        :class="{ selected: selectedTab === 'Furniture' }"
+        @click="selectTab('Furniture')"
+      >
+        <img src="../assets/king_bed.png" alt="" />
+        <div class="tabular-data">Furniture</div>
+      </div>
+      <div
+        class="tabular"
+        :class="{ selected: selectedTab === 'Lighting' }"
+        @click="selectTab('Lighting')"
+      >
+        <img src="../assets/light.png" alt="" />
+        <div class="tabular-data">Lighting</div>
+      </div>
+      <div
+        class="tabular"
+        :class="{ selected: selectedTab === 'Textures' }"
+        @click="selectTab('Textures')"
+      >
+        <img src="../assets/texture.png" alt="" />
+        <div class="tabular-data">Textures</div>
+      </div>
+      <div
+        class="tabular"
+        :class="{ selected: selectedTab === 'Materials' }"
+        @click="selectTab('Materials')"
+      >
+        <img src="../assets/devices.png" alt="" />
+        <div class="tabular-data">Materials</div>
+      </div>
+      <div
+        class="tabular"
+        :class="{ selected: selectedTab === 'Technology' }"
+        @click="selectTab('Technology')"
+      >
+        <img src="../assets/tonality.png" alt="" />
+        <div class="tabular-data">Technology</div>
+      </div>
     </div>
+
     <div class="result-slidbar-section">
       <!-- <div class="slidbar">
         <div class="Filter">
@@ -472,6 +515,26 @@
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
             <div class="cart"><img src="../assets/Frame 54.png" alt="" /></div>
+
+            <!-- show when card is selected -->
+            <!-- v-if="selectedProduct === product.id" -->
+            <div v-if="selectedProduct === product.id" class="add-fav">
+              <img class="imgg" src="../assets/Fav.png" alt="Add" />
+            </div>
+            <div
+              v-if="selectedProduct === product.id"
+              class="arrow-left"
+              @click.stop="scrollLeft(product)"
+            >
+              <img src="../assets/Arrow.png" alt="" />
+            </div>
+            <div
+              v-if="selectedProduct === product.id"
+              class="arrow-right"
+              @click.stop="scrollRight(product)"
+            >
+              <img src="../assets/Arrow (1).png" alt="" />
+            </div>
           </div>
 
           <div v-if="overlayVisible" class="overlay" @click="closeOverlay">
@@ -498,6 +561,7 @@
                 <div v-if="selectedProductData.material" class="materail">
                   {{ selectedProductData.material }}
                 </div>
+                <div class="line"></div>
                 <div class="size">89 MB</div>
               </div>
             </div>
@@ -505,6 +569,17 @@
         </div>
       </div>
     </div>
+
+    <div class="add-cart-notification">
+      <div class="icon"><img src="../assets/Icon.png" alt="" /></div>
+      <div class="content">
+        <div class="main-content">Item added to your cart!</div>
+        <div class="lower-content">Proceed to checkout</div>
+      </div>
+      <div class="cros"><button><img src="../assets/close.png" alt=""></button></div>
+    </div>
+    <div class="add-favriout"></div>
+
     <FooterPage></FooterPage>
   </div>
 </template>
@@ -532,6 +607,11 @@ const selectedMaterials = ref([]);
 const selectedProduct = ref(null);
 const overlayVisible = ref(false);
 const selectedProductData = ref({});
+const selectedTab = ref(null);
+
+function selectTab(tab) {
+  selectedTab.value = tab;
+}
 
 const fileTypeCount = computed(() => selectedFileTypes.value.length);
 const materialCount = computed(() => selectedMaterials.value.length);
@@ -704,11 +784,13 @@ export default {
 .main {
   height: 100%;
   width: 100%;
+  position: relative;
   .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
   }
+
   .tabular-quick-filter {
     height: 5.625rem;
     background-color: #ffffff;
@@ -719,27 +801,39 @@ export default {
     gap: 1rem;
     box-shadow: 0px 4px 20px 0px #0000001f;
     border-bottom: 1px solid #e0e0e0;
-    .tabular {
-      height: 100%;
-      width: 7.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px 0px 20px 0px;
-      gap: 8px;
-      border: 0px 0px 1px 0px;
-      opacity: 0px;
+  }
 
-      .tabular-data {
-        font-family: Inter;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 18.2px;
-        text-align: left;
-        color: #939090;
-      }
-    }
+  .tabular {
+    height: 100%;
+    width: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    gap: 8px;
+    border: 0;
+    position: relative; /* Position relative for the line */
+  }
+
+  .tabular-data {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.2px;
+    text-align: left;
+    color: #939090;
+  }
+
+  /* Style for selected tab */
+  .tabular.selected::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Position the line below */
+    left: 0;
+    right: 0;
+    height: 2px; /* Line height */
+    background-color: blue; /* Line color */
   }
 
   .result-slidbar-section {
@@ -764,6 +858,8 @@ export default {
         align-items: center;
         margin-left: 1rem;
         margin-right: 2rem;
+        margin-top: 1rem;
+
         .all_model {
           //styleName: Body Big/M;
           font-family: Inter;
@@ -1099,18 +1195,25 @@ export default {
                 text-align: left;
                 color: #484646;
               }
-              .size{
+              .size {
                 //styleName: Body Small/R;
-                margin-top:.7rem;
+                margin-top: 0.7rem;
                 font-family: Inter;
                 font-size: 12px;
                 font-weight: 400;
                 line-height: 15.6px;
                 text-align: left;
-                margin-left:.5rem;
+                margin-left: 0.5rem;
                 color: #484646;
-
               }
+              // .line {
+              //   width: 40px;
+              //   height: 1px;
+              //   background-color: black;
+
+              //   opacity: 1;
+              //   transform: rotate(90deg);
+              // }
 
               .overlay-details {
                 font-size: 16px;
@@ -1534,6 +1637,66 @@ export default {
       img {
         margin-top: 0.2rem;
       }
+    }
+  }
+  .add-cart-notification {
+    position: absolute;
+    width: 25rem;
+    height: 4.625rem;
+    padding: 16px 12px 16px 16px;
+    gap: 12px;
+    border-radius: 16px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background: #ffffff;
+    border: 1px solid #e6f9f1;
+    display: flex;
+    gap: 1rem;
+    top:3;
+    margin-right:50%;
+    .icon {
+      img {
+        height: 2.625rem;
+        width: 2.625rem;
+      }
+    }
+    .content {
+      padding: 0.5rem;
+      width: 17.85rem;
+      height:2.375rem;
+      gap: 8px;
+      opacity: 0px;
+      display: flex;
+      flex-direction: column;
+
+      .main-content {
+        //styleName: Body Medium/SB;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 14px;
+        text-align: left;
+        color: #484646;
+      }
+      .lower-content {
+        //styleName: Body Small/R;
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15.6px;
+        text-align: left;
+        color: #484646;
+      }
+    }
+    .cros{
+      margin-top:1rem;
+     button{
+      all:unset;
+      img{
+        height:1.3rem;
+        width:1.3rem;
+      }
+     }
     }
   }
 }
