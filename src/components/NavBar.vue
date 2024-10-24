@@ -13,6 +13,7 @@
       <div class="image left-bar">
         <img src="../assets/Frame 22.png" alt="Logo" />
       </div>
+      
       <div class="right-bar">
         <img src="../assets/favorite.png" alt="Favorite" />
         <img src="../assets/shopping_cart.png" alt="Cart" />
@@ -49,8 +50,12 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "NavBar",
+  components:{
+  
+  }
 };
 </script>
 <script setup>
