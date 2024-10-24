@@ -429,7 +429,7 @@
             <div class="mst_popular">Most Popular</div>
           </div>
           <!-- -->
-          <div v-if="dropdownVisible"  class="dropdown">
+          <div v-if="dropdownVisible" class="dropdown">
             <div class="dropdown-item" @click="selectOption('mostPopular')">
               Most Popular
             </div>
@@ -702,6 +702,8 @@ export default {
       background-color: rgb(255, 255, 255);
       height: 100vh;
       overflow-y: auto;
+      padding: 0 2rem; /* Add padding for left and right gaps */
+
 
       .allModel {
         background-color: #ffffff;
@@ -719,11 +721,20 @@ export default {
           line-height: 23.4px;
           text-align: left;
           color: #484646;
+          .result.full-width & {
+          margin-left: 10rem;
+          background-color: #313030; /* Updated margin */
+        }
         }
         .filter {
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          margin-right:5rem;
+          .result.full-width & {
+          margin-right: 10rem; /* Updated margin */
+        }
+        
           button {
             all: unset;
             img {
@@ -746,7 +757,8 @@ export default {
               text-decoration: underline;
             }
           }
-        }
+       
+        }  
       }
       button {
         all: unset;
@@ -754,8 +766,8 @@ export default {
         .filter_data {
           margin-left: 1rem;
           width: 6.34rem;
-          height: 2.5rem; // Adjusted height to ensure sufficient space for content
-          padding: 0; // Removed padding for the container to avoid extra space
+          height: 2.5rem;
+          padding: 0; 
           display: flex;
           justify-content: center;
           align-items: center;
@@ -768,7 +780,7 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            all: unset; // Resets all properties
+            all: unset; 
             cursor: pointer;
             padding: 8px;
             .filter-text {
@@ -794,14 +806,6 @@ export default {
         gap: 0;
 
         .dropdown-item {
-          // padding: 0.75rem 1rem;
-          // cursor: pointer;
-          // font-family: Inter;
-          // font-size: 14px;
-          // font-weight: 500;
-          // color: #484646;
-          // transition: background-color 0.3s;
-          //styleName: Body Medium/R;
           font-family: Inter;
           font-size: 14px;
           font-weight: 400;
@@ -809,7 +813,6 @@ export default {
           text-align: left;
           color: #484646;
           padding: 0.75rem 1rem;
-
 
           &:hover {
             background-color: #f1f1f1;
@@ -833,8 +836,8 @@ export default {
           background-color: rgb(255, 255, 255);
           height: 13.245rem;
           width: 16.34rem;
-          height:13.653rem;
-          width:18.3125rem;
+          height: 13.653rem;
+          width: 18.3125rem;
           box-shadow: 0px 4px 20px 0px #0000001f;
           display: flex;
           flex-direction: column;
@@ -938,7 +941,7 @@ export default {
   .slidbar {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 25%;
     height: 100vh;
     background-color: #ffffff;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);

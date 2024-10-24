@@ -1,11 +1,14 @@
 <template>
-<HomePage></HomePage>
+<!-- <HomePage></HomePage> -->
  <!-- <NavBar></NavBar> -->
   <!-- <SlidBar></SlidBar> -->
+   <FooterPage></FooterPage>
 </template>
   
  <script>
-import HomePage from './components/HomePage.vue';
+import FooterPage from './components/FooterPage.vue';
+
+// import HomePage from './components/HomePage.vue';
 // import SlidBar from './components/SlidBar.vue';
 
 // import NavBar from './components/NavBar.vue';
@@ -16,10 +19,11 @@ import HomePage from './components/HomePage.vue';
 export default {
   name: 'App',
   components: {
-    HomePage
+    // HomePage
     // SlidBar
     // NavBar
     // SlidBar
+    FooterPage
   }
 }
 </script>
