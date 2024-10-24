@@ -1641,8 +1641,8 @@ export default {
   }
   .add-cart-notification {
     position: absolute;
-    width: 25rem;
-    height: 4.625rem;
+    width: 23rem;
+    height: 4rem;
     padding: 16px 12px 16px 16px;
     gap: 12px;
     border-radius: 16px;
@@ -1651,9 +1651,13 @@ export default {
     background: #ffffff;
     border: 1px solid #e6f9f1;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
-    top:3;
-    margin-right:50%;
+    top: 8%; 
+    left: 49%;
+    transform: translateX(-50%); 
+
     .icon {
       img {
         height: 2.625rem;
@@ -1689,7 +1693,8 @@ export default {
       }
     }
     .cros{
-      margin-top:1rem;
+      // margin-top:1rem;
+      margin-right: 1rem;
      button{
       all:unset;
       img{
