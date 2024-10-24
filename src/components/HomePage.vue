@@ -462,7 +462,7 @@
             <img :src="product.image" :alt="product.title" />
             <div class="card-content">
               <div class="title">{{ product.title }}</div>
-              <div class="formats">{{ product.formats }}</div>
+              <div class="formatss">{{ product.formats }}</div>
             </div>
             <div v-if="product.off" class="off">
               <img src="../assets/local_offer.png" alt="Discount" />
@@ -478,10 +478,28 @@
             <div class="overlay-content">
               <img :src="selectedProductData.image" alt="" />
               <div class="overlay-title">{{ selectedProductData.title }}</div>
-              <div class="overlay-details">
-                {{ selectedProductData.details }}
+              <div class="other">
+                <div v-if="selectedProductData.off" class="offer">
+                  <img src="../assets/local_offer.png" alt="" />{{
+                    selectedProductData.off
+                  }}
+                </div>
+                <div v-if="selectedProductData.rate" class="selected-rate">
+                  {{ selectedProductData.rate }}
+                </div>
+                <div class="line"></div>
+                <div class="img1">
+                  <img src="../assets/3ds logo.png" alt="" />
+                </div>
+                <div class="img2">
+                  <img src="../assets/file_type_fbx logo.png" alt="" />
+                </div>
+                <div class="line"></div>
+                <div v-if="selectedProductData.material" class="materail">
+                  {{ selectedProductData.material }}
+                </div>
+                <div class="size">89 MB</div>
               </div>
-              <div class="overlay-rate">{{ selectedProductData.rate }}</div>
             </div>
           </div>
         </div>
@@ -754,18 +772,20 @@ export default {
           line-height: 23.4px;
           text-align: left;
           color: #484646;
-          .result.full-width & {
-            margin-left: 10rem;
+          .result.full-width {
+            // margin-left: 10rem;
             background-color: #313030; /* Updated margin */
           }
         }
         .filter {
           display: flex;
+          flex-flow: row nowrap;
           align-items: center;
+          justify-content: space-between;
           gap: 0.5rem;
           margin-right: 5rem;
-          .result.full-width & {
-            margin-right: 10rem; /* Updated margin */
+          .result.full-width {
+            // margin-right: 10rem;
           }
 
           button {
@@ -855,19 +875,21 @@ export default {
 
       .cards {
         background-color: #ffffff;
-        margin-left: 1rem;
-        margin-right: 2rem;
+        // margin-left: 1rem;
+        // margin-right: 2rem;
         margin-top: 1rem;
         height: 83vh;
         display: flex;
         flex-wrap: wrap;
         gap: 1.1rem;
         row-gap: 0.5rem;
+        // justify-content: space-between;
+        padding: 2rem;
 
         .card {
           background-color: rgb(255, 255, 255);
           height: 13.245rem;
-          width: 16.34rem;
+          width: 18rem;
           height: 13.653rem;
           width: 18.3125rem;
           box-shadow: 0px 4px 20px 0px #0000001f;
@@ -911,21 +933,16 @@ export default {
               text-align: left;
 
               overflow: hidden;
+              color: #313030;
             }
 
-            .formates {
+            .formatss {
               justify-content: flex-start;
-              // width: 25px;
-              // height: 16px;
-              display: flex;
-              flex-flow: row nowrap;
-              gap: 0px;
-              opacity: 0px;
               font-family: Inter;
               font-size: 12px;
               font-weight: 400;
               line-height: 15.6px;
-              // overflow: hidden;
+              text-align: left;
               color: #adaaaa;
             }
           }
@@ -941,6 +958,12 @@ export default {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
+            //styleName: Body Medium/SB;
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 14px;
+            text-align: left;
 
             img {
               height: 1rem;
@@ -967,42 +990,137 @@ export default {
         }
 
         .overlay {
-          position: fixed;
+          position: absolute;
           top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.7);
           display: flex;
           align-items: center;
           justify-content: center;
           z-index: 1000;
 
           .overlay-content {
-            background: white;
-            padding: 2rem;
+            height: 400px;
+            width: 500px;
+            background: rgb(255, 255, 255);
+
             border-radius: 0.6rem;
             text-align: center;
 
             img {
-              width: 100%; // Adjust as needed
-              height: auto; // Maintain aspect ratio
+              width: 100%;
+              height: 70%;
+              object-fit: cover;
+              border-radius: 0.6rem 0.6rem 0rem 0rem;
             }
 
             .overlay-title {
-              font-size: 24px;
-              font-weight: bold;
-              margin: 1rem 0;
+              //styleName: Body Medium/M;
+              font-family: Inter;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 18.2px;
+              text-align: left;
+              margin-left: 1rem;
+              margin-top: 1rem;
             }
 
-            .overlay-details {
-              font-size: 16px;
-              margin-bottom: 1rem;
-            }
+            .other {
+              margin-left: 1rem;
+              margin-top: 1rem;
+              display: flex;
+              background-color: #ffffff;
 
-            .overlay-rate {
-              font-size: 18px;
-              color: #ffab40; // Or any color you prefer
+              .offer {
+                width: 6rem;
+                height: 3rem;
+                opacity: 0px;
+                background: #f0fbf6;
+                border-radius: 40px;
+                display: flex;
+                justify-content: space-between;
+                align-content: center;
+                height: 2.6rem;
+                width: 6rem;
+                border-radius: 2rem;
+                color: #06c270;
+                background-color: #f0fbf6;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                //styleName: Body Medium/SB;
+                font-family: Inter;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 14px;
+                text-align: left;
+
+                img {
+                  height: 20px;
+                  width: 20px;
+                }
+              }
+              .selected-rate {
+                margin-left: 0.5rem;
+                height: 2.6rem;
+                width: 5rem;
+                border-radius: 2rem;
+                color: #06c270;
+                color: #ffab40;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                background-color: #fffaf4;
+                //styleName: Body Medium/SB;
+                font-family: Inter;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 14px;
+                text-align: left;
+              }
+              .img1,
+              .img2 {
+                margin-top: 0.5rem;
+                margin-left: 0.5rem;
+                height: 30px;
+                width: 30px;
+              }
+              .line {
+              }
+              .materail {
+                margin-left: 0.4rem;
+                margin-top: 0.7rem;
+                //styleName: Body Small/R;
+                font-family: Inter;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 15.6px;
+                text-align: left;
+                color: #484646;
+              }
+              .size{
+                //styleName: Body Small/R;
+                margin-top:.7rem;
+                font-family: Inter;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 15.6px;
+                text-align: left;
+                margin-left:.5rem;
+                color: #484646;
+
+              }
+
+              .overlay-details {
+                font-size: 16px;
+                margin-bottom: 1rem;
+              }
+
+              .overlay-rate {
+                font-size: 18px;
+                color: #ffab40;
+              }
             }
           }
         }
@@ -1018,7 +1136,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 25%;
-    height: 100vh;
+    // height: 100vh;
     background-color: #ffffff;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 1rem;
