@@ -423,13 +423,30 @@
         <div class="allModel">
           <div class="all_model">All Models (1245)</div>
           <div class="filter">
-            <img src="../assets/filter_list.png" alt="" />
+            <button @click="toggleDropdown">
+              <img src="../assets/filter_list.png" alt="" />
+            </button>
             <div class="mst_popular">Most Popular</div>
+          </div>
+          <!-- -->
+          <div v-if="dropdownVisible"  class="dropdown">
+            <div class="dropdown-item" @click="selectOption('mostPopular')">
+              Most Popular
+            </div>
+            <div class="dropdown-item" @click="selectOption('discount')">
+              Discount
+            </div>
+            <div class="dropdown-item" @click="selectOption('priceLowToHigh')">
+              Price Low to High
+            </div>
+            <div class="dropdown-item" @click="selectOption('priceHighToLow')">
+              Price High to Low
+            </div>
           </div>
         </div>
         <!-- v-if="isfilter" -->
         <button @click="clickfilter">
-          <div  v-if="isfilter" class="filter_data">
+          <div v-if="isfilter" class="filter_data">
             <img src="../assets/filter_alt.png" alt="" />
             <div class="filter-text">Filters</div>
           </div>
@@ -463,7 +480,7 @@ import { useProductsStore } from "../store/image";
 import { computed, ref } from "vue";
 const isslidbar = ref(true);
 const isfilter = ref(false);
-
+const dropdownVisible = ref(false);
 const sidebarVisible = ref(true);
 const filterExtended = ref(false);
 const priceExtended = ref(false);
@@ -492,6 +509,9 @@ const products = computed(() => productsStore.getAllProducts); // Now you can ac
 const activePrice = ref("free");
 function setActivePrice(type) {
   activePrice.value = type;
+}
+function toggleDropdown() {
+  dropdownVisible.value = !dropdownVisible.value;
 }
 function clickfilter() {
   sidebarVisible.value = true;
@@ -677,6 +697,7 @@ export default {
     display: flex;
 
     .result {
+      position: relative;
       width: 80%;
       background-color: rgb(255, 255, 255);
       height: 100vh;
@@ -703,6 +724,14 @@ export default {
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          button {
+            all: unset;
+            img {
+              margin-top: 0.3rem;
+              height: 1.3rem;
+              width: 1.3rem;
+            }
+          }
 
           .mst_popular {
             //styleName: Body Medium/M;
@@ -712,6 +741,10 @@ export default {
             line-height: 18.2px;
             text-align: left;
             color: #484646;
+            &:hover {
+              color: #7343ea;
+              text-decoration: underline;
+            }
           }
         }
       }
@@ -745,6 +778,46 @@ export default {
         }
       }
 
+      .dropdown {
+        position: absolute;
+        top: 8%;
+        right: 1.9%;
+        width: 9.5rem;
+        height: auto;
+        max-height: 270px;
+        overflow-y: auto;
+        background-color: white;
+        border-radius: 12px;
+        opacity: 1;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.12);
+        z-index: 1000;
+        gap: 0;
+
+        .dropdown-item {
+          // padding: 0.75rem 1rem;
+          // cursor: pointer;
+          // font-family: Inter;
+          // font-size: 14px;
+          // font-weight: 500;
+          // color: #484646;
+          // transition: background-color 0.3s;
+          //styleName: Body Medium/R;
+          font-family: Inter;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 18.2px;
+          text-align: left;
+          color: #484646;
+          padding: 0.75rem 1rem;
+
+
+          &:hover {
+            background-color: #f1f1f1;
+            color: #7343ea;
+          }
+        }
+      }
+
       .cards {
         background-color: #ffffff;
         margin-left: 1rem;
@@ -760,6 +833,8 @@ export default {
           background-color: rgb(255, 255, 255);
           height: 13.245rem;
           width: 16.34rem;
+          height:13.653rem;
+          width:18.3125rem;
           box-shadow: 0px 4px 20px 0px #0000001f;
           display: flex;
           flex-direction: column;
