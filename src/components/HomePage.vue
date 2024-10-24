@@ -514,7 +514,7 @@
             <div v-if="product.rate" class="off-rate">
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
-            <div class="cart"><img src="../assets/Frame 54.png" alt="" /></div>
+            <div class="cart"><button @click="showcartpopup"><img src="../assets/Frame 54.png" alt="" /></button></div>
 
             <!-- show when card is selected -->
             <!-- v-if="selectedProduct === product.id" -->
@@ -570,15 +570,22 @@
       </div>
     </div>
 
-    <div class="add-cart-notification">
+    <div v-if="showcartnotification" class="add-cart-notification">
       <div class="icon"><img src="../assets/Icon.png" alt="" /></div>
       <div class="content">
         <div class="main-content">Item added to your cart!</div>
         <div class="lower-content">Proceed to checkout</div>
       </div>
-      <div class="cros"><button><img src="../assets/close.png" alt=""></button></div>
+      <div class="cros"><button @click="hidecartnotification"><img src="../assets/close.png" alt=""></button></div>
     </div>
-    <div class="add-favriout"></div>
+    <div v-if="showwhilist" class="add-favriout">
+      <div class="icon"><img src="../assets/Fav.png" alt="" /></div>
+      <div class="content">
+        <div class="main-content">Item added to your wishlist!</div>
+        <div class="lower-content">Check out your wishlist from the Top Bar</div>
+      </div>
+      <div class="cros"><button @click="hidewhilist" ><img src="../assets/close.png" alt=""></button></div>
+    </div>
 
     <FooterPage></FooterPage>
   </div>
@@ -608,7 +615,8 @@ const selectedProduct = ref(null);
 const overlayVisible = ref(false);
 const selectedProductData = ref({});
 const selectedTab = ref(null);
-
+const showcartnotification = ref(false);
+const showwhilist = ref(false)
 function selectTab(tab) {
   selectedTab.value = tab;
 }
@@ -765,6 +773,16 @@ const closeOverlay = () => {
   overlayVisible.value = false;
   selectedProduct.value = null;
 };
+function hidecartnotification(){
+showcartnotification.value = false
+}
+function showcartpopup(){
+  showcartnotification.value = true
+}
+function hidewhilist(){
+  showwhilist.value = false;
+
+}
 </script>
 
 <script>
@@ -1009,6 +1027,9 @@ export default {
             position: absolute;
             margin-left: 80%;
             margin-top: 64%;
+            button{
+              all:unset;
+            }
           }
 
           .card-content {
@@ -1640,6 +1661,72 @@ export default {
     }
   }
   .add-cart-notification {
+    position: absolute;
+    width: 23rem;
+    height: 4rem;
+    padding: 16px 12px 16px 16px;
+    gap: 12px;
+    border-radius: 16px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background: #ffffff;
+    border: 1px solid #e6f9f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    top: 8%; 
+    left: 49%;
+    transform: translateX(-50%); 
+
+    .icon {
+      img {
+        height: 2.625rem;
+        width: 2.625rem;
+      }
+    }
+    .content {
+      padding: 0.5rem;
+      width: 17.85rem;
+      height:2.375rem;
+      gap: 8px;
+      opacity: 0px;
+      display: flex;
+      flex-direction: column;
+
+      .main-content {
+        //styleName: Body Medium/SB;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 14px;
+        text-align: left;
+        color: #484646;
+      }
+      .lower-content {
+        //styleName: Body Small/R;
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15.6px;
+        text-align: left;
+        color: #484646;
+      }
+    }
+    .cros{
+      // margin-top:1rem;
+      margin-right: 1rem;
+     button{
+      all:unset;
+      img{
+        height:1.3rem;
+        width:1.3rem;
+      }
+     }
+    }
+  }
+
+  .add-favriout {
     position: absolute;
     width: 23rem;
     height: 4rem;
