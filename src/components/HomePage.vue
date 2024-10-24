@@ -419,7 +419,7 @@
         </div>
       </div>
 
-      <div class="result">
+      <div :class="['result', { 'full-width': !sidebarVisible }]">
         <div class="allModel">
           <div class="all_model">All Models (1245)</div>
           <div class="filter">
@@ -427,8 +427,9 @@
             <div class="mst_popular">Most Popular</div>
           </div>
         </div>
-        <button @click="hello">
-          <div v-if="isfilter" class="filter_data">
+        <!-- v-if="isfilter" -->
+        <button @click="clickfilter">
+          <div  v-if="isfilter" class="filter_data">
             <img src="../assets/filter_alt.png" alt="" />
             <div class="filter-text">Filters</div>
           </div>
@@ -463,18 +464,6 @@ import { computed, ref } from "vue";
 const isslidbar = ref(true);
 const isfilter = ref(false);
 
-const productsStore = useProductsStore(); // Initialize the store first
-const products = computed(() => productsStore.getAllProducts); // Now you can access products
-
-const activePrice = ref("free");
-function setActivePrice(type) {
-  activePrice.value = type;
-}
-function filter() {
-  isslidbar.value = !isslidbar.value;
-  isfilter.value = false;
-}
-
 const sidebarVisible = ref(true);
 const filterExtended = ref(false);
 const priceExtended = ref(false);
@@ -497,8 +486,21 @@ const colorCount = computed(() => selectedColors.value.length);
 const textureCount = computed(() => selectedTextures.value.length);
 const styleCount = computed(() => selectedStyles.value.length);
 
+const productsStore = useProductsStore(); // Initialize the store first
+const products = computed(() => productsStore.getAllProducts); // Now you can access products
+
+const activePrice = ref("free");
+function setActivePrice(type) {
+  activePrice.value = type;
+}
+function clickfilter() {
+  sidebarVisible.value = true;
+  isfilter.value = false;
+}
+
 function toggleSidebar() {
   sidebarVisible.value = !sidebarVisible.value;
+  isfilter.value = true;
 }
 
 function togglePriceExtended() {
@@ -620,7 +622,6 @@ const removeFilter = (filter) => {
 <script>
 import NavBar from "./NavBar.vue";
 
-
 export default {
   name: "HomePage",
   components: NavBar,
@@ -682,7 +683,7 @@ export default {
       overflow-y: auto;
 
       .allModel {
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         display: flex;
         justify-content: space-between;
         height: 2.35rem;
@@ -853,414 +854,415 @@ export default {
           }
         }
       }
+      &.full-width {
+        width: 100%; // Full width when sidebar is hidden
+      }
     }
   }
-
 
   .slidbar {
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  height: 100vh;
-  background-color: #ffffff;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  padding-left: 3rem;
-  overflow-y: auto;
-}
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    padding-left: 3rem;
+    overflow-y: auto;
+  }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  font-weight: bold;
-}
-
-.left {
-  display: flex;
-  align-items: center;
-}
-
-.right {
-  cursor: pointer;
-}
-
-.filter-text {
-  // font-size: 1.2rem;
-  //styleName: Body Big/M;
-font-family: Inter;
-font-size: 18px;
-font-weight: 500;
-line-height: 23.4px;
-// text-align: left;
-
-}
-
-.section {
-  margin: 1rem 0; // Use a common class for margins
-}
-
-.filter-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-}
-
-.filter-section,
-.price-section,
-.file-type-section,
-.color-section,
-.Materials,
-.textures {
-  @extend .section;// Equal gap between sections
-}
-
-button {
-  all: unset;
-  display: inline-block;
-}
-
-hr {
-  margin: 1rem 0;
-  border: 0;
-  border-top: 1px solid #e0e0e0;
-}
-
-.price-section {
-  .filter-header {
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5rem 0;
+    font-weight: bold;
   }
 
   .left {
     display: flex;
     align-items: center;
-
-    span {
-      display: flex;
-      align-items: center;
-    }
-
-    .price-selected {
-      color: blueviolet;
-      margin-left: 0.5rem;
-    }
   }
 
-  .price-button {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-
-    .price-option {
-      margin: 0.5rem 0;
-      height: 2.65rem;
-      width: 4.345rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      color: black;
-      border: 1px solid #e5e1e1;
-      border-radius: 1.5rem;
-
-      &.selected {
-        background-color: blueviolet;
-        color: white;
-      }
-    }
-  }
-}
-
-.priceselcted,
-.colorcount,
-.materailcount,
-.textcturecount,
-.stylecount {
-  margin-left:.3rem;
-  color: blueviolet;
-}
-
-.file-type-section {
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .left {
-    display: flex;
-    align-items: center;
-
-    span {
-      display: flex;
-      align-items: center;
-    }
-
-    .file-selected {
-      color: blueviolet;
-      margin-left: 0.5rem;
-    }
-  }
-
-  .file-options {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-
-    .file-option {
-      margin: 0.5rem 0;
-      cursor: pointer;
-      height: 2.625rem;
-      width: 4.25rem;
-      color: rgb(3, 3, 3);
-      border-radius: 2.5rem;
-      border: 1px solid #e5e1e1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &.selected {
-        background-color: blueviolet;
-        color: white;
-      }
-    }
-  }
-}
-
-.color-section {
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .left {
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-bottom: 0.2rem;
-    }
-
-    span {
-      margin-left: 0.3rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .file-selected {
-      color: blueviolet;
-      margin-left: 0.5rem;
-    }
-  }
-
-  .color-options {
-    display: flex;
-    gap: 10px;
-  }
-
-  .outer {
-    width: 2.375rem;
-    height: 2.375rem;
-    border-radius: 50%;
+  .right {
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
 
-    &.selected {
-      border: 2px solid #7343ea;
+  .filter-text {
+    // font-size: 1.2rem;
+    //styleName: Body Big/M;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 23.4px;
+    // text-align: left;
+  }
+
+  .section {
+    margin: 1rem 0; // Use a common class for margins
+  }
+
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .filter-section,
+  .price-section,
+  .file-type-section,
+  .color-section,
+  .Materials,
+  .textures {
+    @extend .section; // Equal gap between sections
+  }
+
+  button {
+    all: unset;
+    display: inline-block;
+  }
+
+  hr {
+    margin: 1rem 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .price-section {
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .color-option {
-      width: 2rem;
-      height: 2rem;
+    .left {
+      display: flex;
+      align-items: center;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
+
+      .price-selected {
+        color: blueviolet;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .price-button {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .price-option {
+        margin: 0.5rem 0;
+        height: 2.65rem;
+        width: 4.345rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: black;
+        border: 1px solid #e5e1e1;
+        border-radius: 1.5rem;
+
+        &.selected {
+          background-color: blueviolet;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .priceselcted,
+  .colorcount,
+  .materailcount,
+  .textcturecount,
+  .stylecount {
+    margin-left: 0.3rem;
+    color: blueviolet;
+  }
+
+  .file-type-section {
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      span {
+        display: flex;
+        align-items: center;
+      }
+
+      .file-selected {
+        color: blueviolet;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .file-options {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .file-option {
+        margin: 0.5rem 0;
+        cursor: pointer;
+        height: 2.625rem;
+        width: 4.25rem;
+        color: rgb(3, 3, 3);
+        border-radius: 2.5rem;
+        border: 1px solid #e5e1e1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.selected {
+          background-color: blueviolet;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .color-section {
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-bottom: 0.2rem;
+      }
+
+      span {
+        margin-left: 0.3rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .file-selected {
+        color: blueviolet;
+        margin-left: 0.5rem;
+      }
+    }
+
+    .color-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .outer {
+      width: 2.375rem;
+      height: 2.375rem;
       border-radius: 50%;
       cursor: pointer;
-    }
-  }
-
-  .color1 {
-    background: #adaaaa;
-  }
-
-  .color2 {
-    background: #313030;
-  }
-
-  .color3 {
-    background: #605e5e;
-  }
-
-  .color4 {
-    background: #797676;
-  }
-}
-
-.materials {
-  margin-top:1rem;
-  margin-bottom: 1rem;
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .left {
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-bottom: 0.2rem;
-    }
-
-    span {
-      margin-left: 0.3rem;
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .material-options {
-    display: flex;
-    gap: 0.5rem;
-
-    .material-option {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0.5rem 0;
-      cursor: pointer;
-      height: 2.625rem;
-      width: 4.5rem;
-      color: rgb(3, 3, 3);
-      border-radius: 2.5rem;
-      border: 1px solid #e5e1e1;
 
       &.selected {
+        border: 2px solid #7343ea;
+      }
+
+      .color-option {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    .color1 {
+      background: #adaaaa;
+    }
+
+    .color2 {
+      background: #313030;
+    }
+
+    .color3 {
+      background: #605e5e;
+    }
+
+    .color4 {
+      background: #797676;
+    }
+  }
+
+  .materials {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-bottom: 0.2rem;
+      }
+
+      span {
+        margin-left: 0.3rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .material-options {
+      display: flex;
+      gap: 0.5rem;
+
+      .material-option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5rem 0;
+        cursor: pointer;
+        height: 2.625rem;
+        width: 4.5rem;
+        color: rgb(3, 3, 3);
+        border-radius: 2.5rem;
+        border: 1px solid #e5e1e1;
+
+        &.selected {
+          background-color: blueviolet;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .textures {
+    margin-top: 1rem;
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-bottom: 0.2rem;
+      }
+
+      span {
+        margin-left: 0.3rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .texture-options {
+      display: flex;
+      gap: 0.5rem;
+
+      .texture-option {
+        padding: 0.6rem;
+        margin: 0.5rem 0;
+        cursor: pointer;
+        border: 1px solid #e5e1e1;
+        border-radius: 1.5rem;
+        background-color: #fff;
+      }
+
+      .selected {
         background-color: blueviolet;
         color: white;
       }
     }
   }
-}
 
-.textures {
-  margin-top:1rem;
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .left {
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-bottom: 0.2rem;
+  .styles {
+    margin-top: 1rem;
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    span {
-      margin-left: 0.3rem;
+    .left {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-bottom: 0.2rem;
+      }
+
+      span {
+        margin-left: 0.3rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .style-options {
+      display: flex;
+      gap: 0.5rem;
+
+      .style-option {
+        padding: 0.6rem;
+        margin: 0.5rem 0;
+        cursor: pointer;
+        border: 1px solid #e5e1e1;
+        border-radius: 1.5rem;
+        background-color: #fff;
+      }
+
+      .selected {
+        background-color: blueviolet;
+        color: white;
+      }
+    }
+  }
+
+  .filter-section {
+    .filter-header {
       display: flex;
       align-items: center;
     }
-  }
 
-  .texture-options {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    height: auto;
 
-    .texture-option {
-      padding: 0.6rem;
-      margin: 0.5rem 0;
-      cursor: pointer;
-      border: 1px solid #e5e1e1;
-      border-radius: 1.5rem;
-      background-color: #fff;
-    }
-
-    .selected {
-      background-color: blueviolet;
-      color: white;
-    }
-  }
-}
-
-.styles {
-  margin-top:1rem;
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .left {
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-bottom: 0.2rem;
-    }
-
-    span {
-      margin-left: 0.3rem;
+    .filter-item {
+      height: 2.62rem;
+      width: 5.5rem;
+      border-radius: 2.5rem;
+      background: #7343ea;
       display: flex;
+      justify-content: center;
       align-items: center;
-    }
-  }
-
-  .style-options {
-    display: flex;
-    gap: 0.5rem;
-
-    .style-option {
-      padding: 0.6rem;
-      margin: 0.5rem 0;
-      cursor: pointer;
-      border: 1px solid #e5e1e1;
-      border-radius: 1.5rem;
-      background-color: #fff;
-    }
-
-    .selected {
-      background-color: blueviolet;
       color: white;
+      gap: 0.3rem;
+
+      img {
+        margin-top: 0.2rem;
+      }
     }
   }
-}
-
-.filter-section {
-  .filter-header {
-    display: flex;
-    align-items: center;
-  }
-
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  height: auto;
-
-  .filter-item {
-    height: 2.62rem;
-    width: 5.5rem;
-    border-radius: 2.5rem;
-    background: #7343ea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    gap: 0.3rem;
-
-    img {
-      margin-top: 0.2rem;
-    }
-  }
-}
 }
 </style>
