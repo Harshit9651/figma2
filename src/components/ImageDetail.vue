@@ -60,7 +60,47 @@
             <img src="../assets/Fav (2).png" alt="" />
           </div>
         </div>
-        <div class="product-daimation"></div>
+        <div class="product-daimation">
+  <div class="product-details">
+    <div class="detail-item">
+      <span class="detail-label">Version:</span>
+      <span class="detail-value">1.0</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Render:</span>
+      <span class="detail-value">High</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Side:</span>
+      <span class="detail-value">Left</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Color:</span>
+      <span class="detail-value">Black</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Length:</span>
+      <span class="detail-value">5.5mm</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Width:</span>
+      <span class="detail-value">2.0mm</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Style:</span>
+      <span class="detail-value">Modern</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Material:</span>
+      <span class="detail-value">Plastic</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Form Factor:</span>
+      <span class="detail-value">Compact</span>
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
     <FooterPage></FooterPage>
