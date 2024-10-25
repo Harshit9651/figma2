@@ -501,11 +501,11 @@
             :key="product.id"
             class="card"
             :class="{ active: selectedProduct === product.id }"
-            @mouseover="openOverlay(product)"
-            @mouseleave="closeOverlay"
+          @mouseover="onMouseOver(product.id); openOverlay(product)"
+      @mouseleave="onMouseLeave; closeOverlay()"
           >
             <div class="image-wrapper">
-              <img :src="product.image" :alt="product.title" />
+              <img :src="product.images[0]" :alt="product.title" />
               <div class="image-overlay">
                 <div class="fav-price">
                  
@@ -532,11 +532,11 @@
               <div class="title">{{ product.title }}</div>
               <div class="formatss">{{ product.formats }}</div>
             </div>
-            <div v-if="product.off" class="off">
+            <div v-if="product.off && !(hoveredProduct === product.id)" class="off">
               <img src="../assets/local_offer.png" alt="Discount" />
               {{ product.off }}
             </div>
-            <div v-if="product.rate" class="off-rate">
+            <div v-if="product.rate && hoveredProduct !== product.id" class="off-rate">
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
             <div class="cart">
@@ -548,7 +548,7 @@
 
           <div v-if="overlayVisible" class="overlay" @click="closeOverlay">
             <div class="overlay-content">
-              <img :src="selectedProductData.image" alt="" />
+              <img :src="selectedProductData.images[0]" alt="" />
               <div class="overlay-title">{{ selectedProductData.title }}</div>
               <div class="other">
                 <div v-if="selectedProductData.off" class="offer">
@@ -636,6 +636,7 @@ const selectedProductData = ref({});
 const selectedTab = ref(null);
 const showcartnotification = ref(false);
 const showwhilist = ref(false);
+const hoveredProduct = ref(null);
 function selectTab(tab) {
   selectedTab.value = tab;
 }
@@ -801,6 +802,13 @@ function showcartpopup() {
 function hidewhilist() {
   showwhilist.value = false;
 }
+ function onMouseOver (productId) {
+  hoveredProduct.value = productId;
+};
+
+ function  onMouseLeave() {
+  hoveredProduct.value = null;
+};
 </script>
 
 <script>
@@ -1059,7 +1067,7 @@ export default {
               display: flex;
               flex-direction: column;
               gap:.5rem;
-              opacity: 1; 
+              opacity: 0; 
               transition: opacity 0.3s ease;
               .fav-price {
                 margin-top:.5rem;
