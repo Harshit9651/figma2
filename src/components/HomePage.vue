@@ -494,13 +494,15 @@
             <div class="filter-text">Filters</div>
           </div>
         </button>
+
         <div class="cards">
           <div
             v-for="product in products"
             :key="product.id"
             class="card"
             :class="{ active: selectedProduct === product.id }"
-            @click="openOverlay(product)"
+            @mouseover="openOverlay(product)"
+            @mouseleave="closeOverlay"
           >
             <img :src="product.image" :alt="product.title" />
             <div class="card-content">
@@ -514,10 +516,11 @@
             <div v-if="product.rate" class="off-rate">
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
-            <div class="cart"><button @click="showcartpopup"><img src="../assets/Frame 54.png" alt="" /></button></div>
-
-            <!-- show when card is selected -->
-            <!-- v-if="selectedProduct === product.id" -->
+            <div class="cart">
+              <button @click="showcartpopup">
+                <img src="../assets/Frame 54.png" alt="" />
+              </button>
+            </div>
             <div v-if="selectedProduct === product.id" class="add-fav">
               <img class="imgg" src="../assets/Fav.png" alt="Add" />
             </div>
@@ -558,7 +561,7 @@
                   <img src="../assets/file_type_fbx logo.png" alt="" />
                 </div>
                 <div class="line"></div>
-                <div v-if="selectedProductData.material" class="materail">
+                <div v-if="selectedProductData.material" class="material">
                   {{ selectedProductData.material }}
                 </div>
                 <div class="line"></div>
@@ -576,15 +579,25 @@
         <div class="main-content">Item added to your cart!</div>
         <div class="lower-content">Proceed to checkout</div>
       </div>
-      <div class="cros"><button @click="hidecartnotification"><img src="../assets/close.png" alt=""></button></div>
+      <div class="cros">
+        <button @click="hidecartnotification">
+          <img src="../assets/close.png" alt="" />
+        </button>
+      </div>
     </div>
     <div v-if="showwhilist" class="add-favriout">
       <div class="icon"><img src="../assets/Fav.png" alt="" /></div>
       <div class="content">
         <div class="main-content">Item added to your wishlist!</div>
-        <div class="lower-content">Check out your wishlist from the Top Bar</div>
+        <div class="lower-content">
+          Check out your wishlist from the Top Bar
+        </div>
       </div>
-      <div class="cros"><button @click="hidewhilist" ><img src="../assets/close.png" alt=""></button></div>
+      <div class="cros">
+        <button @click="hidewhilist">
+          <img src="../assets/close.png" alt="" />
+        </button>
+      </div>
     </div>
 
     <FooterPage></FooterPage>
@@ -616,7 +629,7 @@ const overlayVisible = ref(false);
 const selectedProductData = ref({});
 const selectedTab = ref(null);
 const showcartnotification = ref(false);
-const showwhilist = ref(false)
+const showwhilist = ref(false);
 function selectTab(tab) {
   selectedTab.value = tab;
 }
@@ -773,15 +786,14 @@ const closeOverlay = () => {
   overlayVisible.value = false;
   selectedProduct.value = null;
 };
-function hidecartnotification(){
-showcartnotification.value = false
+function hidecartnotification() {
+  showcartnotification.value = false;
 }
-function showcartpopup(){
-  showcartnotification.value = true
+function showcartpopup() {
+  showcartnotification.value = true;
 }
-function hidewhilist(){
+function hidewhilist() {
   showwhilist.value = false;
-
 }
 </script>
 
@@ -1027,8 +1039,8 @@ export default {
             position: absolute;
             margin-left: 80%;
             margin-top: 64%;
-            button{
-              all:unset;
+            button {
+              all: unset;
             }
           }
 
@@ -1675,9 +1687,9 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    top: 8%; 
+    top: 8%;
     left: 49%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 
     .icon {
       img {
@@ -1688,7 +1700,7 @@ export default {
     .content {
       padding: 0.5rem;
       width: 17.85rem;
-      height:2.375rem;
+      height: 2.375rem;
       gap: 8px;
       opacity: 0px;
       display: flex;
@@ -1713,16 +1725,16 @@ export default {
         color: #484646;
       }
     }
-    .cros{
+    .cros {
       // margin-top:1rem;
       margin-right: 1rem;
-     button{
-      all:unset;
-      img{
-        height:1.3rem;
-        width:1.3rem;
+      button {
+        all: unset;
+        img {
+          height: 1.3rem;
+          width: 1.3rem;
+        }
       }
-     }
     }
   }
 
@@ -1741,9 +1753,9 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    top: 8%; 
+    top: 8%;
     left: 49%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 
     .icon {
       img {
@@ -1754,7 +1766,7 @@ export default {
     .content {
       padding: 0.5rem;
       width: 17.85rem;
-      height:2.375rem;
+      height: 2.375rem;
       gap: 8px;
       opacity: 0px;
       display: flex;
@@ -1779,16 +1791,16 @@ export default {
         color: #484646;
       }
     }
-    .cros{
+    .cros {
       // margin-top:1rem;
       margin-right: 1rem;
-     button{
-      all:unset;
-      img{
-        height:1.3rem;
-        width:1.3rem;
+      button {
+        all: unset;
+        img {
+          height: 1.3rem;
+          width: 1.3rem;
+        }
       }
-     }
     }
   }
 }
