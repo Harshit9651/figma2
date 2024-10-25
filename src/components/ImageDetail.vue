@@ -1,5 +1,7 @@
 <template>
+   
   <div class="main-cntainer">
+    <NavBar></NavBar>
     <div class="content">Breadcrumb</div>
     <div class="main-frame">
       <div class="left-item">
@@ -184,16 +186,107 @@
         </div>
       </div>
     </div>
+    <div class="more-products-from-foyr">
+      <div class="main-div">
+        <div class="similar-pro">More from Foyr</div>
+        <div class="viewall">
+          view all
+          <div class="image-div">
+            <img src="../assets/Arrow (1).png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card" v-for="product in products" :key="product.id">
+          <div class="image-wrapper">
+            <img :src="product.images" />
+          </div>
+          <div class="card-content">
+            <div class="title">{{ product.title }}</div>
+            <div class="formatss">{{ product.formats }}</div>
+          </div>
+          <div class="off">
+            <img src="../assets/local_offer.png" alt="Discount" />
+            {{ product.off }}
+          </div>
+          <div class="off-rate">
+            <h6 id="rate">{{ product.rate }}</h6>
+          </div>
+          <div class="cart">
+            <button>
+              <img src="../assets/Frame 54.png" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <FooterPage></FooterPage>
   </div>
 </template>
-<script></script>
+<script>
+import NavBar from "./NavBar.vue";
+import FooterPage from "./FooterPage.vue";
+</script>
 <script setup>
-import { computed } from "vue";
-import { useProductsStore } from "../store/detailimagestore";
+import { ref } from 'vue';
+const products = ref([
+  {
+    id: 1,
+    title: "Bamboo Chair",
+    formats: ".obj .png .jpg",
+    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    off: "30% off",
+    rate: "Free",
+    color: "Brown",
+    material: "Bamboo",
+    fileType: ".obj",
+    texture: "Wood",
+    type: "Classic",
+  },
+  {
+    id: 1,
+    title: "Bamboo Chair",
+    formats: ".obj .png .jpg",
+    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    off: "30% off",
+    rate: "Free",
+    color: "Brown",
+    material: "Bamboo",
+    fileType: ".obj",
+    texture: "Wood",
+    type: "Classic",
+  },
+  {
+    id: 1,
+    title: "Bamboo Chair",
+    formats: ".obj .png .jpg",
+    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    off: "30% off",
+    rate: "Free",
+    color: "Brown",
+    material: "Bamboo",
+    fileType: ".obj",
+    texture: "Wood",
+    type: "Classic",
+  },
+  {
+    id: 1,
+    title: "Bamboo Chair",
+    formats: ".obj .png .jpg",
+    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    off: "30% off",
+    rate: "Free",
+    color: "Brown",
+    material: "Bamboo",
+    fileType: ".obj",
+    texture: "Wood",
+    type: "Classic",
+  },
 
-const productsStore = useProductsStore();
-const products = computed(() => productsStore.getAllProducts);
+  // ... Add more product objects here
+]);
+
 </script>
 <style lang="scss" scoped>
 .main-container {
@@ -555,6 +648,14 @@ const products = computed(() => productsStore.getAllProducts);
       display: flex;
       justify-content: center;
       align-items: center;
+      //styleName: Body Big/M;
+      font-family: Inter;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 23.4px;
+      text-align: left;
+      color: #484646;
+
     }
     .viewall {
       display: flex;
@@ -586,7 +687,7 @@ const products = computed(() => productsStore.getAllProducts);
     flex-wrap: wrap;
     gap: 1rem;
     .card {
-        position:relative;
+      position: relative;
       background-color: rgb(255, 255, 255);
       width: 18.25rem;
       height: 13.525rem;
@@ -612,7 +713,167 @@ const products = computed(() => productsStore.getAllProducts);
         width: 2.5rem;
         position: absolute;
         margin-left: 80%;
-        margin-top: 64%;
+        margin-top: 58%;
+        button {
+          all: unset;
+        }
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0.5rem;
+        height: 20%;
+        overflow: hidden;
+
+        .title {
+          height: 1rem;
+          width: 14.35rem;
+          font-family: Inter;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 15.6px;
+          text-align: left;
+
+          overflow: hidden;
+          color: #313030;
+        }
+
+        .formatss {
+          justify-content: flex-start;
+          font-family: Inter;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 15.6px;
+          text-align: left;
+          color: #adaaaa;
+        }
+      }
+      .off {
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 3%;
+        height: 2.5rem;
+        width: 6rem;
+        border-radius: 2rem;
+        color: #06c270;
+        background-color: white;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        //styleName: Body Medium/SB;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 14px;
+        text-align: left;
+
+        img {
+          height: 1rem;
+          width: 1rem;
+        }
+      }
+      .off-rate {
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 70%;
+        height: 2.5rem;
+        width: 4rem;
+        border-radius: 2rem;
+        color: #ffab40;
+        background-color: white;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 16px;
+        #rate {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+.more-products-from-foyr {
+  margin: 2rem;
+  margin-left: 9%;
+  height: 16.8125rem;
+  width: 77.54rem;
+  background-color: #ffffff;
+  .main-div {
+    height: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    .similar-pro {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Inter;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 23.4px;
+      text-align: left;
+      color: #484646;
+    }
+    .viewall {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18.2px;
+      text-align: left;
+      color: #939090;
+
+      .image-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 14px;
+        height: 14px;
+        padding: 3.5px 4.67px 3.5px 5.01px;
+      }
+    }
+  }
+  .cards {
+    margin-top: 1.1rem;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    .card {
+      position: relative;
+      background-color: rgb(255, 255, 255);
+      width: 18.25rem;
+      height: 13.525rem;
+      box-shadow: 0px 4px 20px 0px #0000001f;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 0.6rem;
+      .image-wrapper {
+        width: 100%;
+        height: 70%;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0.6rem 0.6rem 0rem 0rem;
+        }
+      }
+
+      .cart {
+        height: 2.5rem;
+        width: 2.5rem;
+        position: absolute;
+        margin-left: 80%;
+        margin-top: 58%;
         button {
           all: unset;
         }

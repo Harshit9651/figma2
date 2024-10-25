@@ -1,32 +1,32 @@
 <template>
-<!-- <HomePage></HomePage> -->
+<HomePage></HomePage>
  <!-- <NavBar></NavBar> -->
   <!-- <SlidBar></SlidBar> -->
    <!-- <FooterPage></FooterPage> -->
-    <ImageDetail></ImageDetail>
+    <!-- <ImageDetail></ImageDetail> -->
 </template>
   
  <script>
 
 // import FooterPage from './components/FooterPage.vue';
 
-// import HomePage from './components/HomePage.vue';
+import HomePage from './components/HomePage.vue';
 // import SlidBar from './components/SlidBar.vue';
 
 // import NavBar from './components/NavBar.vue';
  
 //  import SlidBar from './components/SlidBar.vue'
-import ImageDetail from './components/ImageDetail.vue';
+// import ImageDetail from './components/ImageDetail.vue';
 
 export default {
   name: 'App',
   components: {
-    // HomePage
+    HomePage
     // SlidBar
     // NavBar
     // SlidBar
     // FooterPage
-    ImageDetail
+    // ImageDetail
   }
 }
 </script>

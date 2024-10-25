@@ -1,6 +1,34 @@
 <template>
   <div class="main">
+    <div v-if="isOffer" class="avil-offer">
+      <p>Avail 70% off offer</p>
+      <div class="cros">
+        <button @click="closeOffer">
+          <img src="../assets/close.png" alt="Close Offer" />
+        </button>
+      </div>
+    </div>
     <NavBar></NavBar>
+    <div class="frame24">
+      <div class="inner-div">
+        <div class="first-div">5467 perfect 3D models for interior Design</div>
+        <div class="second-div">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, ut
+          ad! Corporis sed in debitis beatae autem id quis praesentium?
+        </div>
+        <div class="search-box">
+          <div class="input-with-dropdown">
+            <select class="dropdown">
+              <option value="all" class="all">ALL</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+            <input type="text" placeholder="Search 5764 3D Models.." />
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="tabular-quick-filter">
       <div
         class="tabular"
@@ -492,6 +520,7 @@
               <img
                 :src="product.images[currentImageIndex(product.id)]"
                 :alt="product.title"
+                 @click="debouncedNavigateToProduct(product.id)"
               />
               <div
                 v-if="overlayVisible && selectedProduct === product.id"
@@ -621,6 +650,10 @@
 <script setup>
 import { useProductsStore } from "../store/image";
 import { computed, ref } from "vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const debounceTimeout = ref(null);
 const isslidbar = ref(true);
 const isfilter = ref(false);
 const dropdownVisible = ref(false);
@@ -661,6 +694,10 @@ const productsStore = useProductsStore(); // Initialize the store first
 const products = computed(() => productsStore.getAllProducts); // Now you can access products
 
 const activePrice = ref("free");
+const isOffer = ref(true);
+function closeOffer() {
+  isOffer.value = false;
+}
 function setActivePrice(type) {
   activePrice.value = type;
 }
@@ -836,13 +873,29 @@ const prevImage = (productId) => {
   const product = products.value.find((p) => p.id === productId);
   const currentIndex = currentImageIndexMap.value[productId] || 0;
   currentImageIndexMap.value[productId] =
-    (currentIndex - 1 + product.images.length) % product.images.length; // loop back to end
+    (currentIndex - 1 + product.images.length) % product.images.length; 
 };
 
-// const navigateToProduct = (productId) => {
-//   const router = useRouter();
-//   router.push({ name: 'productDetail', params: { id: productId } }); // Adjust according to your routing setup
-// };
+
+
+
+// Debounce function
+const debounce = (func, delay) => {
+  return (...args) => {
+    if (debounceTimeout.value) clearTimeout(debounceTimeout.value);
+    debounceTimeout.value = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
+
+// Navigation function
+const navigateToProduct = (productId) => {
+  router.push({ name: 'productDetail', params: { id: productId } });
+};
+
+// Debounced version of the navigation function
+const debouncedNavigateToProduct = debounce(navigateToProduct, 300);
 </script>
 
 <script>
@@ -1049,15 +1102,13 @@ export default {
 
       .cards {
         background-color: #ffffff;
-        // margin-left: 1rem;
-        // margin-right: 2rem;
+
         margin-top: 1rem;
         height: 83vh;
         display: flex;
         flex-wrap: wrap;
         gap: 1.1rem;
         row-gap: 0.5rem;
-        // justify-content: space-between;
         padding: 2rem;
 
         .card {
@@ -1938,6 +1989,164 @@ export default {
     height: 25px;
     width: 25px;
     background-color: #06c270;
+  }
+}
+
+.frame24 {
+  margin: 0%;
+  height: 18.235rem;
+  background: #7343ea;
+  background-image: url("../assets/Pattern.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  .inner-div {
+    height: 90%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .first-div {
+      //styleName: H4/SB;
+      margin-top: 0.5rem;
+      font-family: Inter;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 31.2px;
+      text-align: left;
+      color: #ffffff;
+    }
+    .second-div {
+      //styleName: Body Big/R;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 23.4px;
+      text-align: center;
+      color: #ffffff;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      margin-right: 1rem;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      width: 100%;
+
+      .input-with-dropdown {
+        position: relative;
+        width: 100%;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        .all {
+          font-family: Inter;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 19.32px;
+          text-align: center;
+          color: #605e5e;
+        }
+      }
+
+      select {
+        width: 5rem;
+        height: 100%;
+        border: 1px solid #ccc;
+        background-color: white;
+        border-radius: 32px 0 0 32px;
+        font-size: 16px;
+        padding: 10px;
+        cursor: pointer;
+        outline: none;
+        box-sizing: border-box;
+      }
+
+      input {
+        width: calc(100% - 120px);
+        height: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 0 32px 32px 0;
+        outline: none;
+        box-sizing: border-box;
+      }
+    }
+
+    .searchs {
+      margin-top: 0.7rem;
+      width: 70%;
+      height: 2.8rem;
+      display: flex;
+      // justify-content: space-evenly;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      margin-right: 1rem;
+    }
+
+    .search {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: black;
+      background-color: white;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      height: 1.3rem;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background-color: #f0f0f0;
+        border-color: #1b2128;
+        color: #007bff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+.avil-offer {
+  width: 100%;
+  height: 2.65rem;
+  background: #dcf763;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  //styleName: Body Medium/M;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18.2px;
+  text-align: left;
+
+  .cros {
+    position: absolute;
+    margin-left: 97%;
+    margin-top: 1%;
+    button {
+      all: unset;
+      display: inline-block;
+    }
   }
 }
 </style>

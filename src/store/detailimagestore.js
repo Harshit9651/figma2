@@ -1,7 +1,7 @@
 // stores/products.js
 import { defineStore } from "pinia";
 
-export const useProductsStore = defineStore("products", {
+export const useImageStore = defineStore("products", {
   state: () => ({
     products: [
       {
