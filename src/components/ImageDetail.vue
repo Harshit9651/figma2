@@ -284,7 +284,7 @@ const products = ref([
     type: "Classic",
   },
 
-  // ... Add more product objects here
+
 ]);
 
 </script>

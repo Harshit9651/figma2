@@ -1,49 +1,25 @@
 <template>
-<HomePage></HomePage>
- <!-- <NavBar></NavBar> -->
-  <!-- <SlidBar></SlidBar> -->
-   <!-- <FooterPage></FooterPage> -->
-    <!-- <ImageDetail></ImageDetail> -->
+  <router-view></router-view>
 </template>
-  
- <script>
 
-// import FooterPage from './components/FooterPage.vue';
-
-import HomePage from './components/HomePage.vue';
-// import SlidBar from './components/SlidBar.vue';
-
-// import NavBar from './components/NavBar.vue';
- 
-//  import SlidBar from './components/SlidBar.vue'
-// import ImageDetail from './components/ImageDetail.vue';
-
+<script>
 export default {
   name: 'App',
-  components: {
-    HomePage
-    // SlidBar
-    // NavBar
-    // SlidBar
-    // FooterPage
-    // ImageDetail
-  }
-}
+};
 </script>
 
 <style>
-body{
+body {
   margin: 0;
- padding: 0;
+  padding: 0;
 }
 #app {
   margin: 0;
- padding: 0;
+  padding: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
-  width:100%;
+  width: 100%;
 }
 </style>

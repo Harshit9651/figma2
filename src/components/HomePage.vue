@@ -889,11 +889,10 @@ const debounce = (func, delay) => {
   };
 };
 
-// Navigation function
 const navigateToProduct = (productId) => {
-  router.push({ name: 'productDetail', params: { id: productId } });
+  console.log('Navigating to product with ID:', productId);
+  router.push({ name: 'imageDetail', params: { id: productId } }); // Ensure name is 'imageDetail'
 };
-
 // Debounced version of the navigation function
 const debouncedNavigateToProduct = debounce(navigateToProduct, 300);
 </script>
