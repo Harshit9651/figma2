@@ -161,14 +161,41 @@
         </div>
       </div>
       <div class="cards">
-        <div class="card">d</div>
+        <div class="card" v-for="product in products" :key="product.id">
+          <div class="image-wrapper">
+            <img :src="product.images" />
+          </div>
+          <div class="card-content">
+            <div class="title">{{ product.title }}</div>
+            <div class="formatss">{{ product.formats }}</div>
+          </div>
+          <div class="off">
+            <img src="../assets/local_offer.png" alt="Discount" />
+            {{ product.off }}
+          </div>
+          <div class="off-rate">
+            <h6 id="rate">{{ product.rate }}</h6>
+          </div>
+          <div class="cart">
+            <button>
+              <img src="../assets/Frame 54.png" alt="" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <FooterPage></FooterPage>
   </div>
 </template>
 <script></script>
-<script setup></script>
+<script setup>
+import{computed} from 'vue'
+import { useProductsStore} from "../store/detailimagestore";
+
+const productsStore = useProductsStore(); 
+const products = computed(() => productsStore.getAllProducts); 
+
+</script>
 <style lang="scss" scoped>
 .main-container {
   margin-left: 2rem;
@@ -553,18 +580,123 @@
     }
   }
   .cards {
-    margin-top:1.1rem;
+    margin-top: 1.1rem;
     width: 100%;
     background-color: #797676;
+    // .card {
+    //   width: 18.25rem;
+    //   height: 13.525rem;
+    //   gap: 0px;
+    //   border-radius: 8px;
+    //   background-color: white;
+    //   box-shadow: 0px 4px 20px 0px #0000000a;
+    // }
     .card {
+      background-color: rgb(255, 255, 255);
+      height: 13.245rem;
+      width: 18rem;
+      width: 18.25rem;
+      height: 13.525rem;
+      box-shadow: 0px 4px 20px 0px #0000001f;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 0.6rem;
+      .image-wrapper {
+        width: 100%;
+        height: 70%;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0.6rem 0.6rem 0rem 0rem;
+        }
+      }
 
-      width:18.25rem;
-      height:13.525rem;
-      gap: 0px;
-      border-radius: 8px;
-      background-color: white;
-      box-shadow: 0px 4px 20px 0px #0000000A;
+      .cart {
+        height: 2.5rem;
+        width: 2.5rem;
+        position: absolute;
+        margin-left: 80%;
+        margin-top: 64%;
+        button {
+          all: unset;
+        }
+      }
 
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0.5rem;
+        height: 20%;
+        overflow: hidden;
+
+        .title {
+          height: 1rem;
+          width: 14.35rem;
+          font-family: Inter;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 15.6px;
+          text-align: left;
+
+          overflow: hidden;
+          color: #313030;
+        }
+
+        .formatss {
+          justify-content: flex-start;
+          font-family: Inter;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 15.6px;
+          text-align: left;
+          color: #adaaaa;
+        }
+      }
+      .off {
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 3%;
+        height: 2.5rem;
+        width: 6rem;
+        border-radius: 2rem;
+        color: #06c270;
+        background-color: white;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        //styleName: Body Medium/SB;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 14px;
+        text-align: left;
+
+        img {
+          height: 1rem;
+          width: 1rem;
+        }
+      }
+      .off-rate {
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 70%;
+        height: 2.5rem;
+        width: 4rem;
+        border-radius: 2rem;
+        color: #ffab40;
+        background-color: white;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 16px;
+        #rate {
+          font-size: 13px;
+        }
+      }
     }
   }
 }
