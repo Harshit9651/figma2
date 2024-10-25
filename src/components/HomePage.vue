@@ -506,6 +506,27 @@
           >
             <div class="image-wrapper">
               <img :src="product.image" :alt="product.title" />
+              <div class="image-overlay">
+                <div class="fav-price">
+                 
+                  <div class="price-tag">
+                    <h6 id="rate">$ 12</h6>
+                  </div>
+                  <div class="fav">
+                    <img src="../assets/Fav.png" alt="" />
+                  </div>
+                </div>
+                <div class="arrows">
+                  <!-- Arrow buttons go here -->
+                  <div class="left-arrow">
+                    <img src="../assets/Arrow.png" alt="" />
+                  </div>
+                  <div class="right-arrow">
+                    <img src="../assets/Arrow (1).png" alt="" />
+                  </div>
+                </div>
+                <div class="image-scroll"></div>
+              </div>
             </div>
             <div class="card-content">
               <div class="title">{{ product.title }}</div>
@@ -522,23 +543,6 @@
               <button @click="showcartpopup">
                 <img src="../assets/Frame 54.png" alt="" />
               </button>
-            </div>
-            <div v-if="selectedProduct === product.id" class="add-fav">
-              <img class="imgg" src="../assets/Fav.png" alt="Add" />
-            </div>
-            <div
-              v-if="selectedProduct === product.id"
-              class="arrow-left"
-              @click.stop="scrollLeft(product)"
-            >
-              <img src="../assets/Arrow.png" alt="" />
-            </div>
-            <div
-              v-if="selectedProduct === product.id"
-              class="arrow-right"
-              @click.stop="scrollRight(product)"
-            >
-              <img src="../assets/Arrow (1).png" alt="" />
             </div>
           </div>
 
@@ -1028,15 +1032,66 @@ export default {
           border-radius: 0.6rem;
           &.active {
             border: 2px solid blue;
+            position: relative;
+            overflow: hidden;
           }
           .image-wrapper {
             width: 100%;
             height: 70%;
+            position: relative;
             img {
               width: 100%;
               height: 100%;
               object-fit: cover;
               border-radius: 0.6rem 0.6rem 0rem 0rem;
+            }
+            .image-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.75) 100%
+              );
+              display: flex;
+              flex-direction: column;
+              gap:.5rem;
+              opacity: 1; 
+              transition: opacity 0.3s ease;
+              .fav-price {
+                margin-top:.5rem;
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.5rem;
+                .price-tag {
+                  height: 2.5rem;
+                  width: 4rem;
+                  border-radius: 2rem;
+                  color: #ffab40;
+                  background-color: white;
+                  display: flex;
+                  justify-content: space-evenly;
+                  align-items: center;
+                  font-size: 16px;
+                  #rate {
+                    font-size: 13px;
+                  }
+                }
+              }
+              .arrows {
+                margin-top: 13%;
+                display: flex;
+                justify-content: space-between;
+
+                .left-arrow,
+                .right-arrow {
+                  height: 2rem;
+                  width: 2rem;
+                }
+              }
             }
           }
 
@@ -1270,7 +1325,7 @@ export default {
       }
 
       &.full-width {
-        width: 100%; // Full width when sidebar is hidden
+        width: 100%;
       }
     }
   }
@@ -1809,6 +1864,11 @@ export default {
         }
       }
     }
+  }
+  .arrow {
+    height: 25px;
+    width: 25px;
+    background-color: #06c270;
   }
 }
 </style>
