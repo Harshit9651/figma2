@@ -1,28 +1,6 @@
 <template>
   <div class="main">
     <NavBar></NavBar>
-    <!-- <div class="tabular-quick-filter">
-      <div class="tabular">
-        <img src="../assets/king_bed.png" alt="" />
-        <div class="tabular-data">Furniture</div>
-      </div>
-      <div class="tabular">
-        <img src="../assets/light.png" alt="" />
-        <div class="tabular-data">Lighting</div>
-      </div>
-      <div class="tabular">
-        <img src="../assets/texture.png" alt="" />
-        <div class="tabular-data">Textures</div>
-      </div>
-      <div class="tabular">
-        <img src="../assets/devices.png" alt="" />
-        <div class="tabular-data">Metarials</div>
-      </div>
-      <div class="tabular">
-        <img src="../assets/tonality.png" alt="" />
-        <div class="tabular-data">Technology</div>
-      </div>
-    </div> -->
     <div class="tabular-quick-filter">
       <div
         class="tabular"

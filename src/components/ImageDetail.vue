@@ -150,7 +150,20 @@
         </div>
       </div>
     </div>
-    <div class="similar-products"></div>
+    <div class="similar-products">
+      <div class="main-div">
+        <div class="similar-pro">Similar Products</div>
+        <div class="viewall">
+          view all
+          <div class="image-div">
+            <img src="../assets/Arrow (1).png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card">d</div>
+      </div>
+    </div>
     <FooterPage></FooterPage>
   </div>
 </template>
@@ -506,5 +519,53 @@
   height: 16.8125rem;
   width: 77.54rem;
   background-color: #7343ea;
+  .main-div {
+    height: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    .similar-pro {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .viewall {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18.2px;
+      text-align: left;
+      color: #939090;
+
+      .image-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 14px;
+        height: 14px;
+        padding: 3.5px 4.67px 3.5px 5.01px;
+      }
+    }
+  }
+  .cards {
+    margin-top:1.1rem;
+    width: 100%;
+    background-color: #797676;
+    .card {
+
+      width:18.25rem;
+      height:13.525rem;
+      gap: 0px;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0px 4px 20px 0px #0000000A;
+
+    }
+  }
 }
 </style>
