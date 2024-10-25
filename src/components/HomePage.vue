@@ -1029,18 +1029,17 @@ export default {
           &.active {
             border: 2px solid blue;
           }
-          .image-wrapper{
+          .image-wrapper {
             width: 100%;
             height: 70%;
             img {
-            width: 100%;
-            height: 100%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 0.6rem 0.6rem 0rem 0rem;
+            }
+          }
 
-            object-fit: cover;
-            border-radius: 0.6rem 0.6rem 0rem 0rem;
-          }
-          }
-        
           .cart {
             height: 2.5rem;
             width: 2.5rem;
