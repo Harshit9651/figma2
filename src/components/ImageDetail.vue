@@ -14,6 +14,9 @@
           </div>
           <div class="main-image">
             <img src="../assets/image 5.png" alt="" />
+            <div class="full-screen">
+              <img src="../assets/Fav (3).png" alt="" />
+            </div>
           </div>
         </div>
         <div class="left-bottom">
@@ -61,48 +64,93 @@
           </div>
         </div>
         <div class="product-daimation">
-  <div class="product-details">
-    <div class="detail-item">
-      <span class="detail-label">Version:</span>
-      <span class="detail-value">1.0</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Render:</span>
-      <span class="detail-value">High</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Side:</span>
-      <span class="detail-value">Left</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Color:</span>
-      <span class="detail-value">Black</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Length:</span>
-      <span class="detail-value">5.5mm</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Width:</span>
-      <span class="detail-value">2.0mm</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Style:</span>
-      <span class="detail-value">Modern</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Material:</span>
-      <span class="detail-value">Plastic</span>
-    </div>
-    <div class="detail-item">
-      <span class="detail-label">Form Factor:</span>
-      <span class="detail-value">Compact</span>
-    </div>
-  </div>
-</div>
+          <div class="product-details">
+            <div class="detail-item">
+              <span class="detail-label">Version:</span>
+              <span class="detail-value">1.0</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label cornoa">Render:</span>
+              <span class="detail-value button">
+                <div class="render-image">
+                  <img src="../assets/Frame 36.png" alt="" />
+                </div>
+                Corona</span
+              >
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Side:</span>
+              <span class="detail-value">Left</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label color">Color:</span>
+              <span class="detail-value colors">
+                <div class="gry"></div>
+                <div class="black"></div>
+                <div class="brown"></div>
+                <div class="slaty"></div>
+              </span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Length:</span>
+              <span class="detail-value">5.5mm</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Width:</span>
+              <span class="detail-value">2.0mm</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Style:</span>
+              <span class="detail-value">Modern</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Material:</span>
+              <span class="detail-value">Plastic</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Form Factor:</span>
+              <span class="detail-value">Compact</span>
+            </div>
+          </div>
+        </div>
+        <div class="hr"></div>
+        <div class="more-details">
+          <div class="product-details">
+            <div class="detail-item">
+              <span class="detail-label">Version:</span>
+              <span class="detail-value">1.0</span>
+            </div>
 
+            <div class="detail-item">
+              <span class="detail-label">Side:</span>
+              <span class="detail-value">Left</span>
+            </div>
+
+            <div class="detail-item">
+              <span class="detail-label">Length:</span>
+              <span class="detail-value">5.5mm</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Width:</span>
+              <span class="detail-value">2.0mm</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Style:</span>
+              <span class="detail-value">Modern</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Material:</span>
+              <span class="detail-value">Plastic</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Form Factor:</span>
+              <span class="detail-value">Compact</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="similar-products"></div>
     <FooterPage></FooterPage>
   </div>
 </template>
@@ -127,14 +175,14 @@
   margin-left: 9%;
   height: 54.437rem;
   width: 77.54rem;
-  border: 1px solid black;
+
   display: flex;
   .left-item {
     width: 51.118rem;
     height: 54.437rem;
     gap: 36px;
     opacity: 0px;
-    border: 1px solid black;
+
     .left-top {
       width: 51.118rem;
       height: 37.5rem;
@@ -159,6 +207,7 @@
         }
       }
       .main-image {
+        position: relative;
         margin-left: 1.1rem;
         width: 714px;
         height: 600px;
@@ -171,6 +220,15 @@
           width: 100%;
           object-fit: cover;
           border-radius: 16px;
+        }
+        .full-screen {
+          position: absolute;
+          width: 36px;
+          height: 36px;
+          top: 28px;
+          left: 650px;
+          gap: 0px;
+          opacity: 0px;
         }
       }
     }
@@ -305,7 +363,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-    
+
       .add-to-cart {
         display: flex;
         justify-content: center;
@@ -328,14 +386,125 @@
         }
       }
     }
+
     .product-daimation {
-        margin-top: 2rem;
+      margin-top: 2rem;
       width: 397px;
       height: 308px;
       gap: 12px;
-      opacity: 0px;
-      background-color: #7343ea;
+      opacity: 1;
+      padding: 1rem; // Optional: Add padding for better spacing
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 12px;
+      background-color: rgb(255, 255, 255);
+    }
+
+    .detail-label {
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 15.6px;
+      color: #605e5e;
+      width: 100px; /* Fixed width for consistent alignment */
+    }
+    .cornoa {
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 15.6px;
+      color: #605e5e;
+      width: 100px;
+      margin-top: 1.3rem;
+    }
+
+    .detail-value {
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 15.6px;
+      color: #1c1b1c;
+      margin-left: 20px; /* Space between label and value */
+    }
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 110px;
+      height: 44px;
+      //   padding: 12px 20px 12px 16px;
+      gap: 8px;
+      border-radius: 40px;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 14px;
+      text-align: left;
+      background-color: #fdedef;
+      color: #e8505b;
+      .render-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      gap: 0.5rem;
+    }
+    .colors {
+      display: flex;
+      gap: 0.5rem;
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 15.6px;
+      color: #1c1b1c;
+
+      .gry,
+      .black,
+      .brown,
+      .slaty {
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+      }
+      .gry {
+        background: #adaaaa;
+      }
+      .black {
+        background: #313030;
+      }
+      .brown {
+        background: #605e5e;
+      }
+      .slaty {
+        background: #797676;
+      }
+    }
+    .hr {
+      width: 397px;
+      border: 1px solid #e5e1e1;
+    }
+    .more-details {
+      margin-top: 2rem;
+      opacity: 1;
+      padding: 1rem;
+      width: 397px;
+      height: 184px;
     }
   }
+}
+.similar-products {
+  margin: 2rem;
+  margin-left: 9%;
+  height: 16.8125rem;
+  width: 77.54rem;
+  background-color: #7343ea;
 }
 </style>
