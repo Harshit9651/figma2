@@ -524,7 +524,9 @@
                     <h6 id="rate">$ 12</h6>
                   </div>
                   <div class="fav">
-                   <button @click=" addwhilist"> <img src="../assets/Fav.png" alt="" /></button>
+                    <button @click="addwhilist">
+                      <img src="../assets/Fav.png" alt="" />
+                    </button>
                   </div>
                 </div>
                 <div class="arrows">
@@ -831,7 +833,7 @@ function showcartpopup() {
 function hidewhilist() {
   showwhilist.value = false;
 }
-function addwhilist(){
+function addwhilist() {
   showwhilist.value = true;
 }
 function onMouseOver(productId) {
@@ -1142,14 +1144,13 @@ export default {
                     font-size: 13px;
                   }
                 }
-                button{
-                  all:unset
-                  .fav {
-                  margin-right: 0.5rem img {
-                    height: 2.5rem;
-                    width: 2.5rem;
+                button {
+                  all:unset .fav {
+                    margin-right: 0.5rem img {
+                      height: 2.5rem;
+                      width: 2.5rem;
+                    }
                   }
-                }
                 }
               }
               .arrows {
@@ -1383,7 +1384,7 @@ export default {
               .size {
                 //styleName: Body Small/R;
                 margin-top: 0.7rem;
-                margin-left:.5rem;
+                margin-left: 0.5rem;
                 font-family: Inter;
                 font-size: 12px;
                 font-weight: 400;
@@ -1425,10 +1426,8 @@ export default {
     display: flex;
     flex-direction: column;
     width: 25%;
-    // height: 100vh;
     background-color: #ffffff;
-    // box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-   
+
     padding: 1rem;
     padding-left: 3rem;
     overflow-y: auto;
