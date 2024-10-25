@@ -504,7 +504,9 @@
             @mouseover="openOverlay(product)"
             @mouseleave="closeOverlay"
           >
-            <img :src="product.image" :alt="product.title" />
+            <div class="image-wrapper">
+              <img :src="product.image" :alt="product.title" />
+            </div>
             <div class="card-content">
               <div class="title">{{ product.title }}</div>
               <div class="formatss">{{ product.formats }}</div>
@@ -1027,12 +1029,18 @@ export default {
           &.active {
             border: 2px solid blue;
           }
-          img {
+          .image-wrapper{
             width: 100%;
             height: 70%;
+            img {
+            width: 100%;
+            height: 100%;
+
             object-fit: cover;
             border-radius: 0.6rem 0.6rem 0rem 0rem;
           }
+          }
+        
           .cart {
             height: 2.5rem;
             width: 2.5rem;
