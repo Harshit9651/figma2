@@ -189,12 +189,11 @@
 </template>
 <script></script>
 <script setup>
-import{computed} from 'vue'
-import { useProductsStore} from "../store/detailimagestore";
+import { computed } from "vue";
+import { useProductsStore } from "../store/detailimagestore";
 
-const productsStore = useProductsStore(); 
-const products = computed(() => productsStore.getAllProducts); 
-
+const productsStore = useProductsStore();
+const products = computed(() => productsStore.getAllProducts);
 </script>
 <style lang="scss" scoped>
 .main-container {
@@ -545,7 +544,7 @@ const products = computed(() => productsStore.getAllProducts);
   margin-left: 9%;
   height: 16.8125rem;
   width: 77.54rem;
-  background-color: #7343ea;
+  background-color: #ffffff;
   .main-div {
     height: 36px;
     width: 100%;
@@ -582,19 +581,13 @@ const products = computed(() => productsStore.getAllProducts);
   .cards {
     margin-top: 1.1rem;
     width: 100%;
-    background-color: #797676;
-    // .card {
-    //   width: 18.25rem;
-    //   height: 13.525rem;
-    //   gap: 0px;
-    //   border-radius: 8px;
-    //   background-color: white;
-    //   box-shadow: 0px 4px 20px 0px #0000000a;
-    // }
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     .card {
+        position:relative;
       background-color: rgb(255, 255, 255);
-      height: 13.245rem;
-      width: 18rem;
       width: 18.25rem;
       height: 13.525rem;
       box-shadow: 0px 4px 20px 0px #0000001f;
