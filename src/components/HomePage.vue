@@ -501,42 +501,70 @@
             :key="product.id"
             class="card"
             :class="{ active: selectedProduct === product.id }"
-          @mouseover="onMouseOver(product.id); openOverlay(product)"
-      @mouseleave="onMouseLeave; closeOverlay()"
+            @mouseover="
+              onMouseOver(product.id);
+              openOverlay(product);
+            "
+            @mouseleave="
+              onMouseLeave;
+              closeOverlay();
+            "
           >
             <div class="image-wrapper">
-              <img :src="product.images[0]" :alt="product.title" />
-              <div class="image-overlay">
+              <img
+                :src="product.images[currentImageIndex(product.id)]"
+                :alt="product.title"
+              />
+              <div
+                v-if="overlayVisible && selectedProduct === product.id"
+                class="image-overlay"
+              >
                 <div class="fav-price">
-                 
                   <div class="price-tag">
                     <h6 id="rate">$ 12</h6>
                   </div>
                   <div class="fav">
-                    <img src="../assets/Fav.png" alt="" />
+                   <button @click=" addwhilist"> <img src="../assets/Fav.png" alt="" /></button>
                   </div>
                 </div>
                 <div class="arrows">
                   <!-- Arrow buttons go here -->
-                  <div class="left-arrow">
+                  <div @click="prevImage(product.id)" class="left-arrow">
                     <img src="../assets/Arrow.png" alt="" />
                   </div>
-                  <div class="right-arrow">
+                  <div @click="nextImage(product.id)" class="right-arrow">
                     <img src="../assets/Arrow (1).png" alt="" />
                   </div>
                 </div>
-                <div class="image-scroll"></div>
+                <!-- <div class="image-scroll"></div> -->
+                <div class="circle-indicators">
+                  <div
+                    v-for="index in product.images.length"
+                    :key="index"
+                    class="circle"
+                    :class="{
+                      active: currentImageIndex(product.id) === index - 1,
+                    }"
+                    @click="currentImageIndexMap[product.id] = index - 1"
+                  ></div>
+                </div>
               </div>
             </div>
             <div class="card-content">
               <div class="title">{{ product.title }}</div>
               <div class="formatss">{{ product.formats }}</div>
             </div>
-            <div v-if="product.off && !(hoveredProduct === product.id)" class="off">
+            <div
+              v-if="product.off && !(hoveredProduct === product.id)"
+              class="off"
+            >
               <img src="../assets/local_offer.png" alt="Discount" />
               {{ product.off }}
             </div>
-            <div v-if="product.rate && hoveredProduct !== product.id" class="off-rate">
+            <div
+              v-if="product.rate && hoveredProduct !== product.id"
+              class="off-rate"
+            >
               <h6 id="rate">{{ product.rate }}</h6>
             </div>
             <div class="cart">
@@ -567,7 +595,7 @@
                   <img src="../assets/file_type_fbx logo.png" alt="" />
                 </div>
                 <div class="line"></div>
-                <div v-if="selectedProductData.material" class="material">
+                <div v-if="selectedProductData.material" class="materail">
                   {{ selectedProductData.material }}
                 </div>
                 <div class="line"></div>
@@ -637,6 +665,7 @@ const selectedTab = ref(null);
 const showcartnotification = ref(false);
 const showwhilist = ref(false);
 const hoveredProduct = ref(null);
+const currentImageIndexMap = ref({});
 function selectTab(tab) {
   selectedTab.value = tab;
 }
@@ -802,13 +831,38 @@ function showcartpopup() {
 function hidewhilist() {
   showwhilist.value = false;
 }
- function onMouseOver (productId) {
+function addwhilist(){
+  showwhilist.value = true;
+}
+function onMouseOver(productId) {
   hoveredProduct.value = productId;
+}
+
+function onMouseLeave() {
+  hoveredProduct.value = null;
+}
+const currentImageIndex = (productId) => {
+  return currentImageIndexMap.value[productId] || 0; // default to the first image
 };
 
- function  onMouseLeave() {
-  hoveredProduct.value = null;
+const nextImage = (productId) => {
+  const product = products.value.find((p) => p.id === productId);
+  const currentIndex = currentImageIndexMap.value[productId] || 0;
+  currentImageIndexMap.value[productId] =
+    (currentIndex + 1) % product.images.length; // loop back to start
 };
+
+const prevImage = (productId) => {
+  const product = products.value.find((p) => p.id === productId);
+  const currentIndex = currentImageIndexMap.value[productId] || 0;
+  currentImageIndexMap.value[productId] =
+    (currentIndex - 1 + product.images.length) % product.images.length; // loop back to end
+};
+
+// const navigateToProduct = (productId) => {
+//   const router = useRouter();
+//   router.push({ name: 'productDetail', params: { id: productId } }); // Adjust according to your routing setup
+// };
 </script>
 
 <script>
@@ -1066,11 +1120,11 @@ export default {
               );
               display: flex;
               flex-direction: column;
-              gap:.5rem;
-              opacity: 0; 
+              gap: 0.5rem;
+              opacity: 1;
               transition: opacity 0.3s ease;
               .fav-price {
-                margin-top:.5rem;
+                margin-top: 0.5rem;
                 display: flex;
                 justify-content: flex-end;
                 gap: 0.5rem;
@@ -1088,9 +1142,18 @@ export default {
                     font-size: 13px;
                   }
                 }
+                button{
+                  all:unset
+                  .fav {
+                  margin-right: 0.5rem img {
+                    height: 2.5rem;
+                    width: 2.5rem;
+                  }
+                }
+                }
               }
               .arrows {
-                margin-top: 13%;
+                margin-top: 9%;
                 display: flex;
                 justify-content: space-between;
 
@@ -1099,6 +1162,26 @@ export default {
                   height: 2rem;
                   width: 2rem;
                 }
+              }
+              .circle-indicators {
+                margin-bottom: 0.5rem;
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-top: 0.5rem;
+              }
+
+              .circle {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: lightgray; /* Default color */
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+              }
+
+              .circle.active {
+                background-color: white; /* Active color */
               }
             }
           }
@@ -1288,7 +1371,7 @@ export default {
               .line {
               }
               .materail {
-                margin-left: 0.4rem;
+                margin-left: 0.5rem;
                 margin-top: 0.7rem;
                 //styleName: Body Small/R;
                 font-family: Inter;
@@ -1296,11 +1379,11 @@ export default {
                 font-weight: 400;
                 line-height: 15.6px;
                 text-align: left;
-                color: #484646;
               }
               .size {
                 //styleName: Body Small/R;
                 margin-top: 0.7rem;
+                margin-left:.5rem;
                 font-family: Inter;
                 font-size: 12px;
                 font-weight: 400;
@@ -1344,7 +1427,8 @@ export default {
     width: 25%;
     // height: 100vh;
     background-color: #ffffff;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    // box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+   
     padding: 1rem;
     padding-left: 3rem;
     overflow-y: auto;
