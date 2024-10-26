@@ -73,68 +73,6 @@
     </div>
 
     <div class="result-slidbar-section">
-      <!-- <div class="slidbar">
-        <div class="Filter">
-          <p id="filters">Filters</p>
-          <button><img src="../assets/Vector (1).png" alt="" /></button>
-        </div>
-        <div class="hr"><hr /></div>
-        <div class="all-filters">
-          <div class="header">
-            <h4>Applied filter</h4>
-            <div class="right">
-              <p>clear all</p>
-              <button><img src="../assets/close.png" alt="" /></button>
-            </div>
-          </div>
-          <div class="filters">
-            <div class="filter">
-              gray <button><img src="../assets/close.png" alt="" /></button>
-            </div>
-            <div class="filter">
-              gray <img src="../assets/close.png" alt="" />
-            </div>
-            <div class="filter">
-              gray <img src="../assets/close.png" alt="" />
-            </div>
-            <div class="filter">
-              gray <img src="../assets/close.png" alt="" />
-            </div>
-            <div class="filter">
-              loka pojoa <img src="../assets/close.png" alt="" />
-            </div>
-          </div>
-        </div>
-
-        <div class="price">
-          <div class="header">
-            <div class="left">
-              <img src="../assets/attach_money.png" alt="" />
-              <h4>Price</h4>
-            </div>
-            <div class="right">
-              <img src="../assets/expand_less.png" alt="" />
-            </div>
-          </div>
-          <div class="main-content">
-            <button
-              class="pricebutton"
-              :class="{ active: activePrice === 'free' }"
-              @click="setActivePrice('free')"
-            >
-              Free
-            </button>
-            <button
-              class="pricebutton"
-              :class="{ active: activePrice === 'paid' }"
-              @click="setActivePrice('paid')"
-            >
-              Paid
-            </button>
-          </div>
-        </div>
-      </div> -->
-
       <div v-if="sidebarVisible" class="slidbar">
         <!-- Filter Section with Hide/Unhide -->
         <div class="header">
@@ -520,7 +458,7 @@
               <img
                 :src="product.images[currentImageIndex(product.id)]"
                 :alt="product.title"
-                 @click="debouncedNavigateToProduct(product.id)"
+                @click="debouncedNavigateToProduct(product.id)"
               />
               <div
                 v-if="overlayVisible && selectedProduct === product.id"
@@ -613,21 +551,22 @@
             </div>
           </div>
           <div class="pagination">
-      <button 
-        @click="currentPage--" 
-        :disabled="currentPage === 1"
-      >
-        Previous
-      </button>
-      <span>Page {{ currentPage }} of {{ Math.ceil(products.length / itemsPerPage) }}</span>
-      <button 
-        @click="currentPage++" 
-        :disabled="currentPage >= Math.ceil(products.length / itemsPerPage)"
-      >
-        Next
-      </button>
-    </div>
-
+            <button @click="currentPage--" :disabled="currentPage === 1">
+              Previous
+            </button>
+            <span
+              >Page {{ currentPage }} of
+              {{ Math.ceil(products.length / itemsPerPage) }}</span
+            >
+            <button
+              @click="currentPage++"
+              :disabled="
+                currentPage >= Math.ceil(products.length / itemsPerPage)
+              "
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -665,10 +604,9 @@
 <script></script>
 <script setup>
 import { useProductsStore } from "../store/image";
-import { computed, ref ,onMounted} from "vue";
-import { useRouter } from 'vue-router';
-import axios from 'axios';
-
+import { computed, ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
 
 const router = useRouter();
 const debounceTimeout = ref(null);
@@ -719,17 +657,40 @@ const colorCount = computed(() => selectedColors.value.length);
 const textureCount = computed(() => selectedTextures.value.length);
 const styleCount = computed(() => selectedStyles.value.length);
 
+const applyFilters = async () => {
+  try {
+    const filters = {
+      prices: selectedPrices.value,
+      colors: selectedColors.value,
+      textures: selectedTextures.value,
+      fileTypes: selectedFileTypes.value,
+      styles: selectedStyles.value,
+      Material: selectedMaterials.value,
+    };
+
+    const response = await axios.post(
+      "http://localhost:3000/products/filter",
+      filters
+    );
+    console.log("hello filters is called");
+    products.value = response.data.products;
+  } catch (error) {
+    console.error("Error applying filters:", error);
+  }
+};
+
 onMounted(async () => {
   await fetchProducts();
 });
 const fetchProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/products/allproducts'); 
-    products.value = response.data.products; 
-    console.log('response is ok ....')
+    const response = await axios.get(
+      "http://localhost:3000/products/allproducts"
+    );
+    products.value = response.data.products;
+    console.log("response is ok ....");
   } catch (error) {
-    console.error('Error fetching products:', error);
-  
+    console.error("Error fetching products:", error);
   }
 };
 
@@ -803,6 +764,7 @@ function togglePriceSelection(type) {
   } else {
     selectedPrices.value.push(type);
   }
+  applyFilters();
 }
 
 function toggleFileTypeSelection(type) {
@@ -812,10 +774,11 @@ function toggleFileTypeSelection(type) {
   } else {
     selectedFileTypes.value.push(type);
   }
+  applyFilters();
 }
 
-const colorOptions = ["color1", "color2", "color3", "color4"];
-const materialOptions = ["Gold", "Iron", "Silver"];
+const colorOptions = ["Black", "Gray", "slati", "shad"];
+const materialOptions = ["Wood", "Fabric", "Metal" ,"Plastic"];
 
 function toggleColorSelection(color) {
   const index = selectedColors.value.indexOf(color);
@@ -824,6 +787,7 @@ function toggleColorSelection(color) {
   } else {
     selectedColors.value.push(color);
   }
+  applyFilters();
 }
 
 function toggleMaterialSelection(material) {
@@ -833,6 +797,7 @@ function toggleMaterialSelection(material) {
   } else {
     selectedMaterials.value.push(material);
   }
+  applyFilters();
 }
 
 const appliedFilters = computed(() => {
@@ -852,6 +817,10 @@ const appliedFilters = computed(() => {
   if (selectedStyles.value.length) {
     filters.push(...selectedStyles.value);
   }
+  if(selectedMaterials.value.length){
+    filters.push(...selectedMaterials.value)
+  }
+
   return filters;
 });
 
@@ -867,6 +836,10 @@ const removeFilter = (filter) => {
   } else if (selectedStyles.value.includes(filter)) {
     selectedStyles.value.splice(selectedStyles.value.indexOf(filter), 1);
   }
+ else if (selectedMaterials.value.includes(filter)) {
+    selectedMaterials.value.splice(selectedMaterials.value.indexOf(filter), 1);
+  }
+  debouncedApplyFilters();
 };
 
 const openOverlay = (product) => {
@@ -913,11 +886,8 @@ const prevImage = (productId) => {
   const product = products.value.find((p) => p.id === productId);
   const currentIndex = currentImageIndexMap.value[productId] || 0;
   currentImageIndexMap.value[productId] =
-    (currentIndex - 1 + product.images.length) % product.images.length; 
+    (currentIndex - 1 + product.images.length) % product.images.length;
 };
-
-
-
 
 // Debounce function
 const debounce = (func, delay) => {
@@ -930,11 +900,12 @@ const debounce = (func, delay) => {
 };
 
 const navigateToProduct = (productId) => {
-  console.log('Navigating to product with ID:', productId);
-  router.push({ name: 'imageDetail', params: { id: productId } }); // Ensure name is 'imageDetail'
+  console.log("Navigating to product with ID:", productId);
+  router.push({ name: "imageDetail", params: { id: productId } }); // Ensure name is 'imageDetail'
 };
 // Debounced version of the navigation function
 const debouncedNavigateToProduct = debounce(navigateToProduct, 300);
+const debouncedApplyFilters = debounce(applyFilters, 300);
 </script>
 
 <script>
