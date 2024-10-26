@@ -1,5 +1,4 @@
 <template>
-   
   <div class="main-cntainer">
     <NavBar></NavBar>
     <div class="content">Breadcrumb</div>
@@ -229,13 +228,15 @@ import NavBar from "./NavBar.vue";
 import FooterPage from "./FooterPage.vue";
 </script>
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
+// import axios from "axios";
 const products = ref([
   {
     id: 1,
     title: "Bamboo Chair",
     formats: ".obj .png .jpg",
-    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    images:
+      "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
     off: "30% off",
     rate: "Free",
     color: "Brown",
@@ -248,7 +249,8 @@ const products = ref([
     id: 1,
     title: "Bamboo Chair",
     formats: ".obj .png .jpg",
-    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    images:
+      "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
     off: "30% off",
     rate: "Free",
     color: "Brown",
@@ -261,7 +263,8 @@ const products = ref([
     id: 1,
     title: "Bamboo Chair",
     formats: ".obj .png .jpg",
-    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    images:
+      "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
     off: "30% off",
     rate: "Free",
     color: "Brown",
@@ -274,7 +277,8 @@ const products = ref([
     id: 1,
     title: "Bamboo Chair",
     formats: ".obj .png .jpg",
-    images: "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
+    images:
+      "https://s3-alpha-sig.figma.com/img/2300/b2ad/5cc060b05be0b9451dcec9d0231f1938?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afQ0KdHsrG1pkzXi2V8ZjT9mgzQ72DJWQzXbidDRdQmNl6hwmSK50GkmzyjjiIpkzUZz91NS~zaJ3sqtAXqCezvQecP~6pPtKtLwJtTO9wAlFm97Dfi4TY7hLyAuSdaRKvr~WoybWdEg4glEe4dvYHtiSVhdRHLdkN9cQps2Tg1IARhuN4MOciTxVNwomlk8ZBaLKfczAzAUIAQkMCBiy4aZTSVJOHS7RZsoxA5bIzL33hrUm4~O9qfGiCvgt0l62wu4DkPtSJrI4~14HqSQFQvpZrBs7zDmVGOnSNWkB~EaCyedZO4ZcF2D9Y2mduES7qtwldEdHR~j-~VYarNctQ__",
     off: "30% off",
     rate: "Free",
     color: "Brown",
@@ -283,10 +287,22 @@ const products = ref([
     texture: "Wood",
     type: "Classic",
   },
-
-
 ]);
 
+// const products = ref([]);
+// onMounted(async () => {
+//   await fetchProducts();
+// });
+// const fetchProducts = async () => {
+//   try {
+//     const response = await axios.get('http://localhost:3000/products//allfiveproducts');
+//     products.value = response.data.products;
+//     console.log('response is ok ....')
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+
+//   }
+// };
 </script>
 <style lang="scss" scoped>
 .main-container {
@@ -655,7 +671,6 @@ const products = ref([
       line-height: 23.4px;
       text-align: left;
       color: #484646;
-
     }
     .viewall {
       display: flex;

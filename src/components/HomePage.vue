@@ -665,8 +665,10 @@
 <script></script>
 <script setup>
 import { useProductsStore } from "../store/image";
-import { computed, ref } from "vue";
+import { computed, ref ,onMounted} from "vue";
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+
 
 const router = useRouter();
 const debounceTimeout = ref(null);
@@ -697,6 +699,7 @@ const hoveredProduct = ref(null);
 const currentImageIndexMap = ref({});
 const currentPage = ref(1);
 const itemsPerPage = 12;
+const products = ref([]);
 
 // Compute paginated products
 const paginatedProducts = computed(() => {
@@ -716,8 +719,19 @@ const colorCount = computed(() => selectedColors.value.length);
 const textureCount = computed(() => selectedTextures.value.length);
 const styleCount = computed(() => selectedStyles.value.length);
 
-const productsStore = useProductsStore(); // Initialize the store first
-const products = computed(() => productsStore.getAllProducts); // Now you can access products
+onMounted(async () => {
+  await fetchProducts();
+});
+const fetchProducts = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/products/allproducts'); 
+    products.value = response.data.products; 
+    console.log('response is ok ....')
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  
+  }
+};
 
 const activePrice = ref("free");
 const isOffer = ref(true);
