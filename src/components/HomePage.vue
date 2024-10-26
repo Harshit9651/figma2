@@ -612,6 +612,22 @@
               </div>
             </div>
           </div>
+          <div class="pagination">
+      <button 
+        @click="currentPage--" 
+        :disabled="currentPage === 1"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ Math.ceil(products.length / itemsPerPage) }}</span>
+      <button 
+        @click="currentPage++" 
+        :disabled="currentPage >= Math.ceil(products.length / itemsPerPage)"
+      >
+        Next
+      </button>
+    </div>
+
         </div>
       </div>
     </div>
@@ -679,6 +695,16 @@ const showcartnotification = ref(false);
 const showwhilist = ref(false);
 const hoveredProduct = ref(null);
 const currentImageIndexMap = ref({});
+const currentPage = ref(1);
+const itemsPerPage = 12;
+
+// Compute paginated products
+const paginatedProducts = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return products.value.slice(start, end);
+});
+
 function selectTab(tab) {
   selectedTab.value = tab;
 }
