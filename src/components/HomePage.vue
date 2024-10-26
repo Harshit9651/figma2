@@ -149,7 +149,7 @@
           <div class="price-button" v-if="priceExtended">
             <button
               class="price-option"
-              @click="togglePriceSelection('free')"
+              @click="togglePriceSelection('Free')"
               :class="{ selected: selectedPrices.includes('free') }"
             >
               Free
@@ -333,22 +333,22 @@
           <div class="texture-options" v-if="texturesExtended">
             <button
               class="texture-option"
-              @click="selectTexture('brick')"
-              :class="{ selected: selectedTextures.includes('brick') }"
+              @click="selectTexture('Leather')"
+              :class="{ selected: selectedTextures.includes('Leather') }"
             >
               Brick
             </button>
             <button
               class="texture-option"
-              @click="selectTexture('fabric')"
-              :class="{ selected: selectedTextures.includes('fabric') }"
+              @click="selectTexture('Fabric')"
+              :class="{ selected: selectedTextures.includes('Fabric') }"
             >
               Fabric
             </button>
             <button
               class="texture-option"
-              @click="selectTexture('leather')"
-              :class="{ selected: selectedTextures.includes('leather') }"
+              @click="selectTexture('Metal')"
+              :class="{ selected: selectedTextures.includes('Metal') }"
             >
               Leather
             </button>
@@ -384,21 +384,21 @@
             <button
               class="style-option"
               @click="selectStyle('classic')"
-              :class="{ selected: selectedStyles.includes('classic') }"
+              :class="{ selected: selectedStyles.includes('Classic') }"
             >
               Classic
             </button>
             <button
               class="style-option"
               @click="selectStyle('modern')"
-              :class="{ selected: selectedStyles.includes('modern') }"
+              :class="{ selected: selectedStyles.includes('Modern') }"
             >
               Modern
             </button>
             <button
               class="style-option"
               @click="selectStyle('aesthetic')"
-              :class="{ selected: selectedStyles.includes('aesthetic') }"
+              :class="{ selected: selectedStyles.includes('Vintage') }"
             >
               Aesthetic
             </button>
@@ -742,6 +742,7 @@ function selectTexture(texture) {
   } else {
     selectedTextures.value.push(texture);
   }
+  applyFilters();
 }
 
 function toggleStylesExtended() {
@@ -755,6 +756,7 @@ function selectStyle(style) {
   } else {
     selectedStyles.value.push(style);
   }
+  applyFilters();
 }
 
 function togglePriceSelection(type) {
@@ -1686,19 +1688,19 @@ export default {
       }
     }
 
-    .color1 {
+    .Black {
       background: #adaaaa;
     }
 
-    .color2 {
+    .Gray {
       background: #313030;
     }
 
-    .color3 {
+    .slati {
       background: #605e5e;
     }
 
-    .color4 {
+    .shad {
       background: #797676;
     }
   }
