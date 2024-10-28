@@ -1917,6 +1917,7 @@ export default {
         line-height: 15.6px;
         text-align: left;
         color: #484646;
+       
       }
     }
     .cros {
