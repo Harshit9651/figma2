@@ -75,7 +75,8 @@
     <div class="result-slidbar-section">
       <div v-if="sidebarVisible" class="slidbar">
         <!-- Filter Section with Hide/Unhide -->
-        <div class="header">
+<div class="slidbar-content">
+  <div class="header">
           <div class="left">
             <span class="filter-text">Filters</span>
           </div>
@@ -404,6 +405,11 @@
             </button>
           </div>
         </div>
+      
+</div>
+      
+      
+      
       </div>
 
       <div :class="['result', { 'full-width': !sidebarVisible }]">
@@ -578,6 +584,10 @@
                 >
                   {{ page }}
                 </span>
+                <div class="circle">3</div>
+                <div class="circle">...</div>
+                <div class="circle">25</div>
+                Next
               </div>
               <div class="next">
                 <button
@@ -1239,13 +1249,13 @@ export default {
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background-color: lightgray; /* Default color */
+                background-color: lightgray; 
                 cursor: pointer;
                 transition: background-color 0.3s ease;
               }
 
               .circle.active {
-                background-color: white; /* Active color */
+                background-color: white;
               }
             }
           }
@@ -1304,7 +1314,6 @@ export default {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            //styleName: Body Medium/SB;
             font-family: Inter;
             font-size: 14px;
             font-weight: 600;
@@ -1350,19 +1359,15 @@ export default {
             height: 400px;
             width: 500px;
             background: rgb(255, 255, 255);
-
             border-radius: 0.6rem;
             text-align: center;
-
             img {
               width: 100%;
               height: 70%;
               object-fit: cover;
               border-radius: 0.6rem 0.6rem 0rem 0rem;
             }
-
             .overlay-title {
-              //styleName: Body Medium/M;
               font-family: Inter;
               font-size: 14px;
               font-weight: 500;
@@ -1395,7 +1400,6 @@ export default {
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
-                //styleName: Body Medium/SB;
                 font-family: Inter;
                 font-size: 14px;
                 font-weight: 600;
@@ -1418,7 +1422,6 @@ export default {
                 justify-content: space-evenly;
                 align-items: center;
                 background-color: #fffaf4;
-                //styleName: Body Medium/SB;
                 font-family: Inter;
                 font-size: 14px;
                 font-weight: 600;
@@ -1437,7 +1440,6 @@ export default {
               .materail {
                 margin-left: 0.5rem;
                 margin-top: 0.7rem;
-                //styleName: Body Small/R;
                 font-family: Inter;
                 font-size: 12px;
                 font-weight: 400;
@@ -1445,7 +1447,6 @@ export default {
                 text-align: left;
               }
               .size {
-                //styleName: Body Small/R;
                 margin-top: 0.7rem;
                 margin-left: 0.5rem;
                 font-family: Inter;
@@ -1456,15 +1457,7 @@ export default {
                 margin-left: 0.5rem;
                 color: #484646;
               }
-              // .line {
-              //   width: 40px;
-              //   height: 1px;
-              //   background-color: black;
-
-              //   opacity: 1;
-              //   transform: rotate(90deg);
-              // }
-
+        
               .overlay-details {
                 font-size: 16px;
                 margin-bottom: 1rem;
@@ -1495,6 +1488,21 @@ export default {
     padding-left: 3rem;
     overflow-y: auto;
   }
+  .slidbar-content {
+  overflow-y: scroll; 
+  max-height: 100vh; 
+}
+  .slidbar-content::-webkit-scrollbar {
+  width: 0; 
+}
+
+.slidbar-content::-webkit-scrollbar-thumb {
+  background: transparent; 
+}
+
+.slidbar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
 
   .header {
     display: flex;
