@@ -469,7 +469,7 @@
                     <h6 id="rate">$ 12</h6>
                   </div>
                   <div class="fav">
-                    <button @click="addwhilist">
+                    <button @click="addwhilist()">
                       <img src="../assets/Fav.png" alt="" />
                     </button>
                   </div>
@@ -583,7 +583,7 @@
         </button>
       </div>
     </div>
-    <div v-if="showwhilist" class="add-favriout">
+    <div  v-if="showwhilist" class="add-favriout">
       <div class="icon"><img src="../assets/Fav.png" alt="" /></div>
       <div class="content">
         <div class="main-content">Item added to your wishlist!</div>
@@ -864,6 +864,7 @@ function hidewhilist() {
   showwhilist.value = false;
 }
 function addwhilist() {
+  alert('click')
   showwhilist.value = true;
 }
 function onMouseOver(productId) {
@@ -999,8 +1000,8 @@ export default {
         justify-content: space-between;
         height: 2.35rem;
         align-items: center;
-        margin-left: 1rem;
-        margin-right: 2rem;
+        margin-left: 1.9rem;
+        margin-right: 5rem;
         margin-top: 1rem;
 
         .all_model {
@@ -1466,7 +1467,7 @@ export default {
   .slidbar {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 20%;
     background-color: #ffffff;
 
     padding: 1rem;
