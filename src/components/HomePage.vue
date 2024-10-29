@@ -441,7 +441,7 @@
 
         <div class="cards">
           <div
-            v-for="product in products"
+            v-for="product in paginatedProducts"
             :key="product.id"
             class="card"
             :class="{ active: selectedProduct === product.id }"
@@ -551,21 +551,45 @@
             </div>
           </div>
           <div class="pagination">
-            <button @click="currentPage--" :disabled="currentPage === 1">
-              Previous
-            </button>
-            <span
-              >Page {{ currentPage }} of
-              {{ Math.ceil(products.length / itemsPerPage) }}</span
-            >
-            <button
-              @click="currentPage++"
-              :disabled="
-                currentPage >= Math.ceil(products.length / itemsPerPage)
-              "
-            >
-              Next
-            </button>
+            <div class="left-section">
+              <div class="first">1-15 of 1,250</div>
+              <div class="second">Result per page 15</div>
+            </div>
+
+            <div class="right-section">
+              <div class="previous">
+                <button @click="currentPage--" :disabled="currentPage === 1">
+                  <img src="../assets/Vector (6).png" alt="" />
+                </button>
+              </div>
+              <!-- <div class="count-page">
+                <span
+                  >Page {{ currentPage }} of
+                  {{ Math.ceil(products.length / itemsPerPage) }}</span
+                >
+              </div> -->
+              <div class="page-circles">
+                <span
+                  v-for="page in Math.ceil(products.length / itemsPerPage)"
+                  :key="page"
+                  class="circle"
+                  :class="{ active: currentPage === page }"
+                  @click="currentPage = page"
+                >
+                  {{ page }}
+                </span>
+              </div>
+              <div class="next">
+                <button
+                  @click="currentPage++"
+                  :disabled="
+                    currentPage >= Math.ceil(products.length / itemsPerPage)
+                  "
+                >
+                  <img src="../assets/Vector (7).png" alt="" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -583,7 +607,7 @@
         </button>
       </div>
     </div>
-    <div  v-if="showwhilist" class="add-favriout">
+    <div v-if="showwhilist" class="add-favriout">
       <div class="icon"><img src="../assets/Fav.png" alt="" /></div>
       <div class="content">
         <div class="main-content">Item added to your wishlist!</div>
@@ -638,13 +662,6 @@ const currentImageIndexMap = ref({});
 const currentPage = ref(1);
 const itemsPerPage = 12;
 const products = ref([]);
-
-// Compute paginated products
-const paginatedProducts = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  return products.value.slice(start, end);
-});
 
 function selectTab(tab) {
   selectedTab.value = tab;
@@ -780,7 +797,7 @@ function toggleFileTypeSelection(type) {
 }
 
 const colorOptions = ["Black", "Gray", "slati", "shad"];
-const materialOptions = ["Wood", "Fabric", "Metal" ,"Plastic"];
+const materialOptions = ["Wood", "Fabric", "Metal", "Plastic"];
 
 function toggleColorSelection(color) {
   const index = selectedColors.value.indexOf(color);
@@ -819,8 +836,8 @@ const appliedFilters = computed(() => {
   if (selectedStyles.value.length) {
     filters.push(...selectedStyles.value);
   }
-  if(selectedMaterials.value.length){
-    filters.push(...selectedMaterials.value)
+  if (selectedMaterials.value.length) {
+    filters.push(...selectedMaterials.value);
   }
 
   return filters;
@@ -837,8 +854,7 @@ const removeFilter = (filter) => {
     selectedFileTypes.value.splice(selectedFileTypes.value.indexOf(filter), 1);
   } else if (selectedStyles.value.includes(filter)) {
     selectedStyles.value.splice(selectedStyles.value.indexOf(filter), 1);
-  }
- else if (selectedMaterials.value.includes(filter)) {
+  } else if (selectedMaterials.value.includes(filter)) {
     selectedMaterials.value.splice(selectedMaterials.value.indexOf(filter), 1);
   }
   debouncedApplyFilters();
@@ -864,7 +880,7 @@ function hidewhilist() {
   showwhilist.value = false;
 }
 function addwhilist() {
-  alert('click')
+  alert("click");
   showwhilist.value = true;
 }
 function onMouseOver(productId) {
@@ -877,6 +893,11 @@ function onMouseLeave() {
 const currentImageIndex = (productId) => {
   return currentImageIndexMap.value[productId] || 0; // default to the first image
 };
+const paginatedProducts = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return products.value.slice(start, end);
+});
 
 const nextImage = (productId) => {
   const product = products.value.find((p) => p.id === productId);
@@ -1918,7 +1939,6 @@ export default {
         line-height: 15.6px;
         text-align: left;
         color: #484646;
-       
       }
     }
     .cros {
@@ -2160,6 +2180,107 @@ export default {
     button {
       all: unset;
       display: inline-block;
+    }
+  }
+}
+
+.pagination {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  width: 100%;
+  height: 2.25rem;
+  padding: 0 1rem;
+  border-radius: 5px;
+  // color: white;
+  margin-right: 7rem;
+  width: 100%;
+  .left-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    .first {
+      //styleName: Body Medium/R;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18.2px;
+      text-align: right;
+      color: #313030;
+    }
+    .second {
+      //styleName: Body Medium/R;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18.2px;
+      text-align: left;
+      color: #313030;
+    }
+  }
+  .right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .previous {
+      button {
+        all: unset;
+        img {
+          width: 10px;
+          height: 10px;
+          padding: 6px 5.59px 6px 6px;
+          gap: 0px;
+          opacity: 0px;
+        }
+      }
+    }
+    .next {
+      button {
+        all: unset;
+        img {
+          width: 10px;
+          height: 10px;
+          // padding: 6px 5.59px 6px 6px;
+        }
+      }
+    }
+    .page-circles {
+      display: flex;
+      align-items: center;
+      margin: 0 1rem; /* Margin around circles */
+    }
+
+    .circle {
+      width: 25px;
+      height: 25px;
+      width: 2.25rem;
+      height: 2.15rem;
+      
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid #f4f0ef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      //styleName: Body Medium/R;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18.2px;
+      text-align: left;
+      color: #484646;
+
+    }
+
+    .circle.active {
+      background: #7343EA;
+      color: white;
     }
   }
 }
