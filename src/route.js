@@ -1,7 +1,8 @@
 // src/router.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from './components/HomePage.vue'; 
-import ImageDetail from './components/ImageDetail.vue'; // Adjust the path as needed
+import ImageDetail from './components/ImageDetail.vue'; 
+import GridImage from './components/GridImage.vue';
 
 const routes = [
     {
@@ -14,6 +15,12 @@ const routes = [
         name: 'imageDetail',
         component: ImageDetail,
         props: true,
+      },
+      {
+        path: '/grid-image', 
+        name: 'grid-image-crop',
+        component: GridImage,
+        
       },
   // Add more routes as needed
 ];
