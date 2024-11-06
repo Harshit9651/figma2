@@ -1,11 +1,19 @@
 <template>
     <div class="flat-container">
-      <!-- Left section: Image of the flat -->
       <div class="flat-image">
-        <img src="path-to-your-flat-image.jpg" alt="Flat Image" />
+        <img
+          src="https://img.freepik.com/premium-photo/apartment-flat-top-view-furniture-decors-plan-cross-section-interior-design-architect-design_960782-6446.jpg"
+          alt="Flat Image"
+          class="full-image"
+        />
+        <div
+          v-for="(room, index) in rooms"
+          :key="index"
+          :class="['grid-section', { 'highlighted': selectedRoom === index }]"
+          :style="room.style"
+        ></div>
       </div>
   
-      <!-- Right section: Sidebar with icons for each room -->
       <div class="sidebar">
         <div
           v-for="(room, index) in rooms"
@@ -23,18 +31,15 @@
   <script setup>
   import { ref } from 'vue';
   
-  // Define the rooms and their icons
   const rooms = [
-    { name: 'Kitchen', icon: 'path-to-kitchen-icon.png' },
-    { name: 'Living Room', icon: 'path-to-living-room-icon.png' },
-    { name: 'Bedroom', icon: 'path-to-bedroom-icon.png' },
-    // Add more rooms as needed
+    { name: 'Kitchen', icon: 'path-to-kitchen-icon.png', style: { gridArea: '1 / 1 / 2 / 2' } },
+    { name: 'Living Room', icon: 'path-to-living-room-icon.png', style: { gridArea: '1 / 2 / 2 / 3' } },
+    { name: 'Bedroom', icon: 'path-to-bedroom-icon.png', style: { gridArea: '2 / 1 / 3 / 2' } },
+    // Add more rooms as needed, assigning each room a `gridArea` position
   ];
   
-  // Track the selected room
   const selectedRoom = ref(null);
   
-  // Function to select a room and highlight it
   const selectRoom = (index) => {
     selectedRoom.value = index;
   };
@@ -46,10 +51,29 @@
     align-items: flex-start;
   
     .flat-image {
-      flex: 1;
-      img {
+      position: relative;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      width: 50%;
+  
+      .full-image {
         width: 100%;
         height: auto;
+        object-fit: cover;
+      }
+  
+      .grid-section {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: background 0.3s ease;
+        opacity: 0.5;
+  
+        &.highlighted {
+          background-color: rgba(0, 123, 255, 0.5);
+        }
       }
     }
   

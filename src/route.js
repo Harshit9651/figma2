@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from './components/HomePage.vue'; 
 import ImageDetail from './components/ImageDetail.vue'; 
-import GridImage from './components/GridImage.vue';
+import FlateImage from './components/FlateImage.vue';
 
 const routes = [
     {
@@ -17,11 +17,12 @@ const routes = [
         props: true,
       },
       {
-        path: '/grid-image', 
-        name: 'grid-image-crop',
-        component: GridImage,
-        
+        path: '/image',
+        name: 'image',
+        component: FlateImage,
       },
+
+   
   // Add more routes as needed
 ];
 
