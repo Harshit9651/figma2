@@ -913,7 +913,7 @@ const nextImage = (productId) => {
   const product = products.value.find((p) => p.id === productId);
   const currentIndex = currentImageIndexMap.value[productId] || 0;
   currentImageIndexMap.value[productId] =
-    (currentIndex + 1) % product.images.length; // loop back to start
+    (currentIndex + 1) % product.images.length;
 };
 
 const prevImage = (productId) => {
@@ -923,7 +923,7 @@ const prevImage = (productId) => {
     (currentIndex - 1 + product.images.length) % product.images.length;
 };
 
-// Debounce function
+
 const debounce = (func, delay) => {
   return (...args) => {
     if (debounceTimeout.value) clearTimeout(debounceTimeout.value);
@@ -937,7 +937,7 @@ const navigateToProduct = (productId) => {
   console.log("Navigating to product with ID:", productId);
   router.push({ name: "imageDetail", params: { id: productId } }); // Ensure name is 'imageDetail'
 };
-// Debounced version of the navigation function
+
 const debouncedNavigateToProduct = debounce(navigateToProduct, 300);
 const debouncedApplyFilters = debounce(applyFilters, 300);
 </script>
