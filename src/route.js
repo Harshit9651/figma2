@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from './components/HomePage.vue'; 
 import ImageDetail from './components/ImageDetail.vue'; 
 import FlateImage from './components/FlateImage.vue';
+import SignInPage from './components/SignInPage.vue';
 
 const routes = [
     {
@@ -20,6 +21,11 @@ const routes = [
         path: '/image',
         name: 'image',
         component: FlateImage,
+      },
+      {
+        path: '/Signin',
+        name: 'SignIn',
+        component: SignInPage,
       },
 
    
