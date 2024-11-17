@@ -25,10 +25,28 @@
 
               <div class="check-error">
                 <div class="check-box">
-                  <div class="check-input"></div>
-                  <div class="text"></div>
+                  <div class="check-input">
+                    <input type="checkbox" name="" id="" />
+                  </div>
+                  <div class="text">Remember me</div>
                 </div>
-                <div class="forgot-password"></div>
+                <div class="forgot-password">Forgot Password</div>
+              </div>
+              <div class="login-button">
+                <button>Login</button>
+              </div>
+              <div class="have-account">
+                Don’t have an account? <a href="">Sign up</a>
+              </div>
+              <div class="incorrect-password">Incorrect password or Email</div>
+              <div class="signin-with">
+                <div class="part1"></div>
+                <div class="part2">Or login with</div>
+                <div class="part3"></div>
+              </div>
+              <div class="signups-option">
+                <div class="with-google"><img src="../assets/flat-color-icons_google.png" alt=""></div>
+                <div class="with-apple"><img src="../assets/ant-design_apple-filled.png" alt=""></div>
               </div>
             </div>
           </div>
@@ -56,7 +74,7 @@
   }
 
   .content-wrapper {
-    border: 4px solid black;
+  
     display: flex;
     flex-flow: column nowrap;
     padding: 2rem;
@@ -85,9 +103,8 @@
         margin-top: 5rem;
         // flex: 1;
         width: 50%;
-        height: 100%;
-        border: 2px solid green;
-        max-height: 100%;
+        height: auto;
+        min-height: 100%;
 
         .login-container {
           display: flex;
@@ -116,7 +133,7 @@
         }
 
         .main-login-content {
-          margin-top: 3rem;
+          margin-top: 2rem;
           display: flex;
           flex-direction: column;
           width: 100%;
@@ -166,24 +183,156 @@
             position: relative;
           }
           .check-error {
-            background-color: #683cd3;
             height: 2rem;
             width: 80%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            .check-box{
+            .check-box {
               height: 1.5rem;
-              width: 30%;
-              background-color: #dcf763;
+              width: 22%;
+
               display: flex;
               justify-content: space-between;
+              align-items: center;
+              .text {
+                font-family: Inter;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16.94px;
+                text-align: left;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #605e5e;
+              }
             }
-            .forgot-password{
+            .forgot-password {
               width: 30%;
               height: 1.5rem;
-              background-color: #dcf763;
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
 
+              font-family: Inter;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 16.94px;
+              text-align: right;
+              text-underline-position: from-font;
+              text-decoration-skip-ink: none;
+              color: #e8505b;
+            }
+          }
+          .login-button {
+            width: 80%;
+            button {
+              all: unset;
+              width: 100%;
+              padding: 0.8rem;
+              font-size: 16px;
+              border: 1px solid #ccc;
+              border-radius: 2rem;
+              outline: none;
+              transition: border-color 0.3s;
+              background-color: #683cd3;
+              border-radius: 2.5rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-family: Inter;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 16.94px;
+              text-align: left;
+              text-underline-position: from-font;
+              text-decoration-skip-ink: none;
+              color: white;
+            }
+          }
+          .have-account {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16.94px;
+            text-align: center;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+            color: #313131;
+            a {
+              color: #683cd3;
+            }
+          }
+          .incorrect-password {
+            margin-top: 2rem;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Inter;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19.36px;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+            color: #e8505b;
+          }
+          .signin-with {
+        margin-top: 1rem;
+            width: 80%;
+            display: flex;
+            align-items: center;
+            .part1 {
+              width: 40%;
+              height: 1px;
+              background-color: #313131;
+            }
+            .part2 {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 20%;
+              font-family: Inter;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 16.94px;
+              text-underline-position: from-font;
+              text-decoration-skip-ink: none;
+              color: #313131;
+            }
+            .part3 {
+              width: 40%;
+              height: 1px;
+              background-color: #313131;
+            }
+          }
+          .signups-option {
+            width: 80%;
+margin-top: 1rem;
+          
+            display: flex;
+            justify-content: space-between;
+            .with-google {
+              height: 4rem;
+              width: 45%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid black;
+              border-radius: 5px;
+            }
+            .with-apple{
+              height: 4rem;
+              width: 45%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+              border: 1px solid black;
+              border-radius: 5px;
             }
           }
         }
