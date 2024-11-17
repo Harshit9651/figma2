@@ -88,13 +88,15 @@
             </div>
           </div>
           <div class="setPassword">
-            <div class="heading">Forgot your password?</div>
+            <div class="heading">Set a Password</div>
             <div class="content">
-              Don’t worry, happens to all of us. Enter your email below to
-              recover your password
+              Your previous password has been reseted. Please set a new password for your account.
             </div>
             <div class="form">
-              <div class="input-email">
+              <div class="input-password">
+                <input type="email" placeholder="Email" name="" id="" />
+              </div>
+              <div class="input-password">
                 <input type="email" placeholder="Email" name="" id="" />
               </div>
               <div class="submit-button">
@@ -336,7 +338,146 @@ const loginpage = ref(false);
             }
           }
         }
+        .setPassword {
+          display: flex;
+          gap: 1rem;
+          flex-direction: column;
 
+      
+
+          .heading {
+            font-family: Inter;
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 48.41px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+            color: #313131;
+          }
+
+          .content {
+            width: 70%;
+            font-family: Inter;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19.36px;
+            text-align: left;
+            text-underline-position: from-font;
+            text-decoration-skip-ink: none;
+          }
+
+          .form {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .input-password {
+              width: 80%;
+              position: relative;
+
+              input {
+                width: 95%;
+                padding: 0.8rem;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 2rem;
+                outline: none;
+                padding-right: 2.5rem;
+                transition: border-color 0.3s;
+
+                &:focus {
+                  border: 2px solid #683cd3;
+                }
+
+                &::placeholder {
+                  color: #1c1b1f;
+                }
+              }
+            }
+
+            .submit-button {
+              margin-top: 2.5rem;
+              width: 80%; /* Same width as input */
+              button {
+                all: unset;
+                width: 100%; /* Make the button width same as the input field */
+                padding: 0.8rem;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 2rem;
+                outline: none;
+                transition: border-color 0.3s;
+                background-color: #683cd3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Inter;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 16.94px;
+                text-align: left;
+                text-decoration-skip-ink: none;
+                color: white;
+              }
+            }
+          }
+          .signin-with {
+            margin-top: 2rem;
+            width: 80%;
+            display: flex;
+            align-items: center;
+            .part1 {
+              width: 40%;
+              height: 1px;
+              background-color: #313131;
+            }
+            .part2 {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 20%;
+              font-family: Inter;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 16.94px;
+              text-underline-position: from-font;
+              text-decoration-skip-ink: none;
+              color: #313131;
+            }
+            .part3 {
+              width: 40%;
+              height: 1px;
+              background-color: #313131;
+            }
+          }
+          .signups-option {
+            width: 80%;
+            margin-top: 2rem;
+
+            display: flex;
+            justify-content: space-between;
+            .with-google {
+              height: 3rem;
+              width: 45%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid black;
+              border-radius: 5px;
+            }
+            .with-apple {
+              height: 3rem;
+              width: 45%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid black;
+              border-radius: 5px;
+            }
+          }
+        }
         .main-login-content {
           margin-top: 2rem;
           display: flex;
