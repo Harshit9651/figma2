@@ -9,7 +9,7 @@
       <div class="containers">
         <div class="content-container">
           <!-- Login Form Container -->
-          <div v-if="loginpage" class="login-container">
+          <div v-if="Showloginpage" class="login-container">
             <div class="login">Login</div>
             <div class="paragraph">Login to access your Foyr account</div>
             <div class="main-login-content">
@@ -30,7 +30,7 @@
                   </div>
                   <div class="text">Remember me</div>
                 </div>
-                <div class="forgot-password">Forgot Password</div>
+                <div @click="ForgotPassword" class="forgot-password">Forgot Password</div>
               </div>
               <div class="login-button">
                 <button>Login</button>
@@ -55,7 +55,7 @@
             </div>
           </div>
           <!-- Forgot password Container -->
-          <div v-if="loginpage" class="forgotPassword-container">
+          <div v-if="showforgotPassword" class="forgotPassword-container">
             <div class="backTologin">
               <img src="../assets/v.svg" alt="" />
               <div class="btologin">Back to login</div>
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div>
-          <div class="setPassword">
+          <div v-if="showCreatePassword" class="setPassword">
             <div class="heading">Set a Password</div>
             <div class="content">
               Your previous password has been reseted. Please set a new password for your account.
@@ -117,7 +117,15 @@
 
 <script setup>
 import { ref } from "vue";
-const loginpage = ref(false);
+const Showloginpage = ref(true);
+const showforgotPassword = ref(false)
+const showCreatePassword = ref(false)
+function ForgotPassword(){
+showforgotPassword.value = true;
+showCreatePassword.value = false;
+Showloginpage.value = false;
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -259,10 +267,10 @@ const loginpage = ref(false);
             }
 
             .submit-button {
-              width: 80%; /* Same width as input */
+              width: 80%; 
               button {
                 all: unset;
-                width: 100%; /* Make the button width same as the input field */
+                width: 100%;
                 padding: 0.8rem;
                 font-size: 16px;
                 border: 1px solid #ccc;
