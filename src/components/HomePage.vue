@@ -711,7 +711,7 @@ onMounted(async () => {
 });
 const fetchProducts = async () => {
   try {
-  console.log('hii api is on update ')
+ 
     const response = await axios.get(
       "http://localhost:3000/products/allproducts"
     );
