@@ -720,7 +720,7 @@ const fetchProducts = async () => {
   } catch (error) {
     console.error("Error fetching products:", error);
   }
-};
+};ddd
 
 const activePrice = ref("free");
 const isOffer = ref(true);
